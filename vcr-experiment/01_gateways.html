@@ -29,7 +29,7 @@
   
 </head>
 
-<body class="document-view">
+<body class="document-view withtoc">
 <script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script>
 
   <div class="layout" id="layout">
@@ -212,58 +212,6 @@
           Won't Encapsulate
         </a></li></ul>
             </li></ul>
-            </li><li><a href="#3-Abstract-Intended-Gateway-Functional-Requirements">
-              <span class="section-number">3</span>
-              Abstract (Intended) Gateway Functional Requirements
-            </a><ul><li><a href="#3.1-Abstract-Intended-Gateway-Core-Functional-Requirements">
-              <span class="section-number">3.1</span>
-              Abstract (Intended) Gateway Core Functional Requirements
-            </a><ul><li>
-        <a href="#3.1.1-AGW-F-001">
-          <span class="section-number">3.1.1</span>
-          Transports
-        </a></li><li>
-        <a href="#3.1.2-AGW-F-002">
-          <span class="section-number">3.1.2</span>
-          Translates
-        </a></li><li><a href="#3.1.3-Filters-AGW-F-003-Series">
-              <span class="section-number">3.1.3</span>
-              Filters: AGW-F-003* Series
-            </a><ul><li>
-        <a href="#3.1.3.1-AGW-F-003a">
-          <span class="section-number">3.1.3.1</span>
-          Drops
-        </a></li><li>
-        <a href="#3.1.3.2-AGW-F-003b">
-          <span class="section-number">3.1.3.2</span>
-          Rate Limits
-        </a></li></ul>
-            </li><li>
-        <a href="#3.1.4-AGW-F-004">
-          <span class="section-number">3.1.4</span>
-          Encapsulates
-        </a></li></ul>
-            </li><li><a href="#3.2-Abstract-Intended-Gateway-Additional-Functional-Requirements">
-              <span class="section-number">3.2</span>
-              Abstract (Intended) Gateway Additional Functional Requirements
-            </a><ul><li>
-        <a href="#3.2.1-AGW-F-007">
-          <span class="section-number">3.2.1</span>
-          Controllable
-        </a></li><li>
-        <a href="#3.2.2-AGW-F-008">
-          <span class="section-number">3.2.2</span>
-          Configurable
-        </a></li><li>
-        <a href="#3.2.3-AGW-F-009">
-          <span class="section-number">3.2.3</span>
-          Reports
-        </a></li><li>
-        <a href="#3.2.4-AGW-F-010">
-          <span class="section-number">3.2.4</span>
-          Diagnoses
-        </a></li></ul>
-            </li></ul>
             </li></ul>
 
     </aside>
@@ -307,20 +255,14 @@
       <div class="content"><article><section>
           <div class="free_text">
             <div class="document">
-<p>This document captures security requirements for vehicle network gateway devices: both devices intended to be gateways and those devices which <em>could be a gateway</em> (due to malicious code).</p>
-<dl class="docutils">
-<dt>Intended Gateway:</dt>
-<dd>A device which had connections to multiple vehicle network domains (or segments) and is intended to transport, translate, filter/drop/rate-limit or encapsulate information from an Untrusted Network Domain (<em>UND</em>) to a Trusted Network Domain (<em>TND</em>). Any device which performs one or more of these functions is an intended gateway. See the section <em>Abstract (Intended) Gateway Core Functional Requirements</em> for more details.</dd>
-<dt>Unintended Gateway:</dt>
-<dd>A device which could be a gateway (due to malicious code) but is not intended to be one. See the section <em>Prevents Gateway Functions</em> for details on the security assurance necessary to prevent gateway functionality on unintended gateways.</dd>
-</dl>
-<p>Intended gateways are designed to transport, translate etc. between two separate network domains (or segments). They do so asymmetrically, treating one segment as trustworthy.</p>
+<p>This document captures security requirements for vehicle network gateway devices: both devices intended to be gateways and those devices which <em>could be a gateway</em> (due to malicious code). There will be devices which are connected to multiple vehicle networks but not all of them are intended to perform gatewaying functions. The design intent of the device dictactes what security requirements it must satisfy.</p>
+<p>First let us define the two types of network domains (or segments) to which the Gateway devices will connect:</p>
 <dl class="docutils">
 <dt>Untrusted Network Domain (<em>UND</em>):</dt>
 <dd><p class="first">A <em>UND</em> is a network domain (or segment) that contains <strong>any</strong> of the following:</p>
 <ol class="last loweralpha simple">
-<li>wireless communication or reachable wirelessly (e.g J2497)</li>
-<li>an interface for aftermarket devices or operator access (e.g. an OBD port)</li>
+<li>wireless communication or reachable wirelessly (e.g J2497, ISO 15118, BlueTooth, WiFi)</li>
+<li>an interface for aftermarket devices or operator access (e.g. an OBD port, RP1226 connector)</li>
 <li>a telematics device that does not satisfy the HD VCR requirements</li>
 <li>a multi-network device (e.g. intended or unintended gateway) that does not satisfy the HD VCR requirements</li>
 </ol>
@@ -335,7 +277,7 @@
 </ol>
 </dd>
 </dl>
-<p>Some Examples:</p>
+<p>Some Examples of TND and UND:</p>
 <p>The RP1226 connector is made for connecting aftermarket devices; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
         ┌───────────────┐                 ┌──────────────┐                     ┌─┐
@@ -352,6 +294,39 @@
   TND   │  requirements │     UND         │   Connector  │      UND            │┼│
         └───────────────┘                 └──────────────┘                     └─┘
 </pre>
+<p>The TPMS gateways on RP1226 databus connect to a wireless medium and are on the aftermarket bus; therefore the databuses there are UNDs.</p>
+<pre class="literal-block">
+        ┌───────────────┐                 ┌──────────────┐                  ┌──────────────┐
+        │  Gateway sat  │                 │              │                  │              │     Wireless
+────────┤   all HDVCR   ├─────────────────┤    RP1226    ├──────────────────┤     TPMS     ├───────~~)))
+  TND   │  requirements │     UND         │   Connector  │      UND         │   Gateway    │      UND
+        └───────────────┘                 └──────────────┘                  └──────────────┘
+</pre>
+<p>Then we can define (Intended) Gateways</p>
+<dl class="docutils">
+<dt>(Intended) Gateway:</dt>
+<dd>A device which has connections to multiple vehicle network domains (or segments) and performs one or more gateway functions between a Untrusted Network Domain (<em>UND</em>) and Trusted Network Domains (<em>TND</em>). (Intended) Gateways must satisfy the requirements in section <em>Security Requirements for Abstract (Intended) Gateways</em>.</dd>
+<dt>Unintended Gateway:</dt>
+<dd>A device which has connections to multiple vehicle network domains (or segments) and performs none of the gateway functions. These devices could perform gateway functions (due to malicious code) but are not intended to. Unintended Gateways must satisfy the requirements in section <em>Security Requirements for Abstract Unintended Gateways</em>.</dd>
+</dl>
+<p>The gateway functions that duck type the gateway devices are as follows:</p>
+<dl class="docutils">
+<dt>Transports:</dt>
+<dd>These devices transport/'move' information between two separate network 'domains,' <strong>bi-bidirectionally.</strong></dd>
+<dt>Translates:</dt>
+<dd>These devices translate/transform the information between the separate network domains but intentions of the data are preserved.</dd>
+<dt>Filter/Drop/Rate-Limit:</dt>
+<dd>These devices select which information is transported based on rules matching content or metadata before (ingress) or after (egress) processing steps in preparation for transport/translate/encapsulate or other forwarding actions. These devices select which information is transported in a time varying fashion for the purposes of limiting the rate at which the information is put on a network domain.</dd>
+<dt>Encapsulates:</dt>
+<dd>These devices encapsulate information as it is transported and/or translated between the network domains.</dd>
+</dl>
+<p>Note that (Intended) Gateways may optionally perform the following functions as well -- and to do so would be beneficial; however, performing one or more of these functions does not make a device a gateway as were the case with the gateway functions above.</p>
+<ul class="simple">
+<li>These devices may be controllable by users with necessary authentication and authorization</li>
+<li>These devices may be configurable by users with necessary authentication and authorization</li>
+<li>These devices may report status of operation to users with necessary authentication and authorization</li>
+<li>These devices may provide diagnostic commands to users with necessary authentication and authorization</li>
+</ul>
 <p>Note on options for requirements: This document contains requirements where the working group cannot reasonably require a particular implementation option, only that one of the satisfactory ways to satisfy the requirement is implemented. Modelling these 'options' requirements is not possible nor reccomended: the sheer number of requirements which will be captured for heavy vehicles means that the requirements must remain machine readable and there is no machine readable way to communicate options to implementors (for good reason). The approach that is taken is to a) include the options as notes to the implementers of these requirements and b) to tag all requirements with <cite>CONTAINS_OPTIONS</cite> so the entire list of requirements containing notes to the implementers can be indexed for easy reference by them.</p>
 </div>
 
@@ -2369,462 +2344,6 @@ data-level="2.2.4">
     <div class="requirement_statement">
     <div class="document">
 <p>These devices SHALL NOT encapsulate information as it is transported and/or translated between the network domains.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article><article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3-Abstract-Intended-Gateway-Functional-Requirements"></div>
-
-    
-        <h1
-class="section-title"
-data-level="3">
-  3.&nbsp;Abstract (Intended) Gateway Functional Requirements
-</h1>
-    
-
-  </section>
-
-  
-
-</article><article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3.1-Abstract-Intended-Gateway-Core-Functional-Requirements"></div>
-
-    
-        <h2
-class="section-title"
-data-level="3.1">
-  3.1.&nbsp;Abstract (Intended) Gateway Core Functional Requirements
-</h2>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
-<p>The following are the functional requirements assumed to be the core of functionality of a vehicle gateway. As is mentioned above, any device which performs one or more of these functions is a gateway device and, furthermore, devices which are not intended to be gateways must have assurances that malicious code will not enable any one of these functionalities.</p>
-</div>
-
-    </div></section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.1-AGW-F-001"></div>
-    <h3
-class="section-title"
-data-level="3.1.1">
-  3.1.1.&nbsp;Transports
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-001</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL transport/'move' information between two separate network 'domains,' <strong>bi-bidirectionally.</strong></p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.2-AGW-F-002"></div>
-    <h3
-class="section-title"
-data-level="3.1.2">
-  3.1.2.&nbsp;Translates
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-002</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL translate/transform the information between the separate network domains but intentions of the data are preserved.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article><article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3.1.3-Filters-AGW-F-003-Series"></div>
-
-    
-        <h3
-class="section-title"
-data-level="3.1.3">
-  3.1.3.&nbsp;Filters: AGW-F-003* Series
-</h3>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
-<p>These devices MAY select which information is transported and/or translated between the network domains by satisfying all of these AGW-F-003* requirements:</p>
-</div>
-
-    </div></section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.3.1-AGW-F-003a"></div>
-    <h4
-class="section-title"
-data-level="3.1.3.1">
-  3.1.3.1.&nbsp;Drops
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-003a</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices MAY select which information is transported based on rules matching content or metadata before (ingress) or after (egress) processing steps in preparation for transport/translate/encapsulate or other forwarding actions.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.3.2-AGW-F-003b"></div>
-    <h4
-class="section-title"
-data-level="3.1.3.2">
-  3.1.3.2.&nbsp;Rate Limits
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-003b</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices MAY select which information is transported in a time varying fashion for the purposes of limiting the rate at which the information is put on a network domain.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.4-AGW-F-004"></div>
-    <h3
-class="section-title"
-data-level="3.1.4">
-  3.1.4.&nbsp;Encapsulates
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-004</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices MAY encapsulate information as it is transported and/or translated between the network domains.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article><article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3.2-Abstract-Intended-Gateway-Additional-Functional-Requirements"></div>
-
-    
-        <h2
-class="section-title"
-data-level="3.2">
-  3.2.&nbsp;Abstract (Intended) Gateway Additional Functional Requirements
-</h2>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
-<p>The following are the functional requirements assumed to also be features of intended gateways; however, devices which perform one or more of these functions are not necessarily assumed to be gateway devices -- as was the case with the requirements of the <em>Abstract (Intended) Gateway Core Functional Requirements</em> section.</p>
-</div>
-
-    </div></section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.1-AGW-F-007"></div>
-    <h3
-class="section-title"
-data-level="3.2.1">
-  3.2.1.&nbsp;Controllable
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-007</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL be controllable by users with necessary authentication and authorization.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.2-AGW-F-008"></div>
-    <h3
-class="section-title"
-data-level="3.2.2">
-  3.2.2.&nbsp;Configurable
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-008</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL be configurable by users with necessary authentication and authorization.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.3-AGW-F-009"></div>
-    <h3
-class="section-title"
-data-level="3.2.3">
-  3.2.3.&nbsp;Reports
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-009</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL report status of operation to users with necessary authentication and authorization.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-              <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.4-AGW-F-010"></div>
-    <h3
-class="section-title"
-data-level="3.2.4">
-  3.2.4.&nbsp;Diagnoses
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-010</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL provide diagnostic commands to users with necessary authentication and authorization.</p>
 </div>
 
   </div>

@@ -29,7 +29,7 @@
   
 </head>
 
-<body class="table-view">
+<body class="table-view withtoc">
 <script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script>
 
   <div class="layout" id="layout">
@@ -212,58 +212,6 @@
           Won't Encapsulate
         </a></li></ul>
             </li></ul>
-            </li><li><a href="#3-Abstract-Intended-Gateway-Functional-Requirements">
-              <span class="section-number">3</span>
-              Abstract (Intended) Gateway Functional Requirements
-            </a><ul><li><a href="#3.1-Abstract-Intended-Gateway-Core-Functional-Requirements">
-              <span class="section-number">3.1</span>
-              Abstract (Intended) Gateway Core Functional Requirements
-            </a><ul><li>
-        <a href="#3.1.1-AGW-F-001">
-          <span class="section-number">3.1.1</span>
-          Transports
-        </a></li><li>
-        <a href="#3.1.2-AGW-F-002">
-          <span class="section-number">3.1.2</span>
-          Translates
-        </a></li><li><a href="#3.1.3-Filters-AGW-F-003-Series">
-              <span class="section-number">3.1.3</span>
-              Filters: AGW-F-003* Series
-            </a><ul><li>
-        <a href="#3.1.3.1-AGW-F-003a">
-          <span class="section-number">3.1.3.1</span>
-          Drops
-        </a></li><li>
-        <a href="#3.1.3.2-AGW-F-003b">
-          <span class="section-number">3.1.3.2</span>
-          Rate Limits
-        </a></li></ul>
-            </li><li>
-        <a href="#3.1.4-AGW-F-004">
-          <span class="section-number">3.1.4</span>
-          Encapsulates
-        </a></li></ul>
-            </li><li><a href="#3.2-Abstract-Intended-Gateway-Additional-Functional-Requirements">
-              <span class="section-number">3.2</span>
-              Abstract (Intended) Gateway Additional Functional Requirements
-            </a><ul><li>
-        <a href="#3.2.1-AGW-F-007">
-          <span class="section-number">3.2.1</span>
-          Controllable
-        </a></li><li>
-        <a href="#3.2.2-AGW-F-008">
-          <span class="section-number">3.2.2</span>
-          Configurable
-        </a></li><li>
-        <a href="#3.2.3-AGW-F-009">
-          <span class="section-number">3.2.3</span>
-          Reports
-        </a></li><li>
-        <a href="#3.2.4-AGW-F-010">
-          <span class="section-number">3.2.4</span>
-          Diagnoses
-        </a></li></ul>
-            </li></ul>
             </li></ul>
 
     </aside>
@@ -310,22 +258,19 @@
   <span class="tag">
     CONTAINS_OPTIONS<span class="tag_badge">2</span>
   </span>
-</div><div class="content"><section data-col="0"><div class="free-text">
-            <div class="document">
-<p>This document captures security requirements for vehicle network gateway devices: both devices intended to be gateways and those devices which <em>could be a gateway</em> (due to malicious code).</p>
-<dl class="docutils">
-<dt>Intended Gateway:</dt>
-<dd>A device which had connections to multiple vehicle network domains (or segments) and is intended to transport, translate, filter/drop/rate-limit or encapsulate information from an Untrusted Network Domain (<em>UND</em>) to a Trusted Network Domain (<em>TND</em>). Any device which performs one or more of these functions is an intended gateway. See the section <em>Abstract (Intended) Gateway Core Functional Requirements</em> for more details.</dd>
-<dt>Unintended Gateway:</dt>
-<dd>A device which could be a gateway (due to malicious code) but is not intended to be one. See the section <em>Prevents Gateway Functions</em> for details on the security assurance necessary to prevent gateway functionality on unintended gateways.</dd>
-</dl>
-<p>Intended gateways are designed to transport, translate etc. between two separate network domains (or segments). They do so asymmetrically, treating one segment as trustworthy.</p>
+</div>
+
+      <div class="layout_tmp_inner"><div class="content_meta">
+        <div class="free_text">
+          <div class="document">
+<p>This document captures security requirements for vehicle network gateway devices: both devices intended to be gateways and those devices which <em>could be a gateway</em> (due to malicious code). There will be devices which are connected to multiple vehicle networks but not all of them are intended to perform gatewaying functions. The design intent of the device dictactes what security requirements it must satisfy.</p>
+<p>First let us define the two types of network domains (or segments) to which the Gateway devices will connect:</p>
 <dl class="docutils">
 <dt>Untrusted Network Domain (<em>UND</em>):</dt>
 <dd><p class="first">A <em>UND</em> is a network domain (or segment) that contains <strong>any</strong> of the following:</p>
 <ol class="last loweralpha simple">
-<li>wireless communication or reachable wirelessly (e.g J2497)</li>
-<li>an interface for aftermarket devices or operator access (e.g. an OBD port)</li>
+<li>wireless communication or reachable wirelessly (e.g J2497, ISO 15118, BlueTooth, WiFi)</li>
+<li>an interface for aftermarket devices or operator access (e.g. an OBD port, RP1226 connector)</li>
 <li>a telematics device that does not satisfy the HD VCR requirements</li>
 <li>a multi-network device (e.g. intended or unintended gateway) that does not satisfy the HD VCR requirements</li>
 </ol>
@@ -340,7 +285,7 @@
 </ol>
 </dd>
 </dl>
-<p>Some Examples:</p>
+<p>Some Examples of TND and UND:</p>
 <p>The RP1226 connector is made for connecting aftermarket devices; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
         ┌───────────────┐                 ┌──────────────┐                     ┌─┐
@@ -357,638 +302,486 @@
   TND   │  requirements │     UND         │   Connector  │      UND            │┼│
         └───────────────┘                 └──────────────┘                     └─┘
 </pre>
+<p>The TPMS gateways on RP1226 databus connect to a wireless medium and are on the aftermarket bus; therefore the databuses there are UNDs.</p>
+<pre class="literal-block">
+        ┌───────────────┐                 ┌──────────────┐                  ┌──────────────┐
+        │  Gateway sat  │                 │              │                  │              │     Wireless
+────────┤   all HDVCR   ├─────────────────┤    RP1226    ├──────────────────┤     TPMS     ├───────~~)))
+  TND   │  requirements │     UND         │   Connector  │      UND         │   Gateway    │      UND
+        └───────────────┘                 └──────────────┘                  └──────────────┘
+</pre>
+<p>Then we can define (Intended) Gateways</p>
+<dl class="docutils">
+<dt>(Intended) Gateway:</dt>
+<dd>A device which has connections to multiple vehicle network domains (or segments) and performs one or more gateway functions between a Untrusted Network Domain (<em>UND</em>) and Trusted Network Domains (<em>TND</em>). (Intended) Gateways must satisfy the requirements in section <em>Security Requirements for Abstract (Intended) Gateways</em>.</dd>
+<dt>Unintended Gateway:</dt>
+<dd>A device which has connections to multiple vehicle network domains (or segments) and performs none of the gateway functions. These devices could perform gateway functions (due to malicious code) but are not intended to. Unintended Gateways must satisfy the requirements in section <em>Security Requirements for Abstract Unintended Gateways</em>.</dd>
+</dl>
+<p>The gateway functions that duck type the gateway devices are as follows:</p>
+<dl class="docutils">
+<dt>Transports:</dt>
+<dd>These devices transport/'move' information between two separate network 'domains,' <strong>bi-bidirectionally.</strong></dd>
+<dt>Translates:</dt>
+<dd>These devices translate/transform the information between the separate network domains but intentions of the data are preserved.</dd>
+<dt>Filter/Drop/Rate-Limit:</dt>
+<dd>These devices select which information is transported based on rules matching content or metadata before (ingress) or after (egress) processing steps in preparation for transport/translate/encapsulate or other forwarding actions. These devices select which information is transported in a time varying fashion for the purposes of limiting the rate at which the information is put on a network domain.</dd>
+<dt>Encapsulates:</dt>
+<dd>These devices encapsulate information as it is transported and/or translated between the network domains.</dd>
+</dl>
+<p>Note that (Intended) Gateways may optionally perform the following functions as well -- and to do so would be beneficial; however, performing one or more of these functions does not make a device a gateway as were the case with the gateway functions above.</p>
+<ul class="simple">
+<li>These devices may be controllable by users with necessary authentication and authorization</li>
+<li>These devices may be configurable by users with necessary authentication and authorization</li>
+<li>These devices may report status of operation to users with necessary authentication and authorization</li>
+<li>These devices may provide diagnostic commands to users with necessary authentication and authorization</li>
+</ul>
 <p>Note on options for requirements: This document contains requirements where the working group cannot reasonably require a particular implementation option, only that one of the satisfactory ways to satisfy the requirement is implemented. Modelling these 'options' requirements is not possible nor reccomended: the sheer number of requirements which will be captured for heavy vehicles means that the requirements must remain machine readable and there is no machine readable way to communicate options to implementors (for good reason). The approach that is taken is to a) include the options as notes to the implementers of these requirements and b) to tag all requirements with <cite>CONTAINS_OPTIONS</cite> so the entire list of requirements containing notes to the implementers can be indexed for easy reference by them.</p>
 </div>
 
-          </div></section>
-          <article class="docsection">
+        </div></div><div class="content">
 
-  <section data-section="meta" class="docsection_section">
+<table class="content-view-table">
 
-    <div data-role='anchor' id="1-Security-Requirements-for-Abstract-Intended-Gateways"></div>
-
-    
-        <h1
-class="section-title"
-data-level="1">
-  1.&nbsp;Security Requirements for Abstract (Intended) Gateways
-</h1>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
+  <thead>
+    <tr>
+      <th class="content-view-th">Type</th>
+      <th class="content-view-th">Level</th><th class="content-view-th">UID</th><th class="content-view-th">STATUS</th><th class="content-view-th">REFS</th>
+      <th class="content-view-th">Title</th>
+      <th class="content-view-th">Statement</th>
+      <th class="content-view-th">Rationale</th>
+      <th class="content-view-th">Comment</th><th class="content-view-th">TAGS</th><th class="content-view-th">PUB_REFS</th><th class="content-view-th">VERIFICATION</th><th class="content-view-th">CRITICALITY</th></tr>
+  </thead>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     1
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="1-Security-Requirements-for-Abstract-Intended-Gateways"></div>
+      <div class="section-title">
+        Security Requirements for Abstract (Intended) Gateways
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr><tr>
+      <td class="content-view-td content-view-td-type">Free text</td>
+      <td class="content-view-td content-view-td-meta">–</td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+      <td class="content-view-td" colspan="50">
+        <div class="document">
 <p>The following requirements must be satisfied by any device intended to be a gateway on <em>any type of</em> vehicle networks. There are CAN-specific and J1939-sepcific requirements in the CGW- and J1939GW- series below.</p>
 </div>
 
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.1-AGW-S-000"></div>
-    <h2
-class="section-title"
-data-level="1.1">
-  1.1.&nbsp;Gateway Configuration Protected
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-000</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+      </td>
+    </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-000</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.1-AGW-S-000"></div>
+      <div class="section-title">
+        Gateway Configuration Protected
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL accept and react only to configuration changes which are correctly authorized and authenticated, regardless of origin of network domain.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.2-AGW-S-001"></div>
-    <h2
-class="section-title"
-data-level="1.2">
-  1.2.&nbsp;Prevents OTA
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-001</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.2
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-001</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.2-AGW-S-001"></div>
+      <div class="section-title">
+        Prevents OTA
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent Over The Air updates (OTA) (including parameter flash) from <em>UND</em> to <em>TND</em>, unless with explicitly authorized and authenticated configuration changes via the mode switch.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.3-AGW-S-002"></div>
-    <h2
-class="section-title"
-data-level="1.3">
-  1.3.&nbsp;Prevents DoS
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-002</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
-      <span class="requirement_child-uid">CGW-S-006</span>
-      Prevents Bus Flood Attacks
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
-      <span class="requirement_child-uid">CGW-S-008d</span>
-      Prevents Bus-Off Attack
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
-      <span class="requirement_child-uid">CGW-S-008e</span>
-      Prevents Freeze Doom Loop Attack
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
-      <span class="requirement_child-uid">J1939GW-S-029</span>
-      Prevents Address Claim Attacks
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.3
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-002</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Children:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
+            <span class="requirement_child-uid">CGW-S-006</span>
+            Prevents Bus Flood Attacks
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
+            <span class="requirement_child-uid">CGW-S-008d</span>
+            Prevents Bus-Off Attack
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
+            <span class="requirement_child-uid">CGW-S-008e</span>
+            Prevents Freeze Doom Loop Attack
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
+            <span class="requirement_child-uid">J1939GW-S-029</span>
+            Prevents Address Claim Attacks
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.3-AGW-S-002"></div>
+      <div class="section-title">
+        Prevents DoS
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating Denial of Service (DoS) on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.4-AGW-S-003"></div>
-    <h2
-class="section-title"
-data-level="1.4">
-  1.4.&nbsp;Prevents Spoofing
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-003</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
-      <span class="requirement_child-uid">CGW-S-007</span>
-      Prevents (Simple) Frame Spoofing
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
-      <span class="requirement_child-uid">CGW-S-008a</span>
-      Prevents Adaptive Frame Spoofing
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
-      <span class="requirement_child-uid">J1939GW-S-039</span>
-      Prevents J1939 Address Spoofing
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.4
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-003</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Children:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
+            <span class="requirement_child-uid">CGW-S-007</span>
+            Prevents (Simple) Frame Spoofing
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
+            <span class="requirement_child-uid">CGW-S-008a</span>
+            Prevents Adaptive Frame Spoofing
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
+            <span class="requirement_child-uid">J1939GW-S-039</span>
+            Prevents J1939 Address Spoofing
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.4-AGW-S-003"></div>
+      <div class="section-title">
+        Prevents Spoofing
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent spoofing/masquerading/injection onto <em>TND</em></p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.5-AGW-S-004"></div>
-    <h2
-class="section-title"
-data-level="1.5">
-  1.5.&nbsp;Prevents Exfiltration
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-004</dd>
-    
-    <dt><i>TAGS</i></dt>
-    <dd>CONTAINS_OPTIONS</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.5
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-004</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.5-AGW-S-004"></div>
+      <div class="section-title">
+        Prevents Exfiltration
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent exfiltration of data from <em>TND</em> to <em>UND</em>, or vice-versa, by satisfying one or more of these methods:</p>
 <ul class="simple">
 <li>Protect Confidentiality: These devices MAY encapsulate and/or translate (e.g. encrypt) information as it is transported between the network domains for the purposes of protecting confidentiality of the information in the domain to which the information is moved.</li>
 <li>Re-Write / Masking: The device SHALL provide a means of masking or otherwise re-writing data to prevent exfiltration of sensitive information from <em>TND</em> to <em>UND</em>.</li>
 </ul>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.6-AGW-S-005"></div>
-    <h2
-class="section-title"
-data-level="1.6">
-  1.6.&nbsp;Prevents Elevation
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-005</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td">
+        CONTAINS_OPTIONS</td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.6
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-005</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.6-AGW-S-005"></div>
+      <div class="section-title">
+        Prevents Elevation
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent abuse of <em>TND</em> network domain functionality from <em>UND</em> to <em>TND</em>, unless with explicitly authorized and authenticated configuration changes via the mode switch.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.7-AGW-S-006"></div>
-    <h2
-class="section-title"
-data-level="1.7">
-  1.7.&nbsp;Prevents Data Loss
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-006</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.7
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-006</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.7-AGW-S-006"></div>
+      <div class="section-title">
+        Prevents Data Loss
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent all data loss and/or corruption of information in the bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.8-AGW-S-007"></div>
-    <h2
-class="section-title"
-data-level="1.8">
-  1.8.&nbsp;Preserves High Side Operation
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-007</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
-      <span class="requirement_child-uid">AGW-S-009</span>
-      Preserves Performance
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
-      <span class="requirement_child-uid">CGW-S-005a</span>
-      Won't Drop Frames
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
-      <span class="requirement_child-uid">CGW-S-005b</span>
-      No Priority Inversion
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
-      <span class="requirement_child-uid">CGW-S-005c</span>
-      Preserves Ordering
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
-      <span class="requirement_child-uid">CGW-S-005d</span>
-      FIFO but Also Priority
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
-      <span class="requirement_child-uid">CGW-S-005e</span>
-      Preserves Jitter
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
-      <span class="requirement_child-uid">CGW-S-008b</span>
-      Prevents Error Passive Attack Step
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
-      <span class="requirement_child-uid">CGW-S-008c</span>
-      Prevents Double Receive Attack
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.8
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-007</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Children:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-child" href="#1.10-AGW-S-009">
+            <span class="requirement_child-uid">AGW-S-009</span>
+            Preserves Performance
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+            <span class="requirement_child-uid">CGW-S-005a</span>
+            Won't Drop Frames
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+            <span class="requirement_child-uid">CGW-S-005b</span>
+            No Priority Inversion
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+            <span class="requirement_child-uid">CGW-S-005c</span>
+            Preserves Ordering
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+            <span class="requirement_child-uid">CGW-S-005d</span>
+            FIFO but Also Priority
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+            <span class="requirement_child-uid">CGW-S-005e</span>
+            Preserves Jitter
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+            <span class="requirement_child-uid">CGW-S-008b</span>
+            Prevents Error Passive Attack Step
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+            <span class="requirement_child-uid">CGW-S-008c</span>
+            Prevents Double Receive Attack
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.8-AGW-S-007"></div>
+      <div class="section-title">
+        Preserves High Side Operation
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent degradation of any <em>TND</em> operation due to <em>UND</em> activity.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.9-AGW-S-008"></div>
-    <h2
-class="section-title"
-data-level="1.9">
-  1.9.&nbsp;Security Assurance
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-008</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
-      <span class="requirement_child-uid">CGW-S-013</span>
-      Impervious to Janus Attack
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
-      <span class="requirement_child-uid">J1939GW-S-089</span>
-      Impervious to Address Claim Attacks
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.9
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-008</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Children:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
+            <span class="requirement_child-uid">CGW-S-013</span>
+            Impervious to Janus Attack
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
+            <span class="requirement_child-uid">J1939GW-S-089</span>
+            Impervious to Address Claim Attacks
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.9-AGW-S-008"></div>
+      <div class="section-title">
+        Security Assurance
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.10-AGW-S-009"></div>
-    <h2
-class="section-title"
-data-level="1.10">
-  1.10.&nbsp;Preserves Performance
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-009</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>Medium</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#1.13.1-CGW-S-001">
-      <span class="requirement_child-uid">CGW-S-001</span>
-      Performant
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.10
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-009</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+      Children:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-child" href="#1.13.1-CGW-S-001">
+            <span class="requirement_child-uid">CGW-S-001</span>
+            Performant
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.10-AGW-S-009"></div>
+      <div class="section-title">
+        Preserves Performance
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL be scoped to sufficient detail to preserve network domain performance guarantees in <em>TND</em>.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.11-AGW-S-010"></div>
-    <h2
-class="section-title"
-data-level="1.11">
-  1.11.&nbsp;Mode Switch Interlock
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-010</dd>
-    
-    <dt><i>TAGS</i></dt>
-    <dd>CONTAINS_OPTIONS</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Medium</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.11
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-010</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.11-AGW-S-010"></div>
+      <div class="section-title">
+        Mode Switch Interlock
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL have a means to temporarily disable the preventions listed previously and as noted with &quot;unless with explicity authorized and authenticated configuration changes via the mode switch&quot; The means must be impossible to use without explicit authorization by the vehicle owner. The device SHALL satisfy one or more of these methods to enable a switch into modes which allow OTA, spoofing, etc. from <em>UND</em> to <em>TND</em>. If more than one is satisfied then the effects of either switch could be in effect concurrently (i.e. a logical OR operation).</p>
 <ul class="simple">
 <li>Physical Mode Switch Interlock: The device SHALL have at least one physical input that when grounded enables a switch into modes which allow OTA, spoofing, etc. from <em>UND</em> to <em>TND</em>.<ul>
@@ -1002,565 +795,384 @@ data-level="1.11">
 </li>
 </ul>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.12-AGW-S-011"></div>
-    <h2
-class="section-title"
-data-level="1.12">
-  1.12.&nbsp;Mode Switch Indicated
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-S-011</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>Medium</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td">
+        CONTAINS_OPTIONS</td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.12
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        AGW-S-011</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.12-AGW-S-011"></div>
+      <div class="section-title">
+        Mode Switch Indicated
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL indicate to all domains that it is not performing normal operations.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="1.13-Security-Requirements-for-CAN-Gateways"></div>
-
-    
-        <h2
-class="section-title"
-data-level="1.13">
-  1.13.&nbsp;Security Requirements for CAN Gateways
-</h2>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Medium</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="1.13-Security-Requirements-for-CAN-Gateways"></div>
+      <div class="section-title">
+        Security Requirements for CAN Gateways
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr><tr>
+      <td class="content-view-td content-view-td-type">Free text</td>
+      <td class="content-view-td content-view-td-meta">–</td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+      <td class="content-view-td" colspan="50">
+        <div class="document">
 <p>The following security requirements must be satisfied by CAN gateways specifically. These CAN gateways are expected to meet all of the AGW-S-* Abstract Gateway security requirements and to also satisfy the CGW-S-* security requirements of this section.</p>
 </div>
 
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.1-CGW-S-001"></div>
-    <h3
-class="section-title"
-data-level="1.13.1">
-  1.13.1.&nbsp;Performant
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-001</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>Medium</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.10-AGW-S-009">
-      <span class="requirement_parent-uid">AGW-S-009</span>
-      Preserves Performance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+      </td>
+    </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-001</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.10-AGW-S-009">
+            <span class="requirement_parent-uid">AGW-S-009</span>
+            Preserves Performance
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.1-CGW-S-001"></div>
+      <div class="section-title">
+        Performant
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL process and move CAN frames quickly enough to preserve performance on all network domains.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="1.13.2-Preserves-Atomic-Multicast-CGW-S-005-Series"></div>
-
-    
-        <h3
-class="section-title"
-data-level="1.13.2">
-  1.13.2.&nbsp;Preserves Atomic Multicast: CGW-S-005* Series
-</h3>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Medium</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.2
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="1.13.2-Preserves-Atomic-Multicast-CGW-S-005-Series"></div>
+      <div class="section-title">
+        Preserves Atomic Multicast: CGW-S-005* Series
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr><tr>
+      <td class="content-view-td content-view-td-type">Free text</td>
+      <td class="content-view-td content-view-td-meta">–</td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+      <td class="content-view-td" colspan="50">
+        <div class="document">
 <p>The device SHALL preserve the atomic multicast property of CAN buses. All CGW-S-005* requirements must be satisfied.</p>
 </div>
 
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.2.1-CGW-S-005a"></div>
-    <h4
-class="section-title"
-data-level="1.13.2.1">
-  1.13.2.1.&nbsp;Won't Drop Frames
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-005a</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+      </td>
+    </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.2.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-005a</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.2.1-CGW-S-005a"></div>
+      <div class="section-title">
+        Won't Drop Frames
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL NOT drop CAN frames in its bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002)</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.2.2-CGW-S-005b"></div>
-    <h4
-class="section-title"
-data-level="1.13.2.2">
-  1.13.2.2.&nbsp;No Priority Inversion
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-005b</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.2.2
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-005b</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.2.2-CGW-S-005b"></div>
+      <div class="section-title">
+        No Priority Inversion
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL schedule egress frames according to the CAN arbitration ID priority in it bidirectional <em>UND</em> ↔ <em>TND</em> operation, to prevent priority inversion.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.2.3-CGW-S-005c"></div>
-    <h4
-class="section-title"
-data-level="1.13.2.3">
-  1.13.2.3.&nbsp;Preserves Ordering
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-005c</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.2.3
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-005c</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.2.3-CGW-S-005c"></div>
+      <div class="section-title">
+        Preserves Ordering
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL preserve ordering egress frames wrt their ingress order within an equivalence class of CAN arbitration ID priorities, to prevent out-of-order delivery.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.2.4-CGW-S-005d"></div>
-    <h4
-class="section-title"
-data-level="1.13.2.4">
-  1.13.2.4.&nbsp;FIFO but Also Priority
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-005d</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.2.4
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-005d</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.2.4-CGW-S-005d"></div>
+      <div class="section-title">
+        FIFO but Also Priority
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL schedule egress for in-order send but not across CAN arbitration ID priorities.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.2.5-CGW-S-005e"></div>
-    <h4
-class="section-title"
-data-level="1.13.2.5">
-  1.13.2.5.&nbsp;Preserves Jitter
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-005e</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>Medium</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.2.5
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-005e</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.2.5-CGW-S-005e"></div>
+      <div class="section-title">
+        Preserves Jitter
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL have ingress-to-egress latency variability (jitter) low enough to not affect the <em>TND</em> network domain performance requirements in the worst case.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="1.13.3-Prevents-CAN-Attacks"></div>
-
-    
-        <h3
-class="section-title"
-data-level="1.13.3">
-  1.13.3.&nbsp;Prevents CAN Attacks
-</h3>
-    
-
-  </section>
-
-  
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.1-CGW-S-006"></div>
-    <h4
-class="section-title"
-data-level="1.13.3.1">
-  1.13.3.1.&nbsp;Prevents Bus Flood Attacks
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-006</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
-      <span class="requirement_parent-uid">AGW-S-002</span>
-      Prevents DoS
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Medium</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="1.13.3-Prevents-CAN-Attacks"></div>
+      <div class="section-title">
+        Prevents CAN Attacks
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-006</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+            <span class="requirement_parent-uid">AGW-S-002</span>
+            Prevents DoS
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.1-CGW-S-006"></div>
+      <div class="section-title">
+        Prevents Bus Flood Attacks
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating bus flood attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.1 for a description of the bus flood attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.2-CGW-S-007"></div>
-    <h4
-class="section-title"
-data-level="1.13.3.2">
-  1.13.3.2.&nbsp;Prevents (Simple) Frame Spoofing
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-007</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
-      <span class="requirement_parent-uid">AGW-S-003</span>
-      Prevents Spoofing
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.2
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-007</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+            <span class="requirement_parent-uid">AGW-S-003</span>
+            Prevents Spoofing
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.2-CGW-S-007"></div>
+      <div class="section-title">
+        Prevents (Simple) Frame Spoofing
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating simple frame spoofing attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.2 for a description of simple frame spoofing attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="1.13.3.3-Prevents-CAN-Protocol-Attacks-CGW-S-008-Series"></div>
-
-    
-        <h4
-class="section-title"
-data-level="1.13.3.3">
-  1.13.3.3.&nbsp;Prevents CAN Protocol Attacks: CGW-S-008* Series
-</h4>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.3
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="1.13.3.3-Prevents-CAN-Protocol-Attacks-CGW-S-008-Series"></div>
+      <div class="section-title">
+        Prevents CAN Protocol Attacks: CGW-S-008* Series
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr><tr>
+      <td class="content-view-td content-view-td-type">Free text</td>
+      <td class="content-view-td content-view-td-meta">–</td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+      <td class="content-view-td" colspan="50">
+        <div class="document">
 <p>The CAN gateways must prevent CAN protocol attacks in <em>TND</em>. At the time of drafting these requirements this can be accomplished by satisfying all of the CGW-S-008* requirements that follow.</p>
 <dl class="docutils">
 <dt>CAN Protocol Attack</dt>
@@ -1569,1295 +1181,576 @@ data-level="1.13.3.3">
 <p>c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.1 for further definition of CAN protocol attacks.</p>
 </div>
 
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.3.1-CGW-S-008a"></div>
-    <h5
-class="section-title"
-data-level="1.13.3.3.1">
-  1.13.3.3.1.&nbsp;Prevents Adaptive Frame Spoofing
-</h5>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-008a</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
-      <span class="requirement_parent-uid">AGW-S-003</span>
-      Prevents Spoofing
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+      </td>
+    </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.3.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-008a</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+            <span class="requirement_parent-uid">AGW-S-003</span>
+            Prevents Spoofing
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.3.1-CGW-S-008a"></div>
+      <div class="section-title">
+        Prevents Adaptive Frame Spoofing
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating adaptive frame spoofing attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.3 for a description of adaptive frame spoofing attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.3.2-CGW-S-008b"></div>
-    <h5
-class="section-title"
-data-level="1.13.3.3.2">
-  1.13.3.3.2.&nbsp;Prevents Error Passive Attack Step
-</h5>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-008b</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.3.2
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-008b</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.3.2-CGW-S-008b"></div>
+      <div class="section-title">
+        Prevents Error Passive Attack Step
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating attacks that drive a ECU on <em>TND</em> into error passive state from messages originating on <em>UND</em>. This will in turn prevent error passive spoofing attacks c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.4 for a description of error passive spoofing attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.3.3-CGW-S-008c"></div>
-    <h5
-class="section-title"
-data-level="1.13.3.3.3">
-  1.13.3.3.3.&nbsp;Prevents Double Receive Attack
-</h5>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-008c</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
-      <span class="requirement_parent-uid">AGW-S-007</span>
-      Preserves High Side Operation
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.3.3
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-008c</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+            <span class="requirement_parent-uid">AGW-S-007</span>
+            Preserves High Side Operation
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.3.3-CGW-S-008c"></div>
+      <div class="section-title">
+        Prevents Double Receive Attack
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating double receive attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.5 for a description of the double receive attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.3.4-CGW-S-008d"></div>
-    <h5
-class="section-title"
-data-level="1.13.3.3.4">
-  1.13.3.3.4.&nbsp;Prevents Bus-Off Attack
-</h5>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-008d</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
-      <span class="requirement_parent-uid">AGW-S-002</span>
-      Prevents DoS
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.3.4
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-008d</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+            <span class="requirement_parent-uid">AGW-S-002</span>
+            Prevents DoS
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.3.4-CGW-S-008d"></div>
+      <div class="section-title">
+        Prevents Bus-Off Attack
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating bus-off attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.6 for a description of the bus-off attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.3.5-CGW-S-008e"></div>
-    <h5
-class="section-title"
-data-level="1.13.3.3.5">
-  1.13.3.3.5.&nbsp;Prevents Freeze Doom Loop Attack
-</h5>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-008e</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
-      <span class="requirement_parent-uid">AGW-S-002</span>
-      Prevents DoS
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.3.5
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-008e</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+            <span class="requirement_parent-uid">AGW-S-002</span>
+            Prevents DoS
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.3.5-CGW-S-008e"></div>
+      <div class="section-title">
+        Prevents Freeze Doom Loop Attack
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating freeze doom loop attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.7 for a description of the freeze doom loop attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.13.3.4-CGW-S-013"></div>
-    <h4
-class="section-title"
-data-level="1.13.3.4">
-  1.13.3.4.&nbsp;Impervious to Janus Attack
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>CGW-S-013</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>Medium</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.9-AGW-S-008">
-      <span class="requirement_parent-uid">AGW-S-008</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.13.3.4
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        CGW-S-013</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.9-AGW-S-008">
+            <span class="requirement_parent-uid">AGW-S-008</span>
+            Security Assurance
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.13.3.4-CGW-S-013"></div>
+      <div class="section-title">
+        Impervious to Janus Attack
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interface. c.f. <a class="reference external" href="https://kentindell.github.io/2021/07/15/janus-attack/">https://kentindell.github.io/2021/07/15/janus-attack/</a> for a description of the Janus Attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    <div class="requirement_comment">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
       <div class="document">
 <p>Susceptibility to Janus Attacks is a property of a network of devices, not only of a single device. The entire <em>TND</em> is expected to be impervious to Janus Attacks since it should all be OEM supplied components there. In <em>UND</em> it is not possible to require that this device nor all the devices are impervious to Janus Attacks since <em>UND</em> is explicitly permitted to contain non-OEM supplied components. What is required of this device on <em>UND</em> is that if there are other OEM supplied devices on <em>UND</em> then this device cannot enable Janus Attacks on that collection of all those OEM supplied devices on <em>UND</em>.</p>
 </div>
 
-    </div>
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="1.14-Security-Requirements-for-J1939-Gateways"></div>
-
-    
-        <h2
-class="section-title"
-data-level="1.14">
-  1.14.&nbsp;Security Requirements for J1939 Gateways
-</h2>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Medium</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     1.14
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="1.14-Security-Requirements-for-J1939-Gateways"></div>
+      <div class="section-title">
+        Security Requirements for J1939 Gateways
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr><tr>
+      <td class="content-view-td content-view-td-type">Free text</td>
+      <td class="content-view-td content-view-td-meta">–</td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+      <td class="content-view-td" colspan="50">
+        <div class="document">
 <p>J1939 Gateways are expected to meet all of the CGW-S-* CAN Gateway Security Requirements and to also satisfy the J1939GW-S-* Security requirements of this section</p>
 </div>
 
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.14.1-J1939GW-S-039"></div>
-    <h3
-class="section-title"
-data-level="1.14.1">
-  1.14.1.&nbsp;Prevents J1939 Address Spoofing
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>J1939GW-S-039</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>Medium</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
-      <span class="requirement_parent-uid">AGW-S-003</span>
-      Prevents Spoofing
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+      </td>
+    </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.14.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        J1939GW-S-039</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+            <span class="requirement_parent-uid">AGW-S-003</span>
+            Prevents Spoofing
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.14.1-J1939GW-S-039"></div>
+      <div class="section-title">
+        Prevents J1939 Address Spoofing
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device shall prevent the gatewaying (any of transport, translate, filter, or encapsulate) of any traffic onto <em>TND</em> with a J1939 address which is claimed by any of the devices in <em>TND</em>.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.14.2-J1939GW-S-029"></div>
-    <h3
-class="section-title"
-data-level="1.14.2">
-  1.14.2.&nbsp;Prevents Address Claim Attacks
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>J1939GW-S-029</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
-      <span class="requirement_parent-uid">AGW-S-002</span>
-      Prevents DoS
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Medium</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.14.2
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        J1939GW-S-029</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+            <span class="requirement_parent-uid">AGW-S-002</span>
+            Prevents DoS
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.14.2-J1939GW-S-029"></div>
+      <div class="section-title">
+        Prevents Address Claim Attacks
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent generating address claim attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf">https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf</a> and <a class="reference external" href="https://doi.org/10.4271/02-14-03-0026">https://doi.org/10.4271/02-14-03-0026</a> for a description of the address claim attack.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    <div class="requirement_comment">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
       <div class="document">
 <p><strong>Note to implementors</strong>: Performing no gatewaying (any of transport, translate, filter, or encapsulate) of address claims onto <em>TND</em> would satisfy this requirement.</p>
 </div>
 
-    </div>
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="1.14.3-J1939GW-S-089"></div>
-    <h3
-class="section-title"
-data-level="1.14.3">
-  1.14.3.&nbsp;Impervious to Address Claim Attacks
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>J1939GW-S-089</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#1.9-AGW-S-008">
-      <span class="requirement_parent-uid">AGW-S-008</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     1.14.3
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        J1939GW-S-089</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#1.9-AGW-S-008">
+            <span class="requirement_parent-uid">AGW-S-008</span>
+            Security Assurance
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.14.3-J1939GW-S-089"></div>
+      <div class="section-title">
+        Impervious to Address Claim Attacks
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL not be susceptible to address claim attacks on any of its interfaces (e.g. <em>TND</em> and <em>UND</em>)</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="2-Security-Requirements-for-Abstract-Unintended-Gateways"></div>
-
-    
-        <h1
-class="section-title"
-data-level="2">
-  2.&nbsp;Security Requirements for Abstract Unintended Gateways
-</h1>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     2
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="2-Security-Requirements-for-Abstract-Unintended-Gateways"></div>
+      <div class="section-title">
+        Security Requirements for Abstract Unintended Gateways
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr><tr>
+      <td class="content-view-td content-view-td-type">Free text</td>
+      <td class="content-view-td content-view-td-meta">–</td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+      <td class="content-view-td" colspan="50">
+        <div class="document">
 <p>Security requirements that must be satisfied by any device which <em>could be</em> a gateway (due to malicious code) but is not intended to be one.</p>
 </div>
 
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="2.1-NGW-S-001"></div>
-    <h2
-class="section-title"
-data-level="2.1">
-  2.1.&nbsp;Security Assurance
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-001</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#2.2.1-NGW-S-002">
-      <span class="requirement_child-uid">NGW-S-002</span>
-      Won't Transport
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.2-NGW-S-003">
-      <span class="requirement_child-uid">NGW-S-003</span>
-      Won't Translate
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.3-NGW-S-004">
-      <span class="requirement_child-uid">NGW-S-004</span>
-      Won't Filter, Drop or Rate Limit
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.4-NGW-S-005">
-      <span class="requirement_child-uid">NGW-S-005</span>
-      Won't Encapsulate
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+      </td>
+    </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     2.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        NGW-S-001</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Children:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-child" href="#2.2.1-NGW-S-002">
+            <span class="requirement_child-uid">NGW-S-002</span>
+            Won't Transport
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#2.2.2-NGW-S-003">
+            <span class="requirement_child-uid">NGW-S-003</span>
+            Won't Translate
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#2.2.3-NGW-S-004">
+            <span class="requirement_child-uid">NGW-S-004</span>
+            Won't Filter, Drop or Rate Limit
+          </a>
+        </li>
+        <li>
+          <a class="requirement_link-child" href="#2.2.4-NGW-S-005">
+            <span class="requirement_child-uid">NGW-S-005</span>
+            Won't Encapsulate
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="2.1-NGW-S-001"></div>
+      <div class="section-title">
+        Security Assurance
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="2.2-Prevents-Gateway-Functions"></div>
-
-    
-        <h2
-class="section-title"
-data-level="2.2">
-  2.2.&nbsp;Prevents Gateway Functions
-</h2>
-    
-
-  </section>
-
-  
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="2.2.1-NGW-S-002"></div>
-    <h3
-class="section-title"
-data-level="2.2.1">
-  2.2.1.&nbsp;Won't Transport
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-002</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">Section</td>
+   <td class="content-view-td content-view-td-meta">
+     2.2
+   </td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta"></td>
+    <td class="content-view-td content-view-td-title" colspan="4"><div data-role='anchor' id="2.2-Prevents-Gateway-Functions"></div>
+      <div class="section-title">
+        Prevents Gateway Functions
+      </div><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td><td class="content-view-td"></td></td>
+  </tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     2.2.1
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        NGW-S-002</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+            <span class="requirement_parent-uid">NGW-S-001</span>
+            Security Assurance
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="2.2.1-NGW-S-002"></div>
+      <div class="section-title">
+        Won't Transport
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>These devices SHALL NOT transport/'move' information between two separate network 'domains,' in either bidirection.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="2.2.2-NGW-S-003"></div>
-    <h3
-class="section-title"
-data-level="2.2.2">
-  2.2.2.&nbsp;Won't Translate
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-003</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     2.2.2
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        NGW-S-003</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+            <span class="requirement_parent-uid">NGW-S-001</span>
+            Security Assurance
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="2.2.2-NGW-S-003"></div>
+      <div class="section-title">
+        Won't Translate
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>These devices SHALL NOT translate/transform the information between the separate network domains.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="2.2.3-NGW-S-004"></div>
-    <h3
-class="section-title"
-data-level="2.2.3">
-  2.2.3.&nbsp;Won't Filter, Drop or Rate Limit
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-004</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     2.2.3
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        NGW-S-004</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+            <span class="requirement_parent-uid">NGW-S-001</span>
+            Security Assurance
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="2.2.3-NGW-S-004"></div>
+      <div class="section-title">
+        Won't Filter, Drop or Rate Limit
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>These devices SHALL NOT select which information is transported and/or translated between the network domains.</p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="2.2.4-NGW-S-005"></div>
-    <h3
-class="section-title"
-data-level="2.2.4">
-  2.2.4.&nbsp;Won't Encapsulate
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-005</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
+  <tr>
+   <td class="content-view-td content-view-td-type">
+    Requirement</td>
+   <td class="content-view-td content-view-td-meta">
+     2.2.4
+   </td>
+      <td class="content-view-td content-view-td-meta">
+        NGW-S-005</td>
+      <td class="content-view-td content-view-td-meta"></td><td class="content-view-td content-view-td-meta content-view-td-related">
+      Parents:
+      <ul class="requirement_link">
+        <li>
+          <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+            <span class="requirement_parent-uid">NGW-S-001</span>
+            Security Assurance
+          </a>
+        </li>
+        </ul>
+    </td>
+    <td class="content-view-td content-view-td-title"><div data-role='anchor' id="2.2.4-NGW-S-005"></div>
+      <div class="section-title">
+        Won't Encapsulate
+      </div></td>
+    <td class="content-view-td content-view-td-content"><div class="document">
 <p>These devices SHALL NOT encapsulate information as it is transported and/or translated between the network domains.</p>
 </div>
+</td>
+    <td class="content-view-td content-view-td-content"></td>
+    <td class="content-view-td content-view-td-content">
+    </td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        High</td></tr>
 
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3-Abstract-Intended-Gateway-Functional-Requirements"></div>
-
-    
-        <h1
-class="section-title"
-data-level="3">
-  3.&nbsp;Abstract (Intended) Gateway Functional Requirements
-</h1>
-    
-
-  </section>
-
-  
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3.1-Abstract-Intended-Gateway-Core-Functional-Requirements"></div>
-
-    
-        <h2
-class="section-title"
-data-level="3.1">
-  3.1.&nbsp;Abstract (Intended) Gateway Core Functional Requirements
-</h2>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
-<p>The following are the functional requirements assumed to be the core of functionality of a vehicle gateway. As is mentioned above, any device which performs one or more of these functions is a gateway device and, furthermore, devices which are not intended to be gateways must have assurances that malicious code will not enable any one of these functionalities.</p>
+  </table>
 </div>
-
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.1-AGW-F-001"></div>
-    <h3
-class="section-title"
-data-level="3.1.1">
-  3.1.1.&nbsp;Transports
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-001</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL transport/'move' information between two separate network 'domains,' <strong>bi-bidirectionally.</strong></p>
 </div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.2-AGW-F-002"></div>
-    <h3
-class="section-title"
-data-level="3.1.2">
-  3.1.2.&nbsp;Translates
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-002</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL translate/transform the information between the separate network domains but intentions of the data are preserved.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3.1.3-Filters-AGW-F-003-Series"></div>
-
-    
-        <h3
-class="section-title"
-data-level="3.1.3">
-  3.1.3.&nbsp;Filters: AGW-F-003* Series
-</h3>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
-<p>These devices MAY select which information is transported and/or translated between the network domains by satisfying all of these AGW-F-003* requirements:</p>
-</div>
-
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.3.1-AGW-F-003a"></div>
-    <h4
-class="section-title"
-data-level="3.1.3.1">
-  3.1.3.1.&nbsp;Drops
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-003a</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices MAY select which information is transported based on rules matching content or metadata before (ingress) or after (egress) processing steps in preparation for transport/translate/encapsulate or other forwarding actions.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.3.2-AGW-F-003b"></div>
-    <h4
-class="section-title"
-data-level="3.1.3.2">
-  3.1.3.2.&nbsp;Rate Limits
-</h4>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-003b</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices MAY select which information is transported in a time varying fashion for the purposes of limiting the rate at which the information is put on a network domain.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.1.4-AGW-F-004"></div>
-    <h3
-class="section-title"
-data-level="3.1.4">
-  3.1.4.&nbsp;Encapsulates
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-004</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices MAY encapsulate information as it is transported and/or translated between the network domains.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="3.2-Abstract-Intended-Gateway-Additional-Functional-Requirements"></div>
-
-    
-        <h2
-class="section-title"
-data-level="3.2">
-  3.2.&nbsp;Abstract (Intended) Gateway Additional Functional Requirements
-</h2>
-    
-
-  </section>
-
-  <section data-section="description" class="docsection_section"><div class="free-text">
-      <div class="document">
-<p>The following are the functional requirements assumed to also be features of intended gateways; however, devices which perform one or more of these functions are not necessarily assumed to be gateway devices -- as was the case with the requirements of the <em>Abstract (Intended) Gateway Core Functional Requirements</em> section.</p>
-</div>
-
-    </div></section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.1-AGW-F-007"></div>
-    <h3
-class="section-title"
-data-level="3.2.1">
-  3.2.1.&nbsp;Controllable
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-007</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL be controllable by users with necessary authentication and authorization.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.2-AGW-F-008"></div>
-    <h3
-class="section-title"
-data-level="3.2.2">
-  3.2.2.&nbsp;Configurable
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-008</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL be configurable by users with necessary authentication and authorization.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.3-AGW-F-009"></div>
-    <h3
-class="section-title"
-data-level="3.2.3">
-  3.2.3.&nbsp;Reports
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-009</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL report status of operation to users with necessary authentication and authorization.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-          <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    <div data-role='anchor' id="3.2.4-AGW-F-010"></div>
-    <h3
-class="section-title"
-data-level="3.2.4">
-  3.2.4.&nbsp;Diagnoses
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>AGW-F-010</dd>
-    
-  </dl>
-    
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL provide diagnostic commands to users with necessary authentication and authorization.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-      </div>
 
 
     </main>
