@@ -182,7 +182,6 @@ CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-004
-TAGS: CONTAINS_OPTIONS
 TITLE: Prevents Exfiltration
 STATEMENT: >>>
 The device SHALL prevent exfiltration of data from *TND* to *UND*, or vice-versa, by satisfying one or more of these methods:
@@ -191,6 +190,7 @@ The device SHALL prevent exfiltration of data from *TND* to *UND*, or vice-versa
 * Re-Write / Masking: The device SHALL provide a means of masking or otherwise re-writing data to prevent exfiltration of sensitive information from *TND* to *UND*.
 
 <<<
+TAGS: CONTAINS_OPTIONS
 PUB_REFS: >>>
 TODO
 <<<
@@ -250,7 +250,6 @@ CRITICALITY: Medium
 
 [REQUIREMENT]
 UID: AGW-S-010
-TAGS: CONTAINS_OPTIONS
 TITLE: Mode Switch Interlock
 STATEMENT: >>>
 The device SHALL have a means to temporarily disable the preventions listed previously and as noted with "unless with explicity authorized and authenticated configuration changes via the mode switch" The means must be impossible to use without explicit authorization by the vehicle owner. The device SHALL satisfy one or more of these methods to enable a switch into modes which allow OTA, spoofing, etc. from *UND* to *TND*. If more than one is satisfied then the effects of either switch could be in effect concurrently (i.e. a logical OR operation).
@@ -266,6 +265,7 @@ The device SHALL have a means to temporarily disable the preventions listed prev
   * Example: Consent from third party device / application that is signed with infrastructure OEM has access to verify
 
 <<<
+TAGS: CONTAINS_OPTIONS
 PUB_REFS: >>>
 TODO
 <<<
