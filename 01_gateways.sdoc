@@ -199,13 +199,19 @@ CRITICALITY: High
 [REQUIREMENT]
 UID: AGW-S-005
 TITLE: Prevents Elevation
-STATEMENT: The device SHALL prevent abuse of *TND* network domain functionality from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
+STATEMENT: >>>
+
+The device SHALL prevent abuse of *TND* network domain functionality from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
+
+The specifics of what *TND* network domain functionality could be abused will depend on what is implemented in the vehicle networks. Examples of vehicle network functionality which could be abused in passenger cars is captured in the J3138 "intrusive services" it lists: e.g. *Request control of on-board system, test or component*, *ECUProgrammingSession*, *ECUReset*, *WriteByIdentifier*, etc.
+<<<
 PUB_REFS: >>>
 
     It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
 
     -- FMCSA GDL 37
 
+Example *Intrusive Services*, SAE J3138.
 <<<
 CRITICALITY: High
 
