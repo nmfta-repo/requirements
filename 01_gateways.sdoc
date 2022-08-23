@@ -149,6 +149,11 @@ PUB_REFS: >>>
 https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 <<<
 CRITICALITY: High
+PUB_REFS: >>>    
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b. Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g. Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+<<<
+
 
 [REQUIREMENT]
 UID: AGW-S-001
@@ -158,6 +163,10 @@ PUB_REFS: >>>
 TODO
 <<<
 CRITICALITY: High
+PUB_REFS: >>>    
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b. Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g. Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-002
@@ -171,6 +180,9 @@ PUB_REFS: >>>
 
 <<<
 CRITICALITY: High
+PUB_REFS: >>> 
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a. Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-003
@@ -184,6 +196,9 @@ PUB_REFS: >>>
 
 <<<
 CRITICALITY: High
+PUB_REFS: >>> 
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a. Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-004
@@ -200,6 +215,9 @@ PUB_REFS: >>>
 TODO
 <<<
 CRITICALITY: High
+PUB_REFS: >>>
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c. Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-005
@@ -219,6 +237,11 @@ PUB_REFS: >>>
 Example *Intrusive Services*, SAE J3138.
 <<<
 CRITICALITY: High
+PUB_REFS: >>>
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a. Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b. Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e. Central gateway or domain controller based architectures.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-006
@@ -237,6 +260,11 @@ PUB_REFS: >>>
 TODO
 <<<
 CRITICALITY: High
+PUB_REFS: >>>
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a. Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b. Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e. Central gateway or domain controller based architectures.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-008
@@ -246,6 +274,11 @@ PUB_REFS: >>>
 TODO
 <<<
 CRITICALITY: High
+PUB_REFS: >>>
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b. Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c. Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g. Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-009
@@ -287,6 +320,11 @@ PUB_REFS: >>>
 https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 <<<
 CRITICALITY: High
+PUB_REFS: >>>
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b. Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c. Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g. Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+<<<
 
 [REQUIREMENT]
 UID: AGW-S-011
@@ -570,6 +608,11 @@ PUB_REFS: >>>
 TODO
 <<<
 CRITICALITY: High
+PUB_REFS: >>>
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b. Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c. Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g. Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+<<<
 
 [SECTION]
 TITLE: Prevents Gateway Functions
@@ -585,6 +628,7 @@ PUB_REFS: >>>
 TODO
 <<<
 CRITICALITY: High
+
 
 [REQUIREMENT]
 UID: NGW-S-003
