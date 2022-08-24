@@ -263,9 +263,6 @@ CRITICALITY: High
 UID: AGW-S-006
 TITLE: Prevents Data Loss
 STATEMENT: The device SHALL prevent all data loss and/or corruption of information in the bidirectional *UND* ↔ *TND* operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -317,9 +314,6 @@ REFS:
   VALUE: AGW-S-007
 TITLE: Preserves Performance
 STATEMENT: The device SHALL be scoped to sufficient detail to preserve network domain performance guarantees in *TND*.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: Medium
 
 [REQUIREMENT]
@@ -366,9 +360,6 @@ CRITICALITY: High
 UID: AGW-S-011
 TITLE: Mode Switch Indicated
 STATEMENT: The device SHALL indicate to all domains that it is not performing normal operations.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: Medium
 
 [SECTION]
@@ -385,9 +376,6 @@ REFS:
   VALUE: AGW-S-009
 TITLE: Performant
 STATEMENT: The device SHALL process and move CAN frames quickly enough to preserve performance on all network domains.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: Medium
 
 [SECTION]
@@ -404,9 +392,6 @@ REFS:
   VALUE: AGW-S-007
 TITLE: Won't Drop Frames
 STATEMENT: The device SHALL NOT drop CAN frames in its bidirectional *UND* ↔ *TND* operation, unless with explicit configuration for rate limiting or translating.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -416,9 +401,6 @@ REFS:
   VALUE: AGW-S-007
 TITLE: No Priority Inversion
 STATEMENT: The device SHALL schedule egress frames according to the CAN arbitration ID priority in it bidirectional *UND* ↔ *TND* operation, to prevent priority inversion.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -428,9 +410,6 @@ REFS:
   VALUE: AGW-S-007
 TITLE: Preserves Ordering
 STATEMENT: The device SHALL preserve ordering egress frames with respect to their ingress order within an equivalence class of CAN arbitration ID priorities, to prevent out-of-order delivery.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -440,9 +419,6 @@ REFS:
   VALUE: AGW-S-007
 TITLE: FIFO but Also Priority
 STATEMENT: The device SHALL schedule egress for in-order send but not across CAN arbitration ID priorities.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -452,9 +428,6 @@ REFS:
   VALUE: AGW-S-007
 TITLE: Preserves Jitter
 STATEMENT: The device SHALL have ingress-to-egress latency variability (jitter) low enough to not affect the *TND* network domain performance requirements in the worst case.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: Medium
 
 [/SECTION]
@@ -591,9 +564,6 @@ REFS:
   VALUE: AGW-S-003
 TITLE: Prevents J1939 Address Spoofing
 STATEMENT: The device shall prevent the gatewaying (any of transport, translate, filter, or encapsulate) of any traffic onto *TND* with a J1939 address which is claimed by any of the devices in *TND*.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: Medium
 
 [REQUIREMENT]
@@ -606,8 +576,6 @@ STATEMENT: The device SHALL prevent generating address claim attacks on *TND* fr
 COMMENT: **Note to implementors**: Performing no gatewaying (any of transport, translate, filter, or encapsulate) of address claims onto *TND* would satisfy this requirement.
 PUB_REFS: >>>
 https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
-
-TODO
 <<<
 CRITICALITY: High
 
@@ -620,8 +588,6 @@ TITLE: Impervious to Address Claim Attacks
 STATEMENT: The device SHALL not be susceptible to address claim attacks on any of its interfaces (e.g. *TND* and *UND*)
 PUB_REFS: >>>
 https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
-
-TODO
 <<<
 CRITICALITY: High
 
@@ -667,9 +633,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Transport
 STATEMENT: These devices SHALL NOT transport/'move' information between two separate network 'domains,' in either bidirection.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -679,9 +642,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Translate
 STATEMENT: These devices SHALL NOT translate/transform the information between the separate network domains.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -691,9 +651,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Filter, Drop or Rate Limit
 STATEMENT: These devices SHALL NOT select which information is transported and/or translated between the network domains.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -703,9 +660,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Encapsulate
 STATEMENT: These devices SHALL NOT encapsulate information as it is transported and/or translated between the network domains.
-PUB_REFS: >>>
-TODO
-<<<
 CRITICALITY: High
 
 [/SECTION]
