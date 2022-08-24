@@ -443,7 +443,7 @@ REFS:
 TITLE: Prevents Bus Flood Attacks
 STATEMENT: The device SHALL prevent generating bus flood attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
-* https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.1 for a description of the bus flood attack.
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.1 for a description of the bus flood attack.
 <<<
 CRITICALITY: High
 
@@ -455,7 +455,7 @@ REFS:
 TITLE: Prevents (Simple) Frame Spoofing
 STATEMENT: The device SHALL prevent generating simple frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
-* https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.2 for a description of simple frame spoofing attack.
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.2 for a description of simple frame spoofing attack.
 <<<
 CRITICALITY: High
 
@@ -468,7 +468,7 @@ The CAN gateways must prevent CAN protocol attacks in *TND*. At the time of draf
 CAN Protocol Attack
     Attacks on CAN networks requiring GPIO control of CAN_TX (and optionally CAN_RX) pins.
 
-c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.1 for further definition of CAN protocol attacks.
+c.f. https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.1 for further definition of CAN protocol attacks.
 [/FREETEXT]
 
 [REQUIREMENT]
@@ -479,7 +479,7 @@ REFS:
 TITLE: Prevents Adaptive Frame Spoofing
 STATEMENT: The device SHALL prevent generating adaptive frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
-* https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.3 for a description of adaptive frame spoofing attack.
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.3 for a description of adaptive frame spoofing attack.
 <<<
 CRITICALITY: High
 
@@ -491,7 +491,7 @@ REFS:
 TITLE: Prevents Error Passive Attack Step
 STATEMENT: The device SHALL prevent generating attacks that drive a ECU on *TND* into error passive state from messages originating on *UND*. This will in turn prevent error passive spoofing attacks.
 PUB_REFS: >>>
-* https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.4 for a description of error passive spoofing attack.
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.4 for a description of error passive spoofing attack.
 <<<
 CRITICALITY: High
 
@@ -503,7 +503,7 @@ REFS:
 TITLE: Prevents Double Receive Attack
 STATEMENT: The device SHALL prevent generating double receive attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
-* https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.5 for a description of the double receive attack.
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.5 for a description of the double receive attack.
 <<<
 CRITICALITY: High
 
@@ -515,7 +515,7 @@ REFS:
 TITLE: Prevents Bus-Off Attack
 STATEMENT: The device SHALL prevent generating bus-off attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
-* https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.6 for a description of the bus-off attack.
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.6 for a description of the bus-off attack.
 <<<
 CRITICALITY: High
 
@@ -527,7 +527,7 @@ REFS:
 TITLE: Prevents Freeze Doom Loop Attack
 STATEMENT: The device SHALL prevent generating freeze doom loop attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
-* https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.
 <<<
 CRITICALITY: High
 
