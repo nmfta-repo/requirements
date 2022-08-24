@@ -140,8 +140,13 @@ The following requirements must be satisfied by any device intended to be a gate
 UID: AGW-S-000
 TITLE: Gateway Configuration Protected
 STATEMENT: The device SHALL accept and react only to configuration changes which are correctly authorized and authenticated, regardless of origin of network domain.
+COMMENT: >>>
+This can be achieved by use of a Hardware Security Module (HSM) containing keys for verifying a configuration
+using a secure message authentication code (MAC) and where the HSM has a secure mechanism for remotely programming
+the MAC key.
+<<<
 PUB_REFS: >>>
-TODO
+https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 <<<
 CRITICALITY: High
 
@@ -269,11 +274,17 @@ The device SHALL have a means to temporarily disable the preventions listed prev
   * Example: Consent on Instrument cluster or infotainment device (and thus internal networks - possibly but not necessarily *TND*)
 
   * Example: Consent from third party device / application that is signed with infrastructure OEM has access to verify
-
 <<<
 TAGS: CONTAINS_OPTIONS
+COMMENT: >>>
+A Virtual Mode Switch can be achieved by use of a Hardware Security Module (HSM) that can verify a Message Authentication Code (MAC) of
+a mode change message, and where the key used for verifying the MAC can be programmed securely via remote commands.
+
+Replay attacks are prevented by using a challenge-response protocol between the gateway and the remote device to
+exchange a sequence number or timestamp, for example the SKID3 protocol (ISO 9798-4, Chapter 5.2.2).
+<<<
 PUB_REFS: >>>
-TODO
+https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 <<<
 CRITICALITY: High
 
