@@ -140,24 +140,71 @@ The following requirements must be satisfied by any device intended to be a gate
 UID: AGW-S-000
 TITLE: Gateway Configuration Protected
 STATEMENT: The device SHALL accept and react only to configuration changes which are correctly authorized and authenticated, regardless of origin of network domain.
+COMMENT: >>>
+This can be achieved by use of a Hardware Security Module (HSM) containing keys for verifying a configuration using a secure message authentication code (MAC) and where the HSM has a secure mechanism for remotely programming the MAC key.
+<<<
+PUB_REFS: >>>
+* https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
+
+    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
+
+    Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-001
 TITLE: Prevents OTA
 STATEMENT: The device SHALL prevent Over The Air updates (OTA) (including parameter flash) from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
+PUB_REFS: >>>
+
+    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
+
+    Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-002
 TITLE: Prevents DoS
 STATEMENT: The device SHALL prevent generating Denial of Service (DoS) on *TND* from messages originating on *UND*.
+PUB_REFS: >>>
+
+    It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
+
+    -- FMCSA GDL 37
+
+    Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-003
 TITLE: Prevents Spoofing
 STATEMENT: The device SHALL prevent spoofing/masquerading/injection onto *TND*
+PUB_REFS: >>>
+
+    It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
+
+    -- FMCSA GDL 37
+
+    Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -171,12 +218,45 @@ The device SHALL prevent exfiltration of data from *TND* to *UND*, or vice-versa
 
 <<<
 TAGS: CONTAINS_OPTIONS
+PUB_REFS: >>>
+
+    Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-005
 TITLE: Prevents Elevation
-STATEMENT: The device SHALL prevent abuse of *TND* network domain functionality from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
+STATEMENT: >>>
+
+The device SHALL prevent abuse of *TND* network domain functionality from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
+
+The specifics of what *TND* network domain functionality could be abused will depend on what is implemented in the vehicle networks. Examples of vehicle network functionality which could be abused in passenger cars is captured in the J3138 "intrusive services" it lists: e.g. *Request control of on-board system, test or component*, *ECUProgrammingSession*, *ECUReset*, *WriteByIdentifier*, etc.
+<<<
+PUB_REFS: >>>
+
+    It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
+
+    -- FMCSA GDL 37
+
+    Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.
+
+    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
+
+    Central gateway or domain controller based architectures.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e.
+
+* Example *Intrusive Services*, SAE J3138.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -189,12 +269,42 @@ CRITICALITY: High
 UID: AGW-S-007
 TITLE: Preserves High Side Operation
 STATEMENT: The device SHALL prevent degradation of any *TND* operation due to *UND* activity.
+PUB_REFS: >>>
+
+    Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.
+
+    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
+
+    Central gateway or domain controller based architectures.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-008
 TITLE: Security Assurance
 STATEMENT: These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.
+PUB_REFS: >>>
+
+    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
+
+    Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.
+
+    Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -221,9 +331,29 @@ The device SHALL have a means to temporarily disable the preventions listed prev
   * Example: Consent on Instrument cluster or infotainment device (and thus internal networks - possibly but not necessarily *TND*)
 
   * Example: Consent from third party device / application that is signed with infrastructure OEM has access to verify
-
 <<<
 TAGS: CONTAINS_OPTIONS
+COMMENT: >>>
+A Virtual Mode Switch can be achieved by use of a Hardware Security Module (HSM) that can verify a Message Authentication Code (MAC) of a mode change message, and where the key used for verifying the MAC can be programmed securely via remote commands.
+
+Replay attacks are prevented by using a challenge-response protocol between the gateway and the remote device to exchange a sequence number or timestamp, for example the SKID3 protocol (ISO 9798-4, Chapter 5.2.2).
+<<<
+PUB_REFS: >>>
+* https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
+
+    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
+
+    Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.
+
+    Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.
+
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -261,7 +391,7 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
 TITLE: Won't Drop Frames
-STATEMENT: The device SHALL NOT drop CAN frames in its bidirectional *UND* ↔ *TND* operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002)
+STATEMENT: The device SHALL NOT drop CAN frames in its bidirectional *UND* ↔ *TND* operation, unless with explicit configuration for rate limiting or translating.
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -279,7 +409,7 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
 TITLE: Preserves Ordering
-STATEMENT: The device SHALL preserve ordering egress frames wrt their ingress order within an equivalence class of CAN arbitration ID priorities, to prevent out-of-order delivery.
+STATEMENT: The device SHALL preserve ordering egress frames with respect to their ingress order within an equivalence class of CAN arbitration ID priorities, to prevent out-of-order delivery.
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -311,7 +441,10 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
 TITLE: Prevents Bus Flood Attacks
-STATEMENT: The device SHALL prevent generating bus flood attacks on *TND* from messages originating on *UND*. c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.1 for a description of the bus flood attack.
+STATEMENT: The device SHALL prevent generating bus flood attacks on *TND* from messages originating on *UND*.
+PUB_REFS: >>>
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.1 for a description of the bus flood attack.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -320,7 +453,10 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-003
 TITLE: Prevents (Simple) Frame Spoofing
-STATEMENT: The device SHALL prevent generating simple frame spoofing attacks on *TND* from messages originating on *UND*. c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.2 for a description of simple frame spoofing attack.
+STATEMENT: The device SHALL prevent generating simple frame spoofing attacks on *TND* from messages originating on *UND*.
+PUB_REFS: >>>
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.2 for a description of simple frame spoofing attack.
+<<<
 CRITICALITY: High
 
 [SECTION]
@@ -332,7 +468,7 @@ The CAN gateways must prevent CAN protocol attacks in *TND*. At the time of draf
 CAN Protocol Attack
     Attacks on CAN networks requiring GPIO control of CAN_TX (and optionally CAN_RX) pins.
 
-c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.1 for further definition of CAN protocol attacks.
+c.f. https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.1 for further definition of CAN protocol attacks.
 [/FREETEXT]
 
 [REQUIREMENT]
@@ -341,7 +477,10 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-003
 TITLE: Prevents Adaptive Frame Spoofing
-STATEMENT: The device SHALL prevent generating adaptive frame spoofing attacks on *TND* from messages originating on *UND*. c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.3 for a description of adaptive frame spoofing attack.
+STATEMENT: The device SHALL prevent generating adaptive frame spoofing attacks on *TND* from messages originating on *UND*.
+PUB_REFS: >>>
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.3 for a description of adaptive frame spoofing attack.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -350,7 +489,10 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
 TITLE: Prevents Error Passive Attack Step
-STATEMENT: The device SHALL prevent generating attacks that drive a ECU on *TND* into error passive state from messages originating on *UND*. This will in turn prevent error passive spoofing attacks c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.4 for a description of error passive spoofing attack.
+STATEMENT: The device SHALL prevent generating attacks that drive a ECU on *TND* into error passive state from messages originating on *UND*. This will in turn prevent error passive spoofing attacks.
+PUB_REFS: >>>
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.4 for a description of error passive spoofing attack.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -359,7 +501,10 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
 TITLE: Prevents Double Receive Attack
-STATEMENT: The device SHALL prevent generating double receive attacks on *TND* from messages originating on *UND*. c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.5 for a description of the double receive attack.
+STATEMENT: The device SHALL prevent generating double receive attacks on *TND* from messages originating on *UND*.
+PUB_REFS: >>>
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.5 for a description of the double receive attack.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -368,7 +513,10 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
 TITLE: Prevents Bus-Off Attack
-STATEMENT: The device SHALL prevent generating bus-off attacks on *TND* from messages originating on *UND*. c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.6 for a description of the bus-off attack.
+STATEMENT: The device SHALL prevent generating bus-off attacks on *TND* from messages originating on *UND*.
+PUB_REFS: >>>
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.6 for a description of the bus-off attack.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -377,7 +525,10 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
 TITLE: Prevents Freeze Doom Loop Attack
-STATEMENT: The device SHALL prevent generating freeze doom loop attacks on *TND* from messages originating on *UND*. c.f. https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.
+STATEMENT: The device SHALL prevent generating freeze doom loop attacks on *TND* from messages originating on *UND*.
+PUB_REFS: >>>
+* https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.
+<<<
 CRITICALITY: High
 
 [/SECTION]
@@ -388,8 +539,11 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-008
 TITLE: Impervious to Janus Attack
-STATEMENT: The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interface. c.f. https://kentindell.github.io/2021/07/15/janus-attack/ for a description of the Janus Attack.
+STATEMENT: The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interface.
 COMMENT: Susceptibility to Janus Attacks is a property of a network of devices, not only of a single device. The entire *TND* is expected to be impervious to Janus Attacks since it should all be OEM supplied components there. In *UND* it is not possible to require that this device nor all the devices are impervious to Janus Attacks since *UND* is explicitly permitted to contain non-OEM supplied components. What is required of this device on *UND* is that if there are other OEM supplied devices on *UND* then this device cannot enable Janus Attacks on that collection of all those OEM supplied devices on *UND*.
+PUB_REFS: >>>
+* https://kentindell.github.io/2021/07/15/janus-attack/ for a description of the Janus Attack
+<<<
 CRITICALITY: Medium
 
 [/SECTION]
@@ -418,8 +572,11 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
 TITLE: Prevents Address Claim Attacks
-STATEMENT: The device SHALL prevent generating address claim attacks on *TND* from messages originating on *UND*. c.f. https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
+STATEMENT: The device SHALL prevent generating address claim attacks on *TND* from messages originating on *UND*.
 COMMENT: **Note to implementors**: Performing no gatewaying (any of transport, translate, filter, or encapsulate) of address claims onto *TND* would satisfy this requirement.
+PUB_REFS: >>>
+* https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -429,6 +586,9 @@ REFS:
   VALUE: AGW-S-008
 TITLE: Impervious to Address Claim Attacks
 STATEMENT: The device SHALL not be susceptible to address claim attacks on any of its interfaces (e.g. *TND* and *UND*)
+PUB_REFS: >>>
+* https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
+<<<
 CRITICALITY: High
 
 [/SECTION]
@@ -446,6 +606,21 @@ Security requirements that must be satisfied by any device which *could be* a ga
 UID: NGW-S-001
 TITLE: Security Assurance
 STATEMENT: These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.
+PUB_REFS: >>>
+
+    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
+
+    Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.
+
+    Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
+
+    -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.
+
+<<<
 CRITICALITY: High
 
 [SECTION]
