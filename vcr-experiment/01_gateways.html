@@ -392,8 +392,30 @@ data-level="1.1">
 
     
     
+    <div class="requirement_comment">
+      <div class="document">
+<p>This can be achieved by use of a Hardware Security Module (HSM) containing keys for verifying a configuration using a secure message authentication code (MAC) and where the HSM has a secure mechanism for remotely programming the MAC key.</p>
+</div>
+
+    </div>
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul>
+<li><p class="first"><a class="reference external" href="https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf">https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf</a> for an example of a suitable HSM (the SHE+ HSM).</p>
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -438,6 +460,18 @@ data-level="1.2">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</div>
+</div>
 
   </section>
 
@@ -508,6 +542,18 @@ data-level="1.3">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs</p>
+<p class="attribution">&mdash;FMCSA GDL 37</p>
+</blockquote>
+<blockquote>
+<p>Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.</p>
+</blockquote>
+</div>
+</div>
 
   </section>
 
@@ -572,6 +618,18 @@ data-level="1.4">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs</p>
+<p class="attribution">&mdash;FMCSA GDL 37</p>
+</blockquote>
+<blockquote>
+<p>Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.</p>
+</blockquote>
+</div>
+</div>
 
   </section>
 
@@ -623,6 +681,14 @@ data-level="1.5">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
+</blockquote>
+</div>
+</div>
 
   </section>
 
@@ -656,6 +722,7 @@ data-level="1.6">
     <div class="requirement_statement">
     <div class="document">
 <p>The device SHALL prevent abuse of <em>TND</em> network domain functionality from <em>UND</em> to <em>TND</em>, unless with explicitly authorized and authenticated configuration changes via the mode switch.</p>
+<p>The specifics of what <em>TND</em> network domain functionality could be abused will depend on what is implemented in the vehicle networks. Examples of vehicle network functionality which could be abused in passenger cars is captured in the J3138 &quot;intrusive services&quot; it lists: e.g. <em>Request control of on-board system, test or component</em>, <em>ECUProgrammingSession</em>, <em>ECUReset</em>, <em>WriteByIdentifier</em>, etc.</p>
 </div>
 
   </div>
@@ -667,6 +734,29 @@ data-level="1.6">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs</p>
+<p class="attribution">&mdash;FMCSA GDL 37</p>
+</blockquote>
+<blockquote>
+<p>Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Central gateway or domain controller based architectures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e.</p>
+</blockquote>
+<ul class="simple">
+<li>Example <em>Intrusive Services</em>, SAE J3138.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -805,6 +895,22 @@ data-level="1.8">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Central gateway or domain controller based architectures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e.</p>
+</blockquote>
+</div>
+</div>
 
   </section>
 
@@ -863,6 +969,22 @@ data-level="1.9">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</div>
+</div>
 
   </section>
 
@@ -979,8 +1101,35 @@ data-level="1.11">
 
     
     
+    <div class="requirement_comment">
+      <div class="document">
+<p>A Virtual Mode Switch can be achieved by use of a Hardware Security Module (HSM) that can verify a Message Authentication Code (MAC) of a mode change message, and where the key used for verifying the MAC can be programmed securely via remote commands.</p>
+<p>Replay attacks are prevented by using a challenge-response protocol between the gateway and the remote device to exchange a sequence number or timestamp, for example the SKID3 protocol (ISO 9798-4, Chapter 5.2.2).</p>
+</div>
+
+    </div>
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul>
+<li><p class="first"><a class="reference external" href="https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf">https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf</a> for an example of a suitable HSM (the SHE+ HSM).</p>
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1163,7 +1312,7 @@ data-level="1.13.2.1">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL NOT drop CAN frames in its bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002)</p>
+<p>The device SHALL NOT drop CAN frames in its bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting or translating.</p>
 </div>
 
   </div>
@@ -1267,7 +1416,7 @@ data-level="1.13.2.3">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL preserve ordering egress frames wrt their ingress order within an equivalence class of CAN arbitration ID priorities, to prevent out-of-order delivery.</p>
+<p>The device SHALL preserve ordering egress frames with respect to their ingress order within an equivalence class of CAN arbitration ID priorities, to prevent out-of-order delivery.</p>
 </div>
 
   </div>
@@ -1441,7 +1590,7 @@ data-level="1.13.3.1">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating bus flood attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.1 for a description of the bus flood attack.</p>
+<p>The device SHALL prevent generating bus flood attacks on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
 
   </div>
@@ -1453,6 +1602,13 @@ data-level="1.13.3.1">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.1 for a description of the bus flood attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1493,7 +1649,7 @@ data-level="1.13.3.2">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating simple frame spoofing attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.2 for a description of simple frame spoofing attack.</p>
+<p>The device SHALL prevent generating simple frame spoofing attacks on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
 
   </div>
@@ -1505,6 +1661,13 @@ data-level="1.13.3.2">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.2 for a description of simple frame spoofing attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1531,7 +1694,7 @@ data-level="1.13.3.3">
 <dt>CAN Protocol Attack</dt>
 <dd>Attacks on CAN networks requiring GPIO control of CAN_TX (and optionally CAN_RX) pins.</dd>
 </dl>
-<p>c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.1 for further definition of CAN protocol attacks.</p>
+<p>c.f. <a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.1 for further definition of CAN protocol attacks.</p>
 </div>
 
     </div></section>
@@ -1573,7 +1736,7 @@ data-level="1.13.3.3.1">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating adaptive frame spoofing attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.3 for a description of adaptive frame spoofing attack.</p>
+<p>The device SHALL prevent generating adaptive frame spoofing attacks on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
 
   </div>
@@ -1585,6 +1748,13 @@ data-level="1.13.3.3.1">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.3 for a description of adaptive frame spoofing attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1625,7 +1795,7 @@ data-level="1.13.3.3.2">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating attacks that drive a ECU on <em>TND</em> into error passive state from messages originating on <em>UND</em>. This will in turn prevent error passive spoofing attacks c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.4 for a description of error passive spoofing attack.</p>
+<p>The device SHALL prevent generating attacks that drive a ECU on <em>TND</em> into error passive state from messages originating on <em>UND</em>. This will in turn prevent error passive spoofing attacks.</p>
 </div>
 
   </div>
@@ -1637,6 +1807,13 @@ data-level="1.13.3.3.2">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.4 for a description of error passive spoofing attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1677,7 +1854,7 @@ data-level="1.13.3.3.3">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating double receive attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.5 for a description of the double receive attack.</p>
+<p>The device SHALL prevent generating double receive attacks on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
 
   </div>
@@ -1689,6 +1866,13 @@ data-level="1.13.3.3.3">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.5 for a description of the double receive attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1729,7 +1913,7 @@ data-level="1.13.3.3.4">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating bus-off attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.6 for a description of the bus-off attack.</p>
+<p>The device SHALL prevent generating bus-off attacks on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
 
   </div>
@@ -1741,6 +1925,13 @@ data-level="1.13.3.3.4">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.6 for a description of the bus-off attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1781,7 +1972,7 @@ data-level="1.13.3.3.5">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating freeze doom loop attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf">https://canislabs.com/wp-content/uploads/2020/05/1901-2019-11-29-White-Paper-CAN-Security.pdf</a> section 2.7 for a description of the freeze doom loop attack.</p>
+<p>The device SHALL prevent generating freeze doom loop attacks on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
 
   </div>
@@ -1793,6 +1984,13 @@ data-level="1.13.3.3.5">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.7 for a description of the freeze doom loop attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1833,7 +2031,7 @@ data-level="1.13.3.4">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interface. c.f. <a class="reference external" href="https://kentindell.github.io/2021/07/15/janus-attack/">https://kentindell.github.io/2021/07/15/janus-attack/</a> for a description of the Janus Attack.</p>
+<p>The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interface.</p>
 </div>
 
   </div>
@@ -1851,6 +2049,13 @@ data-level="1.13.3.4">
     </div>
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://kentindell.github.io/2021/07/15/janus-attack/">https://kentindell.github.io/2021/07/15/janus-attack/</a> for a description of the Janus Attack</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -1966,7 +2171,7 @@ data-level="1.14.2">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent generating address claim attacks on <em>TND</em> from messages originating on <em>UND</em>. c.f. <a class="reference external" href="https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf">https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf</a> and <a class="reference external" href="https://doi.org/10.4271/02-14-03-0026">https://doi.org/10.4271/02-14-03-0026</a> for a description of the address claim attack.</p>
+<p>The device SHALL prevent generating address claim attacks on <em>TND</em> from messages originating on <em>UND</em>.</p>
 </div>
 
   </div>
@@ -1984,6 +2189,13 @@ data-level="1.14.2">
     </div>
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf">https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf</a> and <a class="reference external" href="https://doi.org/10.4271/02-14-03-0026">https://doi.org/10.4271/02-14-03-0026</a> for a description of the address claim attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -2036,6 +2248,13 @@ data-level="1.14.3">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<ul class="simple">
+<li><a class="reference external" href="https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf">https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf</a> and <a class="reference external" href="https://doi.org/10.4271/02-14-03-0026">https://doi.org/10.4271/02-14-03-0026</a> for a description of the address claim attack.</li>
+</ul>
+</div>
+</div>
 
   </section>
 
@@ -2129,6 +2348,22 @@ data-level="2.1">
     
     
   
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</div>
+</div>
 
   </section>
 
