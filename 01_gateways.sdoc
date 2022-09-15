@@ -103,7 +103,10 @@ Then we can define (Intended) Gateways
     A device which has connections to multiple vehicle network domains (or segments) and performs one or more gateway functions between a Untrusted Network Domain (*UND*) and Trusted Network Domains (*TND*). (Intended) Gateways must satisfy the requirements in section *Security Requirements for Abstract (Intended) Gateways*.
 
 Unintended Gateway:
-    A device which has connections to multiple vehicle network domains (or segments) and performs none of the gateway functions. These devices could perform gateway functions (due to malicious code) but are not intended to. Unintended Gateways must satisfy the requirements in section *Security Requirements for Abstract Unintended Gateways*.
+    A device which has connections to two or more vehicle network domains (or segments), one or more of which are connections to Untrusted Network Domains (*UND*s), and performs none of the gateway functions. These devices could perform gateway functions (due to malicious code) but are not intended to. Unintended Gateways must satisfy the requirements in section *Security Requirements for Abstract Unintended Gateways*.
+
+Interior Device:
+    A device which has connections to one or more vehicle network domains (or segments), and none of those connections are to Untrusted Network Domains (*UND*s). These devices may or may not perform gateway functions. None of the requirements of either *Security Requirements for Abstract (Intended) Gateways* or *Security Requirements for Abstract Unintended Gateways* are applicable to these devices; however, there will be generic security requirements that should be found to be applicable during procurement and/or development (as per e.g. ISO 21434 / UNECE WP.29).
 
 The gateway functions that duck type the gateway devices are as follows:
 
