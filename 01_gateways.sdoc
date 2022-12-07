@@ -162,7 +162,7 @@ CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-001
-TITLE: Prevents OTA
+TITLE: Conditionally Prevents OTA
 STATEMENT: The device SHALL prevent Over The Air updates (OTA) (including parameter flash) from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
 PUB_REFS: >>>
 
@@ -228,11 +228,18 @@ PUB_REFS: >>>
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.
 
 <<<
+VERIFICATION: >>>
+Test to confirm that for each permitted UND->TND transport, translation or encapsulation by the gateway and for each information in TND that is configured for confidentiality protection or masking: that canary values sent on TND do not show up in any traffic on UND.
+
+AND
+
+For non-masking: Inspection of a 3rd party implementation review report or a demonstration by the vendor that asserts the use of cryptographic protections for the confidentiality and integrity of all external communications channels. The cryptographic protections must be industry standard.
+<<<
 CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-005
-TITLE: Prevents Elevation
+TITLE: Conditionally Prevents Elevation
 STATEMENT: >>>
 
 The device SHALL prevent abuse of *TND* network domain functionality from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
