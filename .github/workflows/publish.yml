@@ -39,19 +39,20 @@ jobs:
         run: |
           bash -x runme
           bash -x toreqif.sh
-                
+          bash -x topaper.sh
+
       - name: Upload html
         uses: actions/upload-artifact@v3
         with:
           name: html-pages
           path: docs/html/
-          
+
       - name: Upload reqif
         uses: actions/upload-artifact@v3
         with:
           name: reqif-export
           path: docs/html/vcr-experiment.reqif
-          
+
       - name: (optional) Deploy to GitHub Pages (not on PRs or nightlies)
         uses: Cecilapp/GitHub-Pages-deploy@v3
         if: ${{ github.event_name != 'pull_request' && github.event_name != 'schedule' }}
