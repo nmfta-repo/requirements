@@ -69,32 +69,32 @@ The RP1226 connector is made for connecting aftermarket devices; therefore the d
 ::
 
 
-            ┌───────────────┐                 ┌──────────────┐                     ┌─┐
-            │  Gateway sat  │                 │              │                     │┼│
-    ────────┤   all HDVCR   ├─────────────────┤    RP1226    ├─────────────────────┼┼│
-      TND   │  requirements │     UND         │   Connector  │      UND            │┼│
-            └───────────────┘                 └──────────────┘                     └─┘
+            +───────────────+                 +──────────────+                     +─+
+            │  Gateway sat  │                 │              │                     │+│
+    ────────+   all HDVCR   +─────────────────+    RP1226    +─────────────────────++│
+      TND   │  requirements │     UND         │   Connector  │      UND            │+│
+            +───────────────+                 +──────────────+                     +─+
 
 
 The OBD connector is _the_ operator access port; therefore the databuses there are UNDs.
 ::
 
 
-            ┌───────────────┐                 ┌──────────────┐                     ┌─┐
-            │  Gateway sat  │                 │              │                     │┼│
-    ────────┤   all HDVCR   ├─────────────────┤      OBD     ├─────────────────────┼┼│
-      TND   │  requirements │     UND         │   Connector  │      UND            │┼│
-            └───────────────┘                 └──────────────┘                     └─┘
+            +───────────────+                 +──────────────+                     +─+
+            │  Gateway sat  │                 │              │                     │+│
+    ────────+   all HDVCR   +─────────────────+      OBD     +─────────────────────++│
+      TND   │  requirements │     UND         │   Connector  │      UND            │+│
+            +───────────────+                 +──────────────+                     +─+
 
 The TPMS gateways on RP1226 databus connect to a wireless medium and are on the aftermarket bus; therefore the databuses there are UNDs.
 ::
 
 
-            ┌───────────────┐                 ┌──────────────┐                  ┌──────────────┐
-            │  Gateway sat  │                 │              │                  │              │     Wireless
-    ────────┤   all HDVCR   ├─────────────────┤    RP1226    ├──────────────────┤     TPMS     ├───────~~)))
-      TND   │  requirements │     UND         │   Connector  │      UND         │   Gateway    │      UND
-            └───────────────┘                 └──────────────┘                  └──────────────┘
+            +───────────────+     +──────────────+     +──────────────+
+            │  Gateway sat  │     │              │     │              │     Wireless
+    ────────+   all HDVCR   +─────+    RP1226    +─────+     TPMS     +───────~~)))
+      TND   │  requirements │ UND │   Connector  │ UND │   Gateway    │      UND
+            +───────────────+     +──────────────+     +──────────────+
 
 
 Then we can define (Intended) Gateways
@@ -296,7 +296,7 @@ CRITICALITY: High
 [REQUIREMENT]
 UID: AGW-S-006
 TITLE: Prevents Data Loss
-STATEMENT: The device SHALL prevent all data loss and/or corruption of information in the bidirectional *UND* ↔ *TND* operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).
+STATEMENT: The device SHALL prevent all data loss and/or corruption of information in the bidirectional *UND* <-> *TND* operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).
 VERIFICATION: >>>
 Inspection of vendor reliability testing reports to confirm that the device will not cause data loss or corruption at sustained loads of expected maximum traffic on TND and UND.
 <<<
@@ -455,7 +455,7 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
 TITLE: Won't Drop Frames
-STATEMENT: The device SHALL NOT drop CAN frames in its bidirectional *UND* ↔ *TND* operation, unless with explicit configuration for rate limiting or translating.
+STATEMENT: The device SHALL NOT drop CAN frames in its bidirectional *UND* <-> *TND* operation, unless with explicit configuration for rate limiting or translating.
 VERIFICATION: >>>
 Inspection of vendor reports to confirm that CAN frames are, by design, not dropped.
 <<<
@@ -467,34 +467,34 @@ REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
 TITLE: No Priority Inversion
-STATEMENT: The device SHALL schedule egress frames according to the CAN arbitration ID priority in its bidirectional *UND* ↔ *TND* operation, to prevent priority inversion.
+STATEMENT: The device SHALL schedule egress frames according to the CAN arbitration ID priority in its bidirectional *UND* <-> *TND* operation, to prevent priority inversion.
 VERIFICATION: >>>
 Inspection of vendor documentation to confirm that device's implementation follows the rules for CAN arbitration ID priority and the prevention of priority inversion.
 
 AND
 
-Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND ↔ TND operation, with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct arbitration ID priority: that higher-priority frames are always transmitted before lower-priority frames. The test methodoly described in the report should be comparable to the following:
+Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct arbitration ID priority: that higher-priority frames are always transmitted before lower-priority frames. The test methodoly described in the report should be comparable to the following:
 
 ::
 
 
-       ┌─────────┐                                      ┌─────────┐
-       │         │                                      │         │
-       │ Monitor │                                      │ Monitor │
-       │         │                                      │         │
-       └───┬─────┘          ┌──────────────┐            └───┬─────┘
-    ┌─┐    │        UND     │              │    TND         │       ┌─┐
-    │┼│    │                │   Security   │                │       │┼│
-    │┼┼────┴──────────┬─────┤    Gateway   ├───────┬────────┴───────┼┼│
-    │┼│               │     │              │       │                │┼│
-    └─┘               │     └──────────────┘       │                └─┘
-                      │                            │
-                      │                            │
-                      │        ┌────────┐          │
-                      │        │        │          │
-                      └────────┤ Tester ├──────────┘
-                               │        │
-                               └────────┘
+       +---------+                                      +---------+
+       |         |                                      |         |
+       | Monitor |                                      | Monitor |
+       |         |                                      |         |
+       +---+-----+          +--------------+            +---+-----+
+    +-+    |        UND     |              |    TND         |       +-+
+    |+|    |                |   Security   |                |       |+|
+    |++----+----------+-----+    Gateway   +-------+--------+-------++|
+    |+|               |     |              |       |                |+|
+    +-+               |     +--------------+       |                +-+
+                      |                            |
+                      |                            |
+                      |        +--------+          |
+                      |        |        |          |
+                      +--------+ Tester +----------+
+                               |        |
+                               +--------+
 
 Figure 1
 
@@ -585,7 +585,7 @@ Inspection of vendor documentation to confirm that the device is NOT implemented
 
 AND
 
-Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND ↔ TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID.
+Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID.
 <<<
 CRITICALITY: High
 
@@ -597,7 +597,7 @@ REFS:
 TITLE: FIFO but Also Priority
 STATEMENT: The device SHALL schedule egress for in-order send but not across CAN arbitration ID priorities.
 VERIFICATION: >>>
-Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND ↔ TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID but that also priority of arbitration IDs are respected.
+Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID but that also priority of arbitration IDs are respected.
 <<<
 CRITICALITY: High
 
@@ -614,23 +614,23 @@ Inspection of vendor report detailing the use of a test environment that simulat
 ::
 
 
-       ┌─────────┐                                      ┌─────────┐
-       │         │                                      │         │
-       │ Monitor │                                      │ Monitor │
-       │         │                                      │         │
-       └───┬─────┘          ┌──────────────┐            └───┬─────┘
-    ┌─┐    │        UND     │              │    TND         │       ┌─┐
-    │┼│    │                │   Security   │                │       │┼│
-    │┼┼────┴──────────┬─────┤    Gateway   ├───────┬────────┴───────┼┼│
-    │┼│               │     │              │       │                │┼│
-    └─┘               │     └──────────────┘       │                └─┘
-                      │                            │
-                      │                            │
-                      │        ┌────────┐          │
-                      │        │        │          │
-                      └────────┤ Tester ├──────────┘
-                               │        │
-                               └────────┘
+       +---------+                                      +---------+
+       |         |                                      |         |
+       | Monitor |                                      | Monitor |
+       |         |                                      |         |
+       +---+-----+          +--------------+            +---+-----+
+    +-+    |        UND     |              |    TND         |       +-+
+    |+|    |                |   Security   |                |       |+|
+    |++----+----------+-----+    Gateway   +-------+--------+-------++|
+    |+|               |     |              |       |                |+|
+    +-+               |     +--------------+       |                +-+
+                      |                            |
+                      |                            |
+                      |        +--------+          |
+                      |        |        |          |
+                      +--------+ Tester +----------+
+                               |        |
+                               +--------+
 
 Figure 1
 
