@@ -6,13 +6,8 @@
 This work is copyright |copyright|.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
-
-
-
-The Security Requirements
-=========================
 
 The following is reproduced from documentation generated entirely from the `01_gateways.sdoc` hosted in https://github.com/nmfta-repo/vcr-experiment at commit |commit_id|. The `01_gateways.sdoc` file is also the source of a machine-readable Requirements Interchange (ReqIF) file hosted too in https://nmfta-repo.github.io/vcr-experiment/vcr-experiment.reqif. It is the strictdoc tool (https://github.com/strictdoc-project/strictdoc) that is used to generate both the following human-readable documentation and the ReqIF machine-readable format.
 
