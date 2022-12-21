@@ -3,8 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Security Requirements for Vehicle Security Gateways's documentation!
-===============================================================================
+This work is copyright |copyright|.
 
 .. toctree::
    :maxdepth: 2

@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Security Requirements for Vehicle Security Gateways'
-copyright = '2020-2022 National Motor Freight Traffic Association, Inc.'
+copyright = '© 2020-2022 National Motor Freight Traffic Association, Inc., licensed under MIT: https://github.com/nmfta-repo/vcr-experiment/blob/main/LICENSE'
 author = 'Ben Gardiner, John Maag, Ken Tindell'
 
 # The full version, including alpha/beta/rc tags
@@ -59,6 +59,8 @@ commit_id = subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip().decode
 
 rst_prolog = """
 .. |commit_id| replace:: {0}
+.. |copyright| replace:: {1}
 """.format(
-commit_id
+commit_id,
+copyright
 )
