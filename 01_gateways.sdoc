@@ -147,6 +147,7 @@ COMMENT: >>>
 This can be achieved by use of a Hardware Security Module (HSM) containing keys for verifying a configuration using a secure message authentication code (MAC) and where the HSM has a secure mechanism for remotely programming the MAC key.
 <<<
 PUB_REFS: >>>
+
 * https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 
     Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
@@ -388,6 +389,7 @@ A Virtual Mode Switch can be achieved by use of a Hardware Security Module (HSM)
 Replay attacks are prevented by using a challenge-response protocol between the gateway and the remote device to exchange a sequence number or timestamp, for example the SKID3 protocol (ISO 9798-4, Chapter 5.2.2).
 <<<
 PUB_REFS: >>>
+
 * https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 
     Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
@@ -694,6 +696,7 @@ REFS:
 TITLE: Prevents Bus Flood Attacks
 STATEMENT: The device SHALL prevent generating bus flood attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.1 for a description of the bus flood attack.
 <<<
 VERIFICATION: >>>
@@ -709,6 +712,7 @@ REFS:
 TITLE: Prevents (Simple) Frame Spoofing
 STATEMENT: The device SHALL prevent generating simple frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.2 for a description of simple frame spoofing attack.
 <<<
 VERIFICATION: >>>
@@ -740,6 +744,7 @@ REFS:
 TITLE: Prevents Adaptive Frame Spoofing
 STATEMENT: The device SHALL prevent generating adaptive frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.3 for a description of adaptive frame spoofing attack.
 <<<
 VERIFICATION: >>>
@@ -755,6 +760,7 @@ REFS:
 TITLE: Prevents Error Passive Attack Step
 STATEMENT: The device SHALL prevent generating attacks that drive a ECU on *TND* into error passive state from messages originating on *UND*. This will in turn prevent error passive spoofing attacks.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.4 for a description of error passive spoofing attack.
 <<<
 VERIFICATION: >>>
@@ -774,6 +780,7 @@ REFS:
 TITLE: Prevents Double Receive Attack
 STATEMENT: The device SHALL prevent generating double receive attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.5 for a description of the double receive attack.
 <<<
 VERIFICATION: >>>
@@ -793,6 +800,7 @@ REFS:
 TITLE: Prevents Bus-Off Attack
 STATEMENT: The device SHALL prevent generating bus-off attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.6 for a description of the bus-off attack.
 <<<
 VERIFICATION: >>>
@@ -812,6 +820,7 @@ REFS:
 TITLE: Prevents Freeze Doom Loop Attack
 STATEMENT: The device SHALL prevent generating freeze doom loop attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.
 <<<
 VERIFICATION: >>>
@@ -838,6 +847,7 @@ TITLE: Impervious to Janus Attack
 STATEMENT: The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interfaces.
 COMMENT: Susceptibility to Janus Attacks is a property of a network of devices, not only of a single device. The entire *TND* is expected to be impervious to Janus Attacks since it should all be OEM supplied components there. In *UND* it is not possible to require that this device nor all the devices are impervious to Janus Attacks since *UND* is explicitly permitted to contain non-OEM supplied components. What is required of this device on *UND* is that if there are other OEM supplied devices on *UND* then this device cannot enable Janus Attacks on that collection of all those OEM supplied devices on *UND*.
 PUB_REFS: >>>
+
 * https://kentindell.github.io/2021/07/15/janus-attack/ for a description of the Janus Attack
 <<<
 VERIFICATION: >>>
@@ -881,6 +891,7 @@ TITLE: Prevents Address Claim Attacks
 STATEMENT: The device SHALL prevent generating address claim attacks on *TND* from messages originating on *UND*.
 COMMENT: **Note to implementors**: Performing no gatewaying (any of transport, translate, filter, or encapsulate) of address claims onto *TND* would satisfy this requirement.
 PUB_REFS: >>>
+
 * https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
 <<<
 VERIFICATION: >>>
@@ -896,6 +907,7 @@ REFS:
 TITLE: Impervious to Address Claim Attacks
 STATEMENT: The device SHALL not be susceptible to address claim attacks on any of its interfaces (e.g. *TND* and *UND*)
 PUB_REFS: >>>
+
 * https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
 <<<
 VERIFICATION: >>>

@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Security Requirements for Vehicle Security Gateways'
-copyright = '2022, Ben Gadiner, John Maag, Ken Tindell'
-author = 'Ben Gadiner, John Maag, Ken Tindell'
+copyright = '2020-2022 National Motor Freight Traffic Association, Inc.'
+author = 'Ben Gardiner, John Maag, Ken Tindell'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1'
@@ -53,3 +53,12 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+import subprocess
+commit_id = subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip().decode('ascii')
+
+rst_prolog = """
+.. |commit_id| replace:: {0}
+""".format(
+commit_id
+)
