@@ -427,7 +427,7 @@ Test to confirm that when the mode switch is set to allow, this state is communi
 
 AND
 
-Test to confirm that for each TND and UND, replaying the status indicated traffic by the tester does not cause the (gateway) device to then permit the preventions. Performed by repeating the tests of AGW-S-001 and AGW-S005 while replaying.
+Test to confirm that for each TND and UND, replaying the status indicated traffic by the tester does not cause the (gateway) device to then permit the preventions. Performed by repeating the tests of AGW-S-001 and AGW-S-005 while replaying.
 <<<
 CRITICALITY: Medium
 
@@ -816,7 +816,7 @@ PUB_REFS: >>>
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.
 <<<
 VERIFICATION: >>>
-Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a double receive attack
+Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a freeze doom loop attack
 
 AND
 
