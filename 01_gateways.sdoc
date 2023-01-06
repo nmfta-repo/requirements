@@ -252,7 +252,7 @@ PUB_REFS: >>>
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.
 <<<
 VERIFICATION: >>>
-Test to confirm that for each permitted UND->TND transport, translation or encapsulation by the gateway and for each information in TND that is configured for confidentiality protection or masking: that canary values sent on TND do not show up in any traffic on UND.
+Test to confirm that for each permitted TND->UND transport, translation or encapsulation by the gateway and for each information in TND that is configured for confidentiality protection or masking: that canary values sent on TND do not show up in any traffic on UND.
 
 AND
 
