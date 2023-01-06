@@ -407,6 +407,10 @@ VERIFICATION: >>>
 For Virtual Mode Switch Interlock option:
 
 Inspection of a third party report confirming that virtual mode switch operation cannot be simulated, initiated, sustained or denied by attacker control of devices connected to a vehicle UND.
+
+For Physical Mode Switch Interlock option:
+
+Test to confirm that device disables preventions only when physical input is grounded
 <<<
 CRITICALITY: High
 
