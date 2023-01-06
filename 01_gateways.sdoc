@@ -343,6 +343,10 @@ PUB_REFS: >>>
 <<<
 VERIFICATION: >>>
 Inspection of a third party report to confirm that the device has no known vulnerabilities that could undermine the preventions listed previously, the security requirements of this series, or other the security requirements of derivative series.
+
+AND
+
+All the verification steps of all the applicable derivative requirements.
 <<<
 CRITICALITY: High
 
