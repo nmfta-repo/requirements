@@ -61,7 +61,7 @@
         </a></li><li>
         <a href="#1.2-AGW-S-001" data-turbo="false">
           <span class="section-number">1.2</span>
-          Prevents OTA
+          Conditionally Prevents OTA
         </a></li><li>
         <a href="#1.3-AGW-S-002" data-turbo="false">
           <span class="section-number">1.3</span>
@@ -77,7 +77,7 @@
         </a></li><li>
         <a href="#1.6-AGW-S-005" data-turbo="false">
           <span class="section-number">1.6</span>
-          Prevents Elevation
+          Conditionally Prevents Elevation
         </a></li><li>
         <a href="#1.7-AGW-S-006" data-turbo="false">
           <span class="section-number">1.7</span>
@@ -261,7 +261,7 @@
     <main class="layout_main" id="pan-with-space">
       
   <turbo-frame id="frame_document_content"><div class="content">
-        <turbo-frame id="article-2b54516a35f94d98a7a06b43ab25d8d4">
+        <turbo-frame id="article-b8a7e4d8701a4e7ab7c34b39aae6d89b">
 <article><section>
       <div class="free_text">
         <div class="document">
@@ -290,27 +290,27 @@
 <p>Some Examples of TND and UND:</p>
 <p>The RP1226 connector is made for connecting aftermarket devices; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
-        ┌───────────────┐                 ┌──────────────┐                     ┌─┐
-        │  Gateway sat  │                 │              │                     │┼│
-────────┤   all HDVCR   ├─────────────────┤    RP1226    ├─────────────────────┼┼│
-  TND   │  requirements │     UND         │   Connector  │      UND            │┼│
-        └───────────────┘                 └──────────────┘                     └─┘
+        +───────────────+                 +──────────────+                     +─+
+        │  Gateway sat  │                 │              │                     │+│
+────────+   all HDVCR   +─────────────────+    RP1226    +─────────────────────++│
+  TND   │  requirements │     UND         │   Connector  │      UND            │+│
+        +───────────────+                 +──────────────+                     +─+
 </pre>
 <p>The OBD connector is _the_ operator access port; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
-        ┌───────────────┐                 ┌──────────────┐                     ┌─┐
-        │  Gateway sat  │                 │              │                     │┼│
-────────┤   all HDVCR   ├─────────────────┤      OBD     ├─────────────────────┼┼│
-  TND   │  requirements │     UND         │   Connector  │      UND            │┼│
-        └───────────────┘                 └──────────────┘                     └─┘
+        +───────────────+                 +──────────────+                     +─+
+        │  Gateway sat  │                 │              │                     │+│
+────────+   all HDVCR   +─────────────────+      OBD     +─────────────────────++│
+  TND   │  requirements │     UND         │   Connector  │      UND            │+│
+        +───────────────+                 +──────────────+                     +─+
 </pre>
 <p>The TPMS gateways on RP1226 databus connect to a wireless medium and are on the aftermarket bus; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
-        ┌───────────────┐                 ┌──────────────┐                  ┌──────────────┐
-        │  Gateway sat  │                 │              │                  │              │     Wireless
-────────┤   all HDVCR   ├─────────────────┤    RP1226    ├──────────────────┤     TPMS     ├───────~~)))
-  TND   │  requirements │     UND         │   Connector  │      UND         │   Gateway    │      UND
-        └───────────────┘                 └──────────────┘                  └──────────────┘
+        +───────────────+     +──────────────+     +──────────────+
+        │  Gateway sat  │     │              │     │              │     Wireless
+────────+   all HDVCR   +─────+    RP1226    +─────+     TPMS     +───────~~)))
+  TND   │  requirements │ UND │   Connector  │ UND │   Gateway    │      UND
+        +───────────────+     +──────────────+     +──────────────+
 </pre>
 <p>Then we can define (Intended) Gateways</p>
 <dl class="docutils">
@@ -344,7 +344,7 @@
 
       </div></section></article>
 </turbo-frame>
-          <turbo-frame id="article-32a258ed51c844f483c3b68c678af0f3"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-8271dcdd13e441f1bc2bd24785607954"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -368,7 +368,7 @@ data-level="1">
     </div></section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-a760ff798bb54027b831bfa5ca7ebf0b"><article class="requirement">
+            <turbo-frame id="article-04e16c17876e4067a657ac70384298e6"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -430,11 +430,16 @@ data-level="1.1">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that replay of traffic for a valid configuration change, on any interface, does not result in any configuration changes to the device.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-e737e52138514d3f94f119b33c96ea5b"><article class="requirement">
+            <turbo-frame id="article-2c818aff583d4dcd9da42929af640c32"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -442,7 +447,7 @@ data-level="1.1">
     <h2
 class="section-title"
 data-level="1.2">
-  1.2.&nbsp;Prevents OTA
+  1.2.&nbsp;Conditionally Prevents OTA
 </h2>
 
     <dl class="requirement_meta">
@@ -486,11 +491,23 @@ data-level="1.2">
 </blockquote>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<dl class="docutils">
+<dt>Test to confirm that both:</dt>
+<dd><ol class="first last arabic simple">
+<li>OTA and parameter reflash are permitted from UND to TND when the mode switch is set to allow</li>
+<li>OTA and parameter reflash are _prevented_ from UND to TND when the mode switch is not set to allow</li>
+</ol>
+</dd>
+</dl>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-db13cae8891a4752bcec24d97c28b097"><article class="requirement">
+            <turbo-frame id="article-0c9ee1effe34491798ecd40f21edcd47"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -568,11 +585,20 @@ data-level="1.3">
 </blockquote>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that denying access to the UND medium has no effect on TND performance.</p>
+<p>AND</p>
+<p>Test to confirm that for each permitted UND-&gt;TND transport, translation or encapsulation by the gateway: that sending the highest rate of traffic from UND to TND with it (one of the transport, translation or encapsulation) does not cause any performance degradation to the target device(s), nor TND in its entirety.</p>
+<p>AND</p>
+<p>All the verification steps of all the applicable derivative requirements.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-5468cbcaa44040ef847d2fc847b70a4f"><article class="requirement">
+            <turbo-frame id="article-ac1d5ece086f4b1b84d6dce31186fceb"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -644,11 +670,20 @@ data-level="1.4">
 </blockquote>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that for each permitted UND-&gt;TND transport, translation or encapsulation by the gateway: that sending traffic from UND to TND with it (one of the transport, translation or encapsulation) does not cause any traffic that will be interpreted by any nodes in TND as being traffic that originated from a node in a TND.</p>
+<p>AND</p>
+<p>Inspection of design artifacts or a third party analysis to confirm that there is no possible traffic on UND that will result in traffic on TND that would be interpreted by any nodes in TND as being traffic that originated from a node in a TND.</p>
+<p>AND</p>
+<p>All the verification steps of all the applicable derivative requirements.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-3fd5ecf1674a43deb4825609253072e9"><article class="requirement">
+            <turbo-frame id="article-10ec33d167d2411dbdf72bc87dccde57"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -703,11 +738,18 @@ data-level="1.5">
 </blockquote>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that for each permitted TND-&gt;UND transport, translation or encapsulation by the gateway and for each information in TND that is configured for confidentiality protection or masking: that canary values sent on TND do not show up in any traffic on UND.</p>
+<p>AND</p>
+<p>For non-masking: Inspection of a 3rd party implementation review report or a demonstration by the vendor that asserts the use of cryptographic protections for the confidentiality and integrity of all external communications channels. The cryptographic protections must be industry standard.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-e67eda5f1ee24595a37132c2dadf10fa"><article class="requirement">
+            <turbo-frame id="article-75feccdbcb2f4b6784316f682a210bdb"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -715,7 +757,7 @@ data-level="1.5">
     <h2
 class="section-title"
 data-level="1.6">
-  1.6.&nbsp;Prevents Elevation
+  1.6.&nbsp;Conditionally Prevents Elevation
 </h2>
 
     <dl class="requirement_meta">
@@ -771,11 +813,16 @@ data-level="1.6">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that TND functionality prevented when the mode switch is set to disabled includes all the known critical and dangerous features of the vehicle TND in question. E.g. that diagnostics and influence of vehicle uptime are prevented when the mode switch is set to disabled.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-0a50f4d08c914a86afe28f4c6b6c9443"><article class="requirement">
+            <turbo-frame id="article-61d08e73c6c245cf85806b6a5cd6e6ed"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -803,7 +850,7 @@ data-level="1.7">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL prevent all data loss and/or corruption of information in the bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).</p>
+<p>The device SHALL prevent all data loss and/or corruption of information in the bidirectional <em>UND</em> &lt;-&gt; <em>TND</em> operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).</p>
 </div>
 
   </div>
@@ -815,11 +862,16 @@ data-level="1.7">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor reliability testing reports to confirm that the device will not cause data loss or corruption at sustained loads of expected maximum traffic on TND and UND.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
+            <turbo-frame id="article-f6e8582066054d628c67fe60d6165a63"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -925,11 +977,16 @@ data-level="1.8">
 </blockquote>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>All the verification steps of all the applicable derivative requirements.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-30aee25594e041a092af52c92e536311"><article class="requirement">
+            <turbo-frame id="article-6c5dc5c658724c7898e18edf0a28ef1a"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -999,11 +1056,18 @@ data-level="1.9">
 </blockquote>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of a third party report to confirm that the device has no known vulnerabilities that could undermine the preventions listed previously, the security requirements of this series, or other the security requirements of derivative series.</p>
+<p>AND</p>
+<p>All the verification steps of all the applicable derivative requirements.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-7d47153e585646c8a2b35a02c351b946"><article class="requirement">
+            <turbo-frame id="article-7247e22458e24bdbb2227aae376e5c6c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1059,11 +1123,18 @@ data-level="1.10">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor reliability testing reports to confirm that the device will not cause loss of performance in TND.</p>
+<p>AND</p>
+<p>All the verification steps of all the applicable derivative requirements.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-cb694349e9c640ae9d30035ab65d9351"><article class="requirement">
+            <turbo-frame id="article-b2d388947ae844118f8c5d0ab1e9621b"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1144,11 +1215,19 @@ data-level="1.11">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>For Virtual Mode Switch Interlock option:</p>
+<p>Inspection of a third party report confirming that virtual mode switch operation cannot be simulated, initiated, sustained or denied by attacker control of devices connected to a vehicle UND.</p>
+<p>For Physical Mode Switch Interlock option:</p>
+<p>Test to confirm that device disables preventions only when physical input is grounded</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-52d9de39c9b54133ab3d850c75ce45b3"><article class="requirement">
+            <turbo-frame id="article-8369c58441fe4e02a52b7fa4240cd4b8"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1188,11 +1267,20 @@ data-level="1.12">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that there is traffic sent on TND and UND when the mode switch is set to allow.</p>
+<p>AND</p>
+<p>Test to confirm that when the mode switch is set to allow, this state is communicated by sending traffic to TND and UND as documented.</p>
+<p>AND</p>
+<p>Test to confirm that for each TND and UND, replaying the status indicated traffic by the tester does not cause the (gateway) device to then permit the preventions. Performed by repeating the tests of AGW-S-001 and AGW-S-005 while replaying.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-          <turbo-frame id="article-5656b66e4ce1485482757632f8960a45"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-ff24fa8384934dea91fa426bcab6ab44"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -1216,7 +1304,7 @@ data-level="1.13">
     </div></section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-3e9a39407e2e48eabc42161117c353ca"><article class="requirement">
+            <turbo-frame id="article-30554e3dd00a486e996bb11d883ebdd4"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1264,11 +1352,16 @@ data-level="1.13.1">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor reports to confirm that performance is sufficient for all vehicle TNDs.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-          <turbo-frame id="article-839f123377634b5f8c41bf48818b25cf"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-87ceca81990243889f6dbae9a2a410b1"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -1292,7 +1385,7 @@ data-level="1.13.2">
     </div></section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-6d220789cb5948f98f5340715914512c"><article class="requirement">
+            <turbo-frame id="article-77908eed4ac4469caef657aff6a2a115"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1328,7 +1421,7 @@ data-level="1.13.2.1">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL NOT drop CAN frames in its bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting or translating.</p>
+<p>The device SHALL NOT drop CAN frames in its bidirectional <em>UND</em> &lt;-&gt; <em>TND</em> operation, unless with explicit configuration for rate limiting or translating.</p>
 </div>
 
   </div>
@@ -1340,11 +1433,16 @@ data-level="1.13.2.1">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor reports to confirm that CAN frames are, by design, not dropped.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-41ea3753fc9a40a380bedf402667959d"><article class="requirement">
+            <turbo-frame id="article-027903bd54354baa94861480c94e0bc4"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1380,7 +1478,7 @@ data-level="1.13.2.2">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL schedule egress frames according to the CAN arbitration ID priority in it bidirectional <em>UND</em> ↔ <em>TND</em> operation, to prevent priority inversion.</p>
+<p>The device SHALL schedule egress frames according to the CAN arbitration ID priority in its bidirectional <em>UND</em> &lt;-&gt; <em>TND</em> operation, to prevent priority inversion.</p>
 </div>
 
   </div>
@@ -1392,11 +1490,106 @@ data-level="1.13.2.2">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that device's implementation follows the rules for CAN arbitration ID priority and the prevention of priority inversion.</p>
+<p>AND</p>
+<p>Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND &lt;-&gt; TND operation, with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct arbitration ID priority: that higher-priority frames are always transmitted before lower-priority frames. The test methodoly described in the report should be comparable to the following:</p>
+<pre class="literal-block">
+   +---------+                                      +---------+
+   |         |                                      |         |
+   | Monitor |                                      | Monitor |
+   |         |                                      |         |
+   +---+-----+          +--------------+            +---+-----+
++-+    |        UND     |              |    TND         |       +-+
+|+|    |                |   Security   |                |       |+|
+|++----+----------+-----+    Gateway   +-------+--------+-------++|
+|+|               |     |              |       |                |+|
++-+               |     +--------------+       |                +-+
+                  |                            |
+                  |                            |
+                  |        +--------+          |
+                  |        |        |          |
+                  +--------+ Tester +----------+
+                           |        |
+                           +--------+
+</pre>
+<p>Figure 1</p>
+<p>The hardware setup is shown in Figure 1. The device under test (Security gateway) is connected to an untrusted network and a trusted network. A tester is connected to both networks and on each there is a monitor. The monitor is set up to receive traffic and acknowledge CAN frames.</p>
+<p>The tester operates a frame transmission process on the Trusted network. This performs the following steps:</p>
+<ol class="arabic">
+<li><p class="first">Wait until frame with ID 0x010 is seen on the Trusted network.</p>
+</li>
+<li><p class="first">Queue in FIFO order on the Trusted bus CAN frames with the following IDs (’S’ indicates a standard 11-bit CAN ID):</p>
+<ul class="simple">
+<li>0x005 (S)</li>
+<li>0x006 (S)</li>
+</ul>
+<p>and repeat this queueing of the IDs until the process is stopped.</p>
+</li>
+</ol>
+<p>The time between steps 1 and 2 must be less than 50 microseconds (i.e. much shorter than a CAN frame transmission time).</p>
+<p>The frames must be queued such that no idle time can appear between them. This is achieved by queueing the first frame and then immediately the second frame. When the first frame is transmitted then the third frame is queued. When the second frame is transmitted then the fourth frame is queued. And so on.</p>
+<p>The main test process is carried out in the following steps:</p>
+<ol class="arabic">
+<li><p class="first">The tester queues in FIFO order on the Untrusted network CAN frames with the following IDs:</p>
+<ul class="simple">
+<li>0x010 (S)</li>
+<li>0x011 (S)</li>
+<li>0x00240000 (E)</li>
+<li>0x008 (S)</li>
+<li>0x001c0000 (E)</li>
+<li>0x00100000 (E)</li>
+<li>0x003 (S)</li>
+<li>0x00080000 (E)</li>
+<li>0x001 (S)</li>
+</ul>
+<p>,where ’S’ indicates a standard 11-bit CAN ID, ‘E’ indicates an extended 29-bit CAN ID.</p>
+<p>The security gateway is programmed to allow these frames through from the Untrusted to the Trusted bus.</p>
+<p>The frames are queued such that there is no idle time between them (using the technique described above).</p>
+</li>
+<li><p class="first">When the frame with ID 0x00100000 is seen on the Trusted bus then Trusted network process above is halted. If the frame is never seen then the Security gateway has failed the test.</p>
+<p>The sequence of frames seen by the Monitor on the Untrusted bus should be:</p>
+<ul class="simple">
+<li>0x010 (S)</li>
+<li>0x011 (S)</li>
+<li>0x00240000 (E)</li>
+<li>0x008 (S)</li>
+<li>0x001c0000 (E)</li>
+<li>0x00100000 (E)</li>
+<li>0x003 (S)</li>
+<li>0x00080000 (E)</li>
+<li>0x001 (S)</li>
+</ul>
+<p>If this sequence is not seen then there is a fault in the tester.</p>
+<p>The sequence of frames seen by the Monitor on the Trusted bus should be:</p>
+<ul class="simple">
+<li>0x010 (S)</li>
+<li>0x005 (S)</li>
+<li>0x006 (S)
+… (0x005 and 0x006 repeated for some number of times, the exact number depending on the speed of either bus and the payloads used for the frames)</li>
+<li>0x001 (S)</li>
+<li>0x00080000 (E)</li>
+<li>0x003 (S)</li>
+<li>0x00100000 (E)</li>
+<li>0x005 (S)</li>
+<li>0x006 (S)
+… (0x005 and 0x006 may appear again, depending on how long it takes for the tester to halt the Trusted network process)</li>
+<li>0x001c0000 (E)</li>
+<li>0x008 (S)</li>
+<li>0x00240000 (E)</li>
+<li>0x011 (S)</li>
+</ul>
+<p>If the sequence seen by the Monitor deviates from the above then the Security gateway has failed the test.</p>
+</li>
+</ol>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-41a261a234c14db8892f19630c9c4c29"><article class="requirement">
+            <turbo-frame id="article-8293564651414e67a72b48ca59b76012"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1444,11 +1637,18 @@ data-level="1.13.2.3">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that the device is NOT implemented using SocketCAN -- SocketCAN drivers will randomly switch order of frames at both the same arbitration ID and among varied arbitration IDs.</p>
+<p>AND</p>
+<p>Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND &lt;-&gt; TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-d020f37a33024d609bf60c96425d0886"><article class="requirement">
+            <turbo-frame id="article-8f95ec2837a34fd983ef6730cd638cc8"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1496,11 +1696,16 @@ data-level="1.13.2.4">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND &lt;-&gt; TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID but that also priority of arbitration IDs are respected.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-74031348397643819294f0aac0d24561"><article class="requirement">
+            <turbo-frame id="article-617eaf2e64ab427da0f1094529dc0f15"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1548,11 +1753,67 @@ data-level="1.13.2.5">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor report detailing the use of a test environment that simulates a network load to measure jitter of the device. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify the jitter introduced. The test methodoly described in the report should be comparable to the following:</p>
+<pre class="literal-block">
+   +---------+                                      +---------+
+   |         |                                      |         |
+   | Monitor |                                      | Monitor |
+   |         |                                      |         |
+   +---+-----+          +--------------+            +---+-----+
++-+    |        UND     |              |    TND         |       +-+
+|+|    |                |   Security   |                |       |+|
+|++----+----------+-----+    Gateway   +-------+--------+-------++|
+|+|               |     |              |       |                |+|
++-+               |     +--------------+       |                +-+
+                  |                            |
+                  |                            |
+                  |        +--------+          |
+                  |        |        |          |
+                  +--------+ Tester +----------+
+                           |        |
+                           +--------+
+</pre>
+<p>Figure 1</p>
+<p>The security gateway is configured to allow a test frame through the security gateway. Both the Untrusted and Trusted networks are free of any other traffic. Monitor units are set up to listen to and acknowledge CAN frames.</p>
+<p>The tester checks for jitter removal by injecting a sequence of periodic frames on to the Untrusted network and measuring the timing of frames on the Trusted network.</p>
+<p>In the tester, a send process is defined to run from a periodic timer event set to 100ms:</p>
+<ol class="arabic simple">
+<li>Wait for timing event</li>
+<li>Delay for a time t</li>
+<li>Queue a frame in the CAN controller connected to the Untrusted network</li>
+</ol>
+<p>The tester must complete the queueing of the CAN frame within 5 microseconds of the timer delay.</p>
+<p>Repeat steps 1 to 3 for a sequence of values of t. The values of t should be as follows:</p>
+<ul class="simple">
+<li>0.5ms</li>
+<li>99.0ms</li>
+<li>0.5ms</li>
+<li>80.0ms</li>
+<li>0.5ms</li>
+<li>70.0ms</li>
+<li>0.5ms</li>
+<li>60.0ms</li>
+<li>0.5ms</li>
+<li>50.0ms</li>
+<li>60.0ms</li>
+<li>70.0ms</li>
+<li>80.0ms</li>
+<li>90.0ms</li>
+<li>90.0ms</li>
+</ul>
+<p>The tester should take accurate (1 microsecond) start-of-frame (SOF) timestamps for each CAN frame on the Trusted network.</p>
+<p>The test fails if a total of 15 frames were not received from the Trusted network.</p>
+<p>The test fails if time between the SOF timestamp of the first frame received and the SOF timestamp of the last frame received exceeds 1490.055ms or is less than 1489.945ms.</p>
+<p>The test fails if the difference between the SOF timestamp of a frame and its subsequent frame exceeds 100.055ms or is less than 99.945ms.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-          <turbo-frame id="article-8b8bdd0d7e024cedae9f2a2c4a85621a"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-cb8363a0087e4a0c8ba7e3c21cb6be2c"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -1571,7 +1832,7 @@ data-level="1.13.3">
   </article>
 
 </turbo-frame>
-            <turbo-frame id="article-4ff67cd2a73045b2b80268f89556985c"><article class="requirement">
+            <turbo-frame id="article-2570eb6ffadf454f8995295b98bbff00"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1626,11 +1887,16 @@ data-level="1.13.3.1">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that, for both permitted and prevented UND-&gt;TND transport, translation or encapsulation by the gateway: that sending the highest rate of traffic on UND does not result in transmit at the highest rate on TND.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-01cdccd95634483494938c281266d4b1"><article class="requirement">
+            <turbo-frame id="article-81ee81d7949b42d59c5528349dd4b4f5"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1685,11 +1951,18 @@ data-level="1.13.3.2">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that for each permitted UND-&gt;TND transport, translation or encapsulation by the gateway: that sending CAN frames from UND to TND with it (one of the transport, translation or encapsulation) does not cause any CAN frames that will be interpreted by any nodes in TND as being traffic that originated from a node in a TND.</p>
+<p>AND</p>
+<p>Inspection of design artifacts or a third party analysis to confirm that there is no possible CAN frames on UND that will result in CAN frames on TND that would be interpreted by any nodes in TND as being traffic that originated from a node in a TND.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-          <turbo-frame id="article-fd221f54a0254e3a86ccb3de25196f6a"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-02851fcf12bb4186a80b9bc145979825"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -1718,7 +1991,7 @@ data-level="1.13.3.3">
     </div></section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-9695bb8e840b4197b9f48b0bf5dc84a3"><article class="requirement">
+            <turbo-frame id="article-493a55841b22424a87c70c90fdb7875d"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1773,11 +2046,16 @@ data-level="1.13.3.3.1">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that the (gateway) device is not implemented using direct-wired transceivers from TND to UND. In all other cases the delays introduced by the gateway will implicitly prevent Adaptive Frame Spoofing Attacks.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-d89d41f9c94249768a41b49b36d0fe6d"><article class="requirement">
+            <turbo-frame id="article-2c2711b3632348b4943ddd0f8a49058c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1832,11 +2110,18 @@ data-level="1.13.3.3.2">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of an error passive attack step.</p>
+<p>AND</p>
+<p>Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-f014d5da8cbb49c0a1080bb798d988e0"><article class="requirement">
+            <turbo-frame id="article-758d05e97c304f698efcf2a57602173e"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1891,11 +2176,18 @@ data-level="1.13.3.3.3">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a double receive attack.</p>
+<p>AND</p>
+<p>Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-81cb4ee600434bc2bae40bd2bb617226"><article class="requirement">
+            <turbo-frame id="article-90468492a75b4445b6b672eeba91e171"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1950,11 +2242,18 @@ data-level="1.13.3.3.4">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a bus off attack.</p>
+<p>AND</p>
+<p>Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-fd688d285f3248c3ae5fe672564e5f2d"><article class="requirement">
+            <turbo-frame id="article-fae1fd80dc34404fb81f733b61edb75f"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2009,11 +2308,20 @@ data-level="1.13.3.3.5">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a freeze doom loop attack</p>
+<p>AND</p>
+<p>Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.</p>
+<p>AND</p>
+<p>Inspection of design artifacts or a third party analysis to confirm that there is no possible CAN frames on UND that will result in CAN frames on TND that would match any arbitration IDs sent by nodes on TND. Otherwise there is a non-zero probability that the gateway's TND CAN controller could enter a freeze doom loop with a node on TND.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-37178f0b4b8641b0b6bd774d737155c5"><article class="requirement">
+            <turbo-frame id="article-c2b2c5d05e594e8ab9c64b261e0932c3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2049,7 +2357,7 @@ data-level="1.13.3.4">
 
     <div class="requirement_statement">
     <div class="document">
-<p>The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interface.</p>
+<p>The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interfaces.</p>
 </div>
 
   </div>
@@ -2074,11 +2382,18 @@ data-level="1.13.3.4">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor report to confirm that all devices on TND have been tested to demonstrate the same configured CAN sampling point.</p>
+<p>AND</p>
+<p>Inspection of vendor report to confirm that all original devices on UND have been tested to demonstrate the same configured CAN sampling point.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-          <turbo-frame id="article-d5ebab61b3af4d0bb0c1490ff17bac6f"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-538fedc33216479fb05693fb4a8609d4"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -2102,7 +2417,7 @@ data-level="1.14">
     </div></section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-98cc54f81aa1465387582be802be072e"><article class="requirement">
+            <turbo-frame id="article-1f047de2ed8e4a61a4260b54e833622c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2150,11 +2465,16 @@ data-level="1.14.1">
     
     
   
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that for all source addresses claimed on TND, sending J1939 frames with any such source address is prevented from being transported, translated or encapsulated by the gateway to the TND; regardless of  permitted UND-&gt;TND transport, translation or encapsulation mechanisms that maybe configured on the gateway.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-5bf60a370499449f800f3424977eade1"><article class="requirement">
+            <turbo-frame id="article-9b3d7c788d984a27b690e130455345d2"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2215,11 +2535,16 @@ data-level="1.14.2">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Test to confirm that for all source addresses claimed on TND, no address claims can be sent from UND for that address regardless of permitted transports, translations or encapsulations configured.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-7c0ed6b288494cc4acd8a3244021359f"><article class="requirement">
+            <turbo-frame id="article-2931e5eb0881479db7e81c09fdc1cc55"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2274,11 +2599,16 @@ data-level="1.14.3">
 </ul>
 </div>
 </div>
+    <div class="requirement_meta_multiline_label">VERIFICATION:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<p>Inspection of vendor documentation to confirm that mitigations against address claim attacks are implemented on all of the interfaces of the device.</p>
+</div>
+</div>
 
   </section></article>
 
 </turbo-frame>
-          <turbo-frame id="article-31e73f39dad1402ea36d5e7ac39f3d7c"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-c5e880cb035e4293a010f6b8e3c98e13"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -2302,7 +2632,7 @@ data-level="2">
     </div></section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-19b24db6f78e471386cb68a03045d37a"><article class="requirement">
+            <turbo-frame id="article-48fe5ecbaf214683887f18347e4ca5a7"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2317,6 +2647,10 @@ data-level="2.1">
     
     <dt><i>UID</i></dt>
     <dd>NGW-S-001</dd>
+    
+    <dt><i>VERIFICATION</i></dt>
+    <dd>
+</dd>
     
     <dt><i>CRITICALITY</i></dt>
     <dd>High</dd>
@@ -2388,7 +2722,7 @@ data-level="2.1">
   </section></article>
 
 </turbo-frame>
-          <turbo-frame id="article-a4cc400b019c4da4a13d117e7eb3c44d"><article class="docsection" data-controller="document">
+          <turbo-frame id="article-c462285aeed84efe8dea67cabf0dccf4"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -2407,7 +2741,7 @@ data-level="2.2">
   </article>
 
 </turbo-frame>
-            <turbo-frame id="article-947968facb9246458093bff688f7b1c9"><article class="requirement">
+            <turbo-frame id="article-940cf9ae5b2746048e407ebee3a1f8a2"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2422,6 +2756,10 @@ data-level="2.2.1">
     
     <dt><i>UID</i></dt>
     <dd>NGW-S-002</dd>
+    
+    <dt><i>VERIFICATION</i></dt>
+    <dd>
+</dd>
     
     <dt><i>CRITICALITY</i></dt>
     <dd>High</dd>
@@ -2459,7 +2797,7 @@ data-level="2.2.1">
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-a522bbc71f304c9cb441a5d0a38d4903"><article class="requirement">
+            <turbo-frame id="article-e61e87432a3d48bda582d4550a08657c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2474,6 +2812,10 @@ data-level="2.2.2">
     
     <dt><i>UID</i></dt>
     <dd>NGW-S-003</dd>
+    
+    <dt><i>VERIFICATION</i></dt>
+    <dd>
+</dd>
     
     <dt><i>CRITICALITY</i></dt>
     <dd>High</dd>
@@ -2511,7 +2853,7 @@ data-level="2.2.2">
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-62c804b292a24ae389a060a58f3bdad1"><article class="requirement">
+            <turbo-frame id="article-4732b6d0753746c69f49782043616ad6"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2526,6 +2868,10 @@ data-level="2.2.3">
     
     <dt><i>UID</i></dt>
     <dd>NGW-S-004</dd>
+    
+    <dt><i>VERIFICATION</i></dt>
+    <dd>
+</dd>
     
     <dt><i>CRITICALITY</i></dt>
     <dd>High</dd>
@@ -2563,7 +2909,7 @@ data-level="2.2.3">
   </section></article>
 
 </turbo-frame>
-            <turbo-frame id="article-cf85c2ccd6b74ac18b6759cc74114dbb"><article class="requirement">
+            <turbo-frame id="article-a9ef6dba4f424519a4d1b1999d31bac8"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2578,6 +2924,10 @@ data-level="2.2.4">
     
     <dt><i>UID</i></dt>
     <dd>NGW-S-005</dd>
+    
+    <dt><i>VERIFICATION</i></dt>
+    <dd>
+</dd>
     
     <dt><i>CRITICALITY</i></dt>
     <dd>High</dd>

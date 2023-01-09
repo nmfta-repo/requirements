@@ -53,7 +53,7 @@
         </a></li><li>
         <a href="#1.2-AGW-S-001" data-turbo="false">
           <span class="section-number">1.2</span>
-          Prevents OTA
+          Conditionally Prevents OTA
         </a></li><li>
         <a href="#1.3-AGW-S-002" data-turbo="false">
           <span class="section-number">1.3</span>
@@ -69,7 +69,7 @@
         </a></li><li>
         <a href="#1.6-AGW-S-005" data-turbo="false">
           <span class="section-number">1.6</span>
-          Prevents Elevation
+          Conditionally Prevents Elevation
         </a></li><li>
         <a href="#1.7-AGW-S-006" data-turbo="false">
           <span class="section-number">1.7</span>
@@ -288,27 +288,27 @@
 <p>Some Examples of TND and UND:</p>
 <p>The RP1226 connector is made for connecting aftermarket devices; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
-        ┌───────────────┐                 ┌──────────────┐                     ┌─┐
-        │  Gateway sat  │                 │              │                     │┼│
-────────┤   all HDVCR   ├─────────────────┤    RP1226    ├─────────────────────┼┼│
-  TND   │  requirements │     UND         │   Connector  │      UND            │┼│
-        └───────────────┘                 └──────────────┘                     └─┘
+        +───────────────+                 +──────────────+                     +─+
+        │  Gateway sat  │                 │              │                     │+│
+────────+   all HDVCR   +─────────────────+    RP1226    +─────────────────────++│
+  TND   │  requirements │     UND         │   Connector  │      UND            │+│
+        +───────────────+                 +──────────────+                     +─+
 </pre>
 <p>The OBD connector is _the_ operator access port; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
-        ┌───────────────┐                 ┌──────────────┐                     ┌─┐
-        │  Gateway sat  │                 │              │                     │┼│
-────────┤   all HDVCR   ├─────────────────┤      OBD     ├─────────────────────┼┼│
-  TND   │  requirements │     UND         │   Connector  │      UND            │┼│
-        └───────────────┘                 └──────────────┘                     └─┘
+        +───────────────+                 +──────────────+                     +─+
+        │  Gateway sat  │                 │              │                     │+│
+────────+   all HDVCR   +─────────────────+      OBD     +─────────────────────++│
+  TND   │  requirements │     UND         │   Connector  │      UND            │+│
+        +───────────────+                 +──────────────+                     +─+
 </pre>
 <p>The TPMS gateways on RP1226 databus connect to a wireless medium and are on the aftermarket bus; therefore the databuses there are UNDs.</p>
 <pre class="literal-block">
-        ┌───────────────┐                 ┌──────────────┐                  ┌──────────────┐
-        │  Gateway sat  │                 │              │                  │              │     Wireless
-────────┤   all HDVCR   ├─────────────────┤    RP1226    ├──────────────────┤     TPMS     ├───────~~)))
-  TND   │  requirements │     UND         │   Connector  │      UND         │   Gateway    │      UND
-        └───────────────┘                 └──────────────┘                  └──────────────┘
+        +───────────────+     +──────────────+     +──────────────+
+        │  Gateway sat  │     │              │     │              │     Wireless
+────────+   all HDVCR   +─────+    RP1226    +─────+     TPMS     +───────~~)))
+  TND   │  requirements │ UND │   Connector  │ UND │   Gateway    │      UND
+        +───────────────+     +──────────────+     +──────────────+
 </pre>
 <p>Then we can define (Intended) Gateways</p>
 <dl class="docutils">
@@ -408,7 +408,8 @@
     Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that replay of traffic for a valid configuration change, on any interface, does not result in any configuration changes to the device.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -423,7 +424,7 @@
     </td>
     <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.2-AGW-S-001"></div>
       <div class="section-title">
-        Prevents OTA
+        Conditionally Prevents OTA
       </div></td>
     <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent Over The Air updates (OTA) (including parameter flash) from <em>UND</em> to <em>TND</em>, unless with explicitly authorized and authenticated configuration changes via the mode switch.</p>
@@ -434,15 +435,17 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td">
-        
-    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+            Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
 
     Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that both:
+    1. OTA and parameter reflash are permitted from UND to TND when the mode switch is set to allow
+    2. OTA and parameter reflash are _prevented_ from UND to TND when the mode switch is not set to allow</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -495,15 +498,23 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td">
-        
-    It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
+            It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
 
     -- FMCSA GDL 37
 
     Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that denying access to the UND medium has no effect on TND performance.
+
+AND
+
+Test to confirm that for each permitted UND->TND transport, translation or encapsulation by the gateway: that sending the highest rate of traffic from UND to TND with it (one of the transport, translation or encapsulation) does not cause any performance degradation to the target device(s), nor TND in its entirety.
+
+AND
+
+All the verification steps of all the applicable derivative requirements.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -550,15 +561,24 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td">
-        
-    It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
+            It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
 
     -- FMCSA GDL 37
 
     Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        
+Test to confirm that for each permitted UND->TND transport, translation or encapsulation by the gateway: that sending traffic from UND to TND with it (one of the transport, translation or encapsulation) does not cause any traffic that will be interpreted by any nodes in TND as being traffic that originated from a node in a TND.
+
+AND
+
+Inspection of design artifacts or a third party analysis to confirm that there is no possible traffic on UND that will result in traffic on TND that would be interpreted by any nodes in TND as being traffic that originated from a node in a TND.
+
+AND
+
+All the verification steps of all the applicable derivative requirements.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -589,11 +609,15 @@
       <td class="content-view-td">
         CONTAINS_OPTIONS</td>
       <td class="content-view-td">
-        
-    Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
+            Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that for each permitted TND->UND transport, translation or encapsulation by the gateway and for each information in TND that is configured for confidentiality protection or masking: that canary values sent on TND do not show up in any traffic on UND.
+
+AND
+
+For non-masking: Inspection of a 3rd party implementation review report or a demonstration by the vendor that asserts the use of cryptographic protections for the confidentiality and integrity of all external communications channels. The cryptographic protections must be industry standard.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -608,7 +632,7 @@
     </td>
     <td class="content-view-td content-view-td-title"><div data-role='anchor' id="1.6-AGW-S-005"></div>
       <div class="section-title">
-        Prevents Elevation
+        Conditionally Prevents Elevation
       </div></td>
     <td class="content-view-td content-view-td-content"><div class="document">
 <p>The device SHALL prevent abuse of <em>TND</em> network domain functionality from <em>UND</em> to <em>TND</em>, unless with explicitly authorized and authenticated configuration changes via the mode switch.</p>
@@ -620,8 +644,7 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td">
-        
-    It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
+            It is recommended to isolate safety-critical ECUs on their own CAN bus, with some sort of gateway between them and other ECUs
 
     -- FMCSA GDL 37
 
@@ -638,7 +661,8 @@
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e.
 
 * Example *Intrusive Services*, SAE J3138.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that TND functionality prevented when the mode switch is set to disabled includes all the known critical and dangerous features of the vehicle TND in question. E.g. that diagnostics and influence of vehicle uptime are prevented when the mode switch is set to disabled.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -656,7 +680,7 @@
         Prevents Data Loss
       </div></td>
     <td class="content-view-td content-view-td-content"><div class="document">
-<p>The device SHALL prevent all data loss and/or corruption of information in the bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).</p>
+<p>The device SHALL prevent all data loss and/or corruption of information in the bidirectional <em>UND</em> &lt;-&gt; <em>TND</em> operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).</p>
 </div>
 </td>
     <td class="content-view-td content-view-td-content"></td>
@@ -664,7 +688,8 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor reliability testing reports to confirm that the device will not cause data loss or corruption at sustained loads of expected maximum traffic on TND and UND.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -741,8 +766,7 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td">
-        
-    Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
+            Isolation/partitioning of systems that have external access (e.g., Wi Fi, Bluetooth, OBD) from safety-critical systems and systems that can have important impacts on the operation of the vehicle.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.
 
@@ -753,7 +777,8 @@
     Central gateway or domain controller based architectures.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, e.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        All the verification steps of all the applicable derivative requirements.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -794,8 +819,7 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td">
-        
-    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+            Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
 
@@ -806,7 +830,12 @@
     Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of a third party report to confirm that the device has no known vulnerabilities that could undermine the preventions listed previously, the security requirements of this series, or other the security requirements of derivative series.
+
+AND
+
+All the verification steps of all the applicable derivative requirements.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -850,7 +879,12 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor reliability testing reports to confirm that the device will not cause loss of performance in TND.
+
+AND
+
+All the verification steps of all the applicable derivative requirements.</td>
       <td class="content-view-td">
         Medium</td></tr>
   <tr>
@@ -906,7 +940,14 @@
     Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        For Virtual Mode Switch Interlock option:
+
+Inspection of a third party report confirming that virtual mode switch operation cannot be simulated, initiated, sustained or denied by attacker control of devices connected to a vehicle UND.
+
+For Physical Mode Switch Interlock option:
+
+Test to confirm that device disables preventions only when physical input is grounded</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -932,7 +973,16 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that there is traffic sent on TND and UND when the mode switch is set to allow.
+
+AND
+
+Test to confirm that when the mode switch is set to allow, this state is communicated by sending traffic to TND and UND as documented.
+
+AND
+
+Test to confirm that for each TND and UND, replaying the status indicated traffic by the tester does not cause the (gateway) device to then permit the preventions. Performed by repeating the tests of AGW-S-001 and AGW-S-005 while replaying.</td>
       <td class="content-view-td">
         Medium</td></tr>
   <tr>
@@ -986,7 +1036,8 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor reports to confirm that performance is sufficient for all vehicle TNDs.</td>
       <td class="content-view-td">
         Medium</td></tr>
   <tr>
@@ -1032,7 +1083,7 @@
         Won't Drop Frames
       </div></td>
     <td class="content-view-td content-view-td-content"><div class="document">
-<p>The device SHALL NOT drop CAN frames in its bidirectional <em>UND</em> ↔ <em>TND</em> operation, unless with explicit configuration for rate limiting or translating.</p>
+<p>The device SHALL NOT drop CAN frames in its bidirectional <em>UND</em> &lt;-&gt; <em>TND</em> operation, unless with explicit configuration for rate limiting or translating.</p>
 </div>
 </td>
     <td class="content-view-td content-view-td-content"></td>
@@ -1040,7 +1091,8 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor reports to confirm that CAN frames are, by design, not dropped.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1067,7 +1119,7 @@
         No Priority Inversion
       </div></td>
     <td class="content-view-td content-view-td-content"><div class="document">
-<p>The device SHALL schedule egress frames according to the CAN arbitration ID priority in it bidirectional <em>UND</em> ↔ <em>TND</em> operation, to prevent priority inversion.</p>
+<p>The device SHALL schedule egress frames according to the CAN arbitration ID priority in its bidirectional <em>UND</em> &lt;-&gt; <em>TND</em> operation, to prevent priority inversion.</p>
 </div>
 </td>
     <td class="content-view-td content-view-td-content"></td>
@@ -1075,7 +1127,107 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that device's implementation follows the rules for CAN arbitration ID priority and the prevention of priority inversion.
+
+AND
+
+Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct arbitration ID priority: that higher-priority frames are always transmitted before lower-priority frames. The test methodoly described in the report should be comparable to the following:
+
+::
+
+
+       +---------+                                      +---------+
+       |         |                                      |         |
+       | Monitor |                                      | Monitor |
+       |         |                                      |         |
+       +---+-----+          +--------------+            +---+-----+
+    +-+    |        UND     |              |    TND         |       +-+
+    |+|    |                |   Security   |                |       |+|
+    |++----+----------+-----+    Gateway   +-------+--------+-------++|
+    |+|               |     |              |       |                |+|
+    +-+               |     +--------------+       |                +-+
+                      |                            |
+                      |                            |
+                      |        +--------+          |
+                      |        |        |          |
+                      +--------+ Tester +----------+
+                               |        |
+                               +--------+
+
+Figure 1
+
+The hardware setup is shown in Figure 1. The device under test (Security gateway) is connected to an untrusted network and a trusted network. A tester is connected to both networks and on each there is a monitor. The monitor is set up to receive traffic and acknowledge CAN frames.
+
+The tester operates a frame transmission process on the Trusted network. This performs the following steps:
+
+1. Wait until frame with ID 0x010 is seen on the Trusted network.
+2. Queue in FIFO order on the Trusted bus CAN frames with the following IDs (’S’ indicates a standard 11-bit CAN ID):
+
+   * 0x005 (S)
+   * 0x006 (S)
+
+   and repeat this queueing of the IDs until the process is stopped.
+
+The time between steps 1 and 2 must be less than 50 microseconds (i.e. much shorter than a CAN frame transmission time).
+
+The frames must be queued such that no idle time can appear between them. This is achieved by queueing the first frame and then immediately the second frame. When the first frame is transmitted then the third frame is queued. When the second frame is transmitted then the fourth frame is queued. And so on.
+
+The main test process is carried out in the following steps:
+
+1. The tester queues in FIFO order on the Untrusted network CAN frames with the following IDs:
+
+   * 0x010 (S)
+   * 0x011 (S)
+   * 0x00240000 (E)
+   * 0x008 (S)
+   * 0x001c0000 (E)
+   * 0x00100000 (E)
+   * 0x003 (S)
+   * 0x00080000 (E)
+   * 0x001 (S)
+
+   ,where ’S’ indicates a standard 11-bit CAN ID, ‘E’ indicates an extended 29-bit CAN ID.
+
+   The security gateway is programmed to allow these frames through from the Untrusted to the Trusted bus.
+
+   The frames are queued such that there is no idle time between them (using the technique described above).
+
+2. When the frame with ID 0x00100000 is seen on the Trusted bus then Trusted network process above is halted. If the frame is never seen then the Security gateway has failed the test.
+
+   The sequence of frames seen by the Monitor on the Untrusted bus should be:
+
+   * 0x010 (S)
+   * 0x011 (S)
+   * 0x00240000 (E)
+   * 0x008 (S)
+   * 0x001c0000 (E)
+   * 0x00100000 (E)
+   * 0x003 (S)
+   * 0x00080000 (E)
+   * 0x001 (S)
+
+   If this sequence is not seen then there is a fault in the tester.
+
+   The sequence of frames seen by the Monitor on the Trusted bus should be:
+
+   * 0x010 (S)
+   * 0x005 (S)
+   * 0x006 (S)
+     … (0x005 and 0x006 repeated for some number of times, the exact number depending on the speed of either bus and the payloads used for the frames)
+   * 0x001 (S)
+   * 0x00080000 (E)
+   * 0x003 (S)
+   * 0x00100000 (E)
+   * 0x005 (S)
+   * 0x006 (S)
+     … (0x005 and 0x006 may appear again, depending on how long it takes for the tester to halt the Trusted network process)
+   * 0x001c0000 (E)
+   * 0x008 (S)
+   * 0x00240000 (E)
+   * 0x011 (S)
+
+   If the sequence seen by the Monitor deviates from the above then the Security gateway has failed the test.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1110,7 +1262,12 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that the device is NOT implemented using SocketCAN -- SocketCAN drivers will randomly switch order of frames at both the same arbitration ID and among varied arbitration IDs.
+
+AND
+
+Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1145,7 +1302,8 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID but that also priority of arbitration IDs are respected.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1180,7 +1338,69 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor report detailing the use of a test environment that simulates a network load to measure jitter of the device. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify the jitter introduced. The test methodoly described in the report should be comparable to the following:
+
+::
+
+
+       +---------+                                      +---------+
+       |         |                                      |         |
+       | Monitor |                                      | Monitor |
+       |         |                                      |         |
+       +---+-----+          +--------------+            +---+-----+
+    +-+    |        UND     |              |    TND         |       +-+
+    |+|    |                |   Security   |                |       |+|
+    |++----+----------+-----+    Gateway   +-------+--------+-------++|
+    |+|               |     |              |       |                |+|
+    +-+               |     +--------------+       |                +-+
+                      |                            |
+                      |                            |
+                      |        +--------+          |
+                      |        |        |          |
+                      +--------+ Tester +----------+
+                               |        |
+                               +--------+
+
+Figure 1
+
+The security gateway is configured to allow a test frame through the security gateway. Both the Untrusted and Trusted networks are free of any other traffic. Monitor units are set up to listen to and acknowledge CAN frames.
+
+The tester checks for jitter removal by injecting a sequence of periodic frames on to the Untrusted network and measuring the timing of frames on the Trusted network.
+
+In the tester, a send process is defined to run from a periodic timer event set to 100ms:
+
+1. Wait for timing event
+2. Delay for a time t
+3. Queue a frame in the CAN controller connected to the Untrusted network
+
+The tester must complete the queueing of the CAN frame within 5 microseconds of the timer delay.
+
+Repeat steps 1 to 3 for a sequence of values of t. The values of t should be as follows:
+
+* 0.5ms
+* 99.0ms
+* 0.5ms
+* 80.0ms
+* 0.5ms
+* 70.0ms
+* 0.5ms
+* 60.0ms
+* 0.5ms
+* 50.0ms
+* 60.0ms
+* 70.0ms
+* 80.0ms
+* 90.0ms
+* 90.0ms
+
+The tester should take accurate (1 microsecond) start-of-frame (SOF) timestamps for each CAN frame on the Trusted network.
+
+The test fails if a total of 15 frames were not received from the Trusted network.
+
+The test fails if time between the SOF timestamp of the first frame received and the SOF timestamp of the last frame received exceeds 1490.055ms or is less than 1489.945ms.
+
+The test fails if the difference between the SOF timestamp of a frame and its subsequent frame exceeds 100.055ms or is less than 99.945ms.</td>
       <td class="content-view-td">
         Medium</td></tr>
   <tr>
@@ -1226,7 +1446,8 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.1 for a description of the bus flood attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that, for both permitted and prevented UND->TND transport, translation or encapsulation by the gateway: that sending the highest rate of traffic on UND does not result in transmit at the highest rate on TND.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1262,7 +1483,12 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.2 for a description of simple frame spoofing attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that for each permitted UND->TND transport, translation or encapsulation by the gateway: that sending CAN frames from UND to TND with it (one of the transport, translation or encapsulation) does not cause any CAN frames that will be interpreted by any nodes in TND as being traffic that originated from a node in a TND.
+
+AND
+
+Inspection of design artifacts or a third party analysis to confirm that there is no possible CAN frames on UND that will result in CAN frames on TND that would be interpreted by any nodes in TND as being traffic that originated from a node in a TND.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1322,7 +1548,8 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.3 for a description of adaptive frame spoofing attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that the (gateway) device is not implemented using direct-wired transceivers from TND to UND. In all other cases the delays introduced by the gateway will implicitly prevent Adaptive Frame Spoofing Attacks.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1358,7 +1585,12 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.4 for a description of error passive spoofing attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of an error passive attack step.
+
+AND
+
+Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1394,7 +1626,12 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.5 for a description of the double receive attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a double receive attack.
+
+AND
+
+Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1430,7 +1667,12 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.6 for a description of the bus-off attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a bus off attack.
+
+AND
+
+Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1466,7 +1708,16 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that the (gateway) device does not permit direct (GPIO-like) control of the TND CAN bus from UND (e.g. anything other than direct-wiring). In all other cases the separation of UND and TND will preclude the possibility of a freeze doom loop attack
+
+AND
+
+Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.
+
+AND
+
+Inspection of design artifacts or a third party analysis to confirm that there is no possible CAN frames on UND that will result in CAN frames on TND that would match any arbitration IDs sent by nodes on TND. Otherwise there is a non-zero probability that the gateway's TND CAN controller could enter a freeze doom loop with a node on TND.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1493,7 +1744,7 @@
         Impervious to Janus Attack
       </div></td>
     <td class="content-view-td content-view-td-content"><div class="document">
-<p>The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interface.</p>
+<p>The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interfaces.</p>
 </div>
 </td>
     <td class="content-view-td content-view-td-content"></td>
@@ -1506,7 +1757,12 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://kentindell.github.io/2021/07/15/janus-attack/ for a description of the Janus Attack</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor report to confirm that all devices on TND have been tested to demonstrate the same configured CAN sampling point.
+
+AND
+
+Inspection of vendor report to confirm that all original devices on UND have been tested to demonstrate the same configured CAN sampling point.</td>
       <td class="content-view-td">
         Medium</td></tr>
   <tr>
@@ -1560,7 +1816,8 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that for all source addresses claimed on TND, sending J1939 frames with any such source address is prevented from being transported, translated or encapsulated by the gateway to the TND; regardless of  permitted UND->TND transport, translation or encapsulation mechanisms that maybe configured on the gateway.</td>
       <td class="content-view-td">
         Medium</td></tr>
   <tr>
@@ -1600,7 +1857,8 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Test to confirm that for all source addresses claimed on TND, no address claims can be sent from UND for that address regardless of permitted transports, translations or encapsulations configured.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1636,7 +1894,8 @@
       <td class="content-view-td"></td>
       <td class="content-view-td">
         * https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        Inspection of vendor documentation to confirm that mitigations against address claim attacks are implemented on all of the interfaces of the device.</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1708,8 +1967,7 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td">
-        
-    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+            Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
 
@@ -1720,7 +1978,9 @@
     Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        
+</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1765,7 +2025,9 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        
+</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1800,7 +2062,9 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        
+</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1835,7 +2099,9 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        
+</td>
       <td class="content-view-td">
         High</td></tr>
   <tr>
@@ -1870,7 +2136,9 @@
     </td>
       <td class="content-view-td"></td>
       <td class="content-view-td"></td>
-      <td class="content-view-td"></td>
+      <td class="content-view-td">
+        
+</td>
       <td class="content-view-td">
         High</td></tr>
 
