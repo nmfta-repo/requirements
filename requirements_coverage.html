@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="_static/_content.css"/>
   <link rel="stylesheet" href="_static/_requirement.css"/>
   <link rel="stylesheet" href="_static/_element.css"/>
+  <link rel="stylesheet" href="_static/_form.css"/>
   
   <link rel="stylesheet" href="_static/_requirement-tree.css"/>
 
@@ -35,10 +36,8 @@
   
 </head>
 
-<body class="requirements-coverage-view ">
-<script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script>
-
-  <div class="layout" id="layout">
+<body class="requirements-coverage-view " data-turbo="false">
+<script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script><div class="layout" id="layout">
 
     <aside class="layout_aside-header">
       
@@ -62,7 +61,7 @@
 
     </header>
 
-    <main class="layout_main">
+    <main class="layout_main" id="pan-with-space">
       <h3 class="requirements-coverage-document-title" id="1">NMFTA Telematics Security Requirements Matrix</h3><div class="content">
         <section class="content_section">
           <div class="content_item" data-role="current"><article class="requirement"

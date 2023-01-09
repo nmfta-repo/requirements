@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../_static/_content.css"/>
   <link rel="stylesheet" href="../_static/_requirement.css"/>
   <link rel="stylesheet" href="../_static/_element.css"/>
+  <link rel="stylesheet" href="../_static/_form.css"/>
   
   <link rel="stylesheet" href="../_static/_requirement-tree.css"/>
 
@@ -32,10 +33,8 @@
   
 </head>
 
-<body class="traceability-view withtoc">
-<script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script>
-
-  <div class="layout" id="layout">
+<body class="traceability-view withtoc" data-turbo="false">
+<script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script><div class="layout" id="layout">
 
     <aside class="layout_aside-header">
       
@@ -45,177 +44,178 @@
 
     <aside class="layout_aside">
       
-  
+  <turbo-frame id="frame-toc">
     <div>Table of Contents</div>
-    <ul class="toc"><li><a href="#1-Security-Requirements-for-Abstract-Intended-Gateways">
+    <ul class="toc"><li><a href="#1-Security-Requirements-for-Abstract-Intended-Gateways" data-turbo="false">
               <span class="section-number">1</span>
               Security Requirements for Abstract (Intended) Gateways
             </a><ul><li>
-        <a href="#1.1-AGW-S-000">
+        <a href="#1.1-AGW-S-000" data-turbo="false">
           <span class="section-number">1.1</span>
           Gateway Configuration Protected
         </a></li><li>
-        <a href="#1.2-AGW-S-001">
+        <a href="#1.2-AGW-S-001" data-turbo="false">
           <span class="section-number">1.2</span>
           Prevents OTA
         </a></li><li>
-        <a href="#1.3-AGW-S-002">
+        <a href="#1.3-AGW-S-002" data-turbo="false">
           <span class="section-number">1.3</span>
           Prevents DoS
         </a></li><li>
-        <a href="#1.4-AGW-S-003">
+        <a href="#1.4-AGW-S-003" data-turbo="false">
           <span class="section-number">1.4</span>
           Prevents Spoofing
         </a></li><li>
-        <a href="#1.5-AGW-S-004">
+        <a href="#1.5-AGW-S-004" data-turbo="false">
           <span class="section-number">1.5</span>
           Prevents Exfiltration
         </a></li><li>
-        <a href="#1.6-AGW-S-005">
+        <a href="#1.6-AGW-S-005" data-turbo="false">
           <span class="section-number">1.6</span>
           Prevents Elevation
         </a></li><li>
-        <a href="#1.7-AGW-S-006">
+        <a href="#1.7-AGW-S-006" data-turbo="false">
           <span class="section-number">1.7</span>
           Prevents Data Loss
         </a></li><li>
-        <a href="#1.8-AGW-S-007">
+        <a href="#1.8-AGW-S-007" data-turbo="false">
           <span class="section-number">1.8</span>
           Preserves High Side Operation
         </a></li><li>
-        <a href="#1.9-AGW-S-008">
+        <a href="#1.9-AGW-S-008" data-turbo="false">
           <span class="section-number">1.9</span>
           Security Assurance
         </a></li><li>
-        <a href="#1.10-AGW-S-009">
+        <a href="#1.10-AGW-S-009" data-turbo="false">
           <span class="section-number">1.10</span>
           Preserves Performance
         </a></li><li>
-        <a href="#1.11-AGW-S-010">
+        <a href="#1.11-AGW-S-010" data-turbo="false">
           <span class="section-number">1.11</span>
           Mode Switch Interlock
         </a></li><li>
-        <a href="#1.12-AGW-S-011">
+        <a href="#1.12-AGW-S-011" data-turbo="false">
           <span class="section-number">1.12</span>
           Mode Switch Indicated
-        </a></li><li><a href="#1.13-Security-Requirements-for-CAN-Gateways">
+        </a></li><li><a href="#1.13-Security-Requirements-for-CAN-Gateways" data-turbo="false">
               <span class="section-number">1.13</span>
               Security Requirements for CAN Gateways
             </a><ul><li>
-        <a href="#1.13.1-CGW-S-001">
+        <a href="#1.13.1-CGW-S-001" data-turbo="false">
           <span class="section-number">1.13.1</span>
           Performant
-        </a></li><li><a href="#1.13.2-Preserves-Atomic-Multicast-CGW-S-005-Series">
+        </a></li><li><a href="#1.13.2-Preserves-Atomic-Multicast-CGW-S-005-Series" data-turbo="false">
               <span class="section-number">1.13.2</span>
               Preserves Atomic Multicast: CGW-S-005* Series
             </a><ul><li>
-        <a href="#1.13.2.1-CGW-S-005a">
+        <a href="#1.13.2.1-CGW-S-005a" data-turbo="false">
           <span class="section-number">1.13.2.1</span>
           Won't Drop Frames
         </a></li><li>
-        <a href="#1.13.2.2-CGW-S-005b">
+        <a href="#1.13.2.2-CGW-S-005b" data-turbo="false">
           <span class="section-number">1.13.2.2</span>
           No Priority Inversion
         </a></li><li>
-        <a href="#1.13.2.3-CGW-S-005c">
+        <a href="#1.13.2.3-CGW-S-005c" data-turbo="false">
           <span class="section-number">1.13.2.3</span>
           Preserves Ordering
         </a></li><li>
-        <a href="#1.13.2.4-CGW-S-005d">
+        <a href="#1.13.2.4-CGW-S-005d" data-turbo="false">
           <span class="section-number">1.13.2.4</span>
           FIFO but Also Priority
         </a></li><li>
-        <a href="#1.13.2.5-CGW-S-005e">
+        <a href="#1.13.2.5-CGW-S-005e" data-turbo="false">
           <span class="section-number">1.13.2.5</span>
           Preserves Jitter
         </a></li></ul>
-            </li><li><a href="#1.13.3-Prevents-CAN-Attacks">
+            </li><li><a href="#1.13.3-Prevents-CAN-Attacks" data-turbo="false">
               <span class="section-number">1.13.3</span>
               Prevents CAN Attacks
             </a><ul><li>
-        <a href="#1.13.3.1-CGW-S-006">
+        <a href="#1.13.3.1-CGW-S-006" data-turbo="false">
           <span class="section-number">1.13.3.1</span>
           Prevents Bus Flood Attacks
         </a></li><li>
-        <a href="#1.13.3.2-CGW-S-007">
+        <a href="#1.13.3.2-CGW-S-007" data-turbo="false">
           <span class="section-number">1.13.3.2</span>
           Prevents (Simple) Frame Spoofing
-        </a></li><li><a href="#1.13.3.3-Prevents-CAN-Protocol-Attacks-CGW-S-008-Series">
+        </a></li><li><a href="#1.13.3.3-Prevents-CAN-Protocol-Attacks-CGW-S-008-Series" data-turbo="false">
               <span class="section-number">1.13.3.3</span>
               Prevents CAN Protocol Attacks: CGW-S-008* Series
             </a><ul><li>
-        <a href="#1.13.3.3.1-CGW-S-008a">
+        <a href="#1.13.3.3.1-CGW-S-008a" data-turbo="false">
           <span class="section-number">1.13.3.3.1</span>
           Prevents Adaptive Frame Spoofing
         </a></li><li>
-        <a href="#1.13.3.3.2-CGW-S-008b">
+        <a href="#1.13.3.3.2-CGW-S-008b" data-turbo="false">
           <span class="section-number">1.13.3.3.2</span>
           Prevents Error Passive Attack Step
         </a></li><li>
-        <a href="#1.13.3.3.3-CGW-S-008c">
+        <a href="#1.13.3.3.3-CGW-S-008c" data-turbo="false">
           <span class="section-number">1.13.3.3.3</span>
           Prevents Double Receive Attack
         </a></li><li>
-        <a href="#1.13.3.3.4-CGW-S-008d">
+        <a href="#1.13.3.3.4-CGW-S-008d" data-turbo="false">
           <span class="section-number">1.13.3.3.4</span>
           Prevents Bus-Off Attack
         </a></li><li>
-        <a href="#1.13.3.3.5-CGW-S-008e">
+        <a href="#1.13.3.3.5-CGW-S-008e" data-turbo="false">
           <span class="section-number">1.13.3.3.5</span>
           Prevents Freeze Doom Loop Attack
         </a></li></ul>
             </li><li>
-        <a href="#1.13.3.4-CGW-S-013">
+        <a href="#1.13.3.4-CGW-S-013" data-turbo="false">
           <span class="section-number">1.13.3.4</span>
           Impervious to Janus Attack
         </a></li></ul>
             </li></ul>
-            </li><li><a href="#1.14-Security-Requirements-for-J1939-Gateways">
+            </li><li><a href="#1.14-Security-Requirements-for-J1939-Gateways" data-turbo="false">
               <span class="section-number">1.14</span>
               Security Requirements for J1939 Gateways
             </a><ul><li>
-        <a href="#1.14.1-J1939GW-S-039">
+        <a href="#1.14.1-J1939GW-S-039" data-turbo="false">
           <span class="section-number">1.14.1</span>
           Prevents J1939 Address Spoofing
         </a></li><li>
-        <a href="#1.14.2-J1939GW-S-029">
+        <a href="#1.14.2-J1939GW-S-029" data-turbo="false">
           <span class="section-number">1.14.2</span>
           Prevents Address Claim Attacks
         </a></li><li>
-        <a href="#1.14.3-J1939GW-S-089">
+        <a href="#1.14.3-J1939GW-S-089" data-turbo="false">
           <span class="section-number">1.14.3</span>
           Impervious to Address Claim Attacks
         </a></li></ul>
             </li></ul>
-            </li><li><a href="#2-Security-Requirements-for-Abstract-Unintended-Gateways">
+            </li><li><a href="#2-Security-Requirements-for-Abstract-Unintended-Gateways" data-turbo="false">
               <span class="section-number">2</span>
               Security Requirements for Abstract Unintended Gateways
             </a><ul><li>
-        <a href="#2.1-NGW-S-001">
+        <a href="#2.1-NGW-S-001" data-turbo="false">
           <span class="section-number">2.1</span>
           Security Assurance
-        </a></li><li><a href="#2.2-Prevents-Gateway-Functions">
+        </a></li><li><a href="#2.2-Prevents-Gateway-Functions" data-turbo="false">
               <span class="section-number">2.2</span>
               Prevents Gateway Functions
             </a><ul><li>
-        <a href="#2.2.1-NGW-S-002">
+        <a href="#2.2.1-NGW-S-002" data-turbo="false">
           <span class="section-number">2.2.1</span>
           Won't Transport
         </a></li><li>
-        <a href="#2.2.2-NGW-S-003">
+        <a href="#2.2.2-NGW-S-003" data-turbo="false">
           <span class="section-number">2.2.2</span>
           Won't Translate
         </a></li><li>
-        <a href="#2.2.3-NGW-S-004">
+        <a href="#2.2.3-NGW-S-004" data-turbo="false">
           <span class="section-number">2.2.3</span>
           Won't Filter, Drop or Rate Limit
         </a></li><li>
-        <a href="#2.2.4-NGW-S-005">
+        <a href="#2.2.4-NGW-S-005" data-turbo="false">
           <span class="section-number">2.2.4</span>
           Won't Encapsulate
         </a></li></ul>
             </li></ul>
             </li></ul>
+</turbo-frame>
 
     </aside>
 
@@ -254,7 +254,7 @@
 
     </header>
 
-    <main class="layout_main">
+    <main class="layout_main" id="pan-with-space">
       
 
       <div class="tags">
@@ -267,7 +267,7 @@
         <section class="content_section">
 
           <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
+          <div class="content_item" data-role="current"><turbo-frame id="article-32a258ed51c844f483c3b68c678af0f3"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -288,16 +288,16 @@ data-level="1">
 <p>The following requirements must be satisfied by any device intended to be a gateway on <em>any type of</em> vehicle networks. There are CAN-specific and J1939-sepcific requirements in the CGW- and J1939GW- series below.</p>
 </div>
 
-    </div></section>
+    </div></section></article>
 
-</article></div>
+</turbo-frame></div>
           <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-a760ff798bb54027b831bfa5ca7ebf0b"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -360,9 +360,9 @@ data-level="1.1">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -371,7 +371,7 @@ data-level="1.1">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-e737e52138514d3f94f119b33c96ea5b"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -424,9 +424,9 @@ data-level="1.2">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -435,7 +435,7 @@ data-level="1.2">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-db13cae8891a4752bcec24d97c28b097"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -458,25 +458,25 @@ data-level="1.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
       <span class="requirement_child-uid">CGW-S-006</span>
       Prevents Bus Flood Attacks
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
       <span class="requirement_child-uid">CGW-S-008d</span>
       Prevents Bus-Off Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
       <span class="requirement_child-uid">CGW-S-008e</span>
       Prevents Freeze Doom Loop Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
       <span class="requirement_child-uid">J1939GW-S-029</span>
       Prevents Address Claim Attacks
     </a>
@@ -514,19 +514,19 @@ data-level="1.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 
 <ul class="requirement-tree requirement-tree_right"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-4ff67cd2a73045b2b80268f89556985c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.1-CGW-S-006"></div>
     <h4
 class="section-title"
 data-level="1.13.3.1">
@@ -545,7 +545,7 @@ data-level="1.13.3.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -578,18 +578,18 @@ data-level="1.13.3.1">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-81cb4ee600434bc2bae40bd2bb617226"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.3.4-CGW-S-008d"></div>
     <h5
 class="section-title"
 data-level="1.13.3.3.4">
@@ -608,7 +608,7 @@ data-level="1.13.3.3.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -641,18 +641,18 @@ data-level="1.13.3.3.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-fd688d285f3248c3ae5fe672564e5f2d"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.3.5-CGW-S-008e"></div>
     <h5
 class="section-title"
 data-level="1.13.3.3.5">
@@ -671,7 +671,7 @@ data-level="1.13.3.3.5">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -704,18 +704,18 @@ data-level="1.13.3.3.5">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-5bf60a370499449f800f3424977eade1"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.14.2-J1939GW-S-029"></div>
     <h3
 class="section-title"
 data-level="1.14.2">
@@ -734,7 +734,7 @@ data-level="1.14.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -773,9 +773,9 @@ data-level="1.14.2">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
@@ -784,7 +784,7 @@ data-level="1.14.2">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-5468cbcaa44040ef847d2fc847b70a4f"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -807,19 +807,19 @@ data-level="1.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
       <span class="requirement_child-uid">CGW-S-007</span>
       Prevents (Simple) Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
       <span class="requirement_child-uid">CGW-S-008a</span>
       Prevents Adaptive Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
       <span class="requirement_child-uid">J1939GW-S-039</span>
       Prevents J1939 Address Spoofing
     </a>
@@ -857,19 +857,19 @@ data-level="1.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 
 <ul class="requirement-tree requirement-tree_right"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-01cdccd95634483494938c281266d4b1"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.2-CGW-S-007"></div>
     <h4
 class="section-title"
 data-level="1.13.3.2">
@@ -888,7 +888,7 @@ data-level="1.13.3.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.4-AGW-S-003">
       <span class="requirement_parent-uid">AGW-S-003</span>
       Prevents Spoofing
     </a>
@@ -921,18 +921,18 @@ data-level="1.13.3.2">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-9695bb8e840b4197b9f48b0bf5dc84a3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.3.1-CGW-S-008a"></div>
     <h5
 class="section-title"
 data-level="1.13.3.3.1">
@@ -951,7 +951,7 @@ data-level="1.13.3.3.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.4-AGW-S-003">
       <span class="requirement_parent-uid">AGW-S-003</span>
       Prevents Spoofing
     </a>
@@ -984,18 +984,18 @@ data-level="1.13.3.3.1">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-98cc54f81aa1465387582be802be072e"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.14.1-J1939GW-S-039"></div>
     <h3
 class="section-title"
 data-level="1.14.1">
@@ -1014,7 +1014,7 @@ data-level="1.14.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.4-AGW-S-003">
       <span class="requirement_parent-uid">AGW-S-003</span>
       Prevents Spoofing
     </a>
@@ -1040,9 +1040,9 @@ data-level="1.14.1">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
@@ -1051,7 +1051,7 @@ data-level="1.14.1">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-3fd5ecf1674a43deb4825609253072e9"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1107,9 +1107,9 @@ data-level="1.5">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -1118,7 +1118,7 @@ data-level="1.5">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-e67eda5f1ee24595a37132c2dadf10fa"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1183,9 +1183,9 @@ data-level="1.6">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -1194,7 +1194,7 @@ data-level="1.6">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-0a50f4d08c914a86afe28f4c6b6c9443"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1235,9 +1235,9 @@ data-level="1.7">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -1246,7 +1246,7 @@ data-level="1.7">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1269,49 +1269,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -1353,19 +1353,19 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 
 <ul class="requirement-tree requirement-tree_right"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-7d47153e585646c8a2b35a02c351b946"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.10-AGW-S-009"></div>
     <h2
 class="section-title"
 data-level="1.10">
@@ -1384,7 +1384,7 @@ data-level="1.10">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1392,7 +1392,7 @@ data-level="1.10">
   </ul>
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.1-CGW-S-001">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.1-CGW-S-001">
       <span class="requirement_child-uid">CGW-S-001</span>
       Performant
     </a>
@@ -1418,18 +1418,18 @@ data-level="1.10">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-6d220789cb5948f98f5340715914512c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.2.1-CGW-S-005a"></div>
     <h4
 class="section-title"
 data-level="1.13.2.1">
@@ -1448,7 +1448,7 @@ data-level="1.13.2.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1474,18 +1474,18 @@ data-level="1.13.2.1">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-41ea3753fc9a40a380bedf402667959d"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.2.2-CGW-S-005b"></div>
     <h4
 class="section-title"
 data-level="1.13.2.2">
@@ -1504,7 +1504,7 @@ data-level="1.13.2.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1530,18 +1530,18 @@ data-level="1.13.2.2">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-41a261a234c14db8892f19630c9c4c29"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.2.3-CGW-S-005c"></div>
     <h4
 class="section-title"
 data-level="1.13.2.3">
@@ -1560,7 +1560,7 @@ data-level="1.13.2.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1586,18 +1586,18 @@ data-level="1.13.2.3">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-d020f37a33024d609bf60c96425d0886"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.2.4-CGW-S-005d"></div>
     <h4
 class="section-title"
 data-level="1.13.2.4">
@@ -1616,7 +1616,7 @@ data-level="1.13.2.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1642,18 +1642,18 @@ data-level="1.13.2.4">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-74031348397643819294f0aac0d24561"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.2.5-CGW-S-005e"></div>
     <h4
 class="section-title"
 data-level="1.13.2.5">
@@ -1672,7 +1672,7 @@ data-level="1.13.2.5">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1698,18 +1698,18 @@ data-level="1.13.2.5">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-d89d41f9c94249768a41b49b36d0fe6d"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.3.2-CGW-S-008b"></div>
     <h5
 class="section-title"
 data-level="1.13.3.3.2">
@@ -1728,7 +1728,7 @@ data-level="1.13.3.3.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1761,18 +1761,18 @@ data-level="1.13.3.3.2">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-f014d5da8cbb49c0a1080bb798d988e0"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.3.3-CGW-S-008c"></div>
     <h5
 class="section-title"
 data-level="1.13.3.3.3">
@@ -1791,7 +1791,7 @@ data-level="1.13.3.3.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -1824,9 +1824,9 @@ data-level="1.13.3.3.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
@@ -1835,7 +1835,7 @@ data-level="1.13.3.3.3">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-30aee25594e041a092af52c92e536311"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -1858,13 +1858,13 @@ data-level="1.9">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
       <span class="requirement_child-uid">CGW-S-013</span>
       Impervious to Janus Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
       <span class="requirement_child-uid">J1939GW-S-089</span>
       Impervious to Address Claim Attacks
     </a>
@@ -1906,19 +1906,19 @@ data-level="1.9">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 
 <ul class="requirement-tree requirement-tree_right"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-37178f0b4b8641b0b6bd774d737155c5"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.3.4-CGW-S-013"></div>
     <h4
 class="section-title"
 data-level="1.13.3.4">
@@ -1937,7 +1937,7 @@ data-level="1.13.3.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.9-AGW-S-008">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.9-AGW-S-008">
       <span class="requirement_parent-uid">AGW-S-008</span>
       Security Assurance
     </a>
@@ -1976,18 +1976,18 @@ data-level="1.13.3.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-7c0ed6b288494cc4acd8a3244021359f"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.14.3-J1939GW-S-089"></div>
     <h3
 class="section-title"
 data-level="1.14.3">
@@ -2006,7 +2006,7 @@ data-level="1.14.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.9-AGW-S-008">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.9-AGW-S-008">
       <span class="requirement_parent-uid">AGW-S-008</span>
       Security Assurance
     </a>
@@ -2039,9 +2039,9 @@ data-level="1.14.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
@@ -2051,11 +2051,11 @@ data-level="1.14.3">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -2074,49 +2074,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -2158,14 +2158,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-7d47153e585646c8a2b35a02c351b946"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2188,7 +2188,7 @@ data-level="1.10">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -2196,7 +2196,7 @@ data-level="1.10">
   </ul>
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.1-CGW-S-001">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.1-CGW-S-001">
       <span class="requirement_child-uid">CGW-S-001</span>
       Performant
     </a>
@@ -2222,19 +2222,19 @@ data-level="1.10">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 
 <ul class="requirement-tree requirement-tree_right"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-3e9a39407e2e48eabc42161117c353ca"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.13.1-CGW-S-001"></div>
     <h3
 class="section-title"
 data-level="1.13.1">
@@ -2253,7 +2253,7 @@ data-level="1.13.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.10-AGW-S-009">
       <span class="requirement_parent-uid">AGW-S-009</span>
       Preserves Performance
     </a>
@@ -2279,9 +2279,9 @@ data-level="1.13.1">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
@@ -2290,7 +2290,7 @@ data-level="1.13.1">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-cb694349e9c640ae9d30035ab65d9351"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2372,9 +2372,9 @@ data-level="1.11">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -2383,7 +2383,7 @@ data-level="1.11">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-52d9de39c9b54133ab3d850c75ce45b3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2424,9 +2424,9 @@ data-level="1.12">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -2434,7 +2434,7 @@ data-level="1.12">
         <section class="content_section">
 
           <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
+          <div class="content_item" data-role="current"><turbo-frame id="article-5656b66e4ce1485482757632f8960a45"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -2455,9 +2455,9 @@ data-level="1.13">
 <p>The following security requirements must be satisfied by CAN gateways specifically. These CAN gateways are expected to meet all of the AGW-S-* Abstract Gateway security requirements and to also satisfy the CGW-S-* security requirements of this section.</p>
 </div>
 
-    </div></section>
+    </div></section></article>
 
-</article></div>
+</turbo-frame></div>
           <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
@@ -2465,11 +2465,11 @@ data-level="1.13">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-7d47153e585646c8a2b35a02c351b946"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.10-AGW-S-009"></div>
     <h2
 class="section-title"
 data-level="1.10">
@@ -2488,7 +2488,7 @@ data-level="1.10">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -2496,7 +2496,7 @@ data-level="1.10">
   </ul>
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.1-CGW-S-001">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.1-CGW-S-001">
       <span class="requirement_child-uid">CGW-S-001</span>
       Performant
     </a>
@@ -2522,14 +2522,14 @@ data-level="1.10">
     
   
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-3e9a39407e2e48eabc42161117c353ca"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2552,7 +2552,7 @@ data-level="1.13.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.10-AGW-S-009">
       <span class="requirement_parent-uid">AGW-S-009</span>
       Preserves Performance
     </a>
@@ -2578,9 +2578,9 @@ data-level="1.13.1">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -2588,7 +2588,7 @@ data-level="1.13.1">
         <section class="content_section">
 
           <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
+          <div class="content_item" data-role="current"><turbo-frame id="article-839f123377634b5f8c41bf48818b25cf"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -2609,9 +2609,9 @@ data-level="1.13.2">
 <p>The device SHALL preserve the atomic multicast property of CAN buses. All CGW-S-005* requirements must be satisfied.</p>
 </div>
 
-    </div></section>
+    </div></section></article>
 
-</article></div>
+</turbo-frame></div>
           <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
@@ -2619,11 +2619,11 @@ data-level="1.13.2">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -2642,49 +2642,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -2726,14 +2726,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-6d220789cb5948f98f5340715914512c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2756,7 +2756,7 @@ data-level="1.13.2.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -2782,9 +2782,9 @@ data-level="1.13.2.1">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -2794,11 +2794,11 @@ data-level="1.13.2.1">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -2817,49 +2817,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -2901,14 +2901,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-41ea3753fc9a40a380bedf402667959d"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -2931,7 +2931,7 @@ data-level="1.13.2.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -2957,9 +2957,9 @@ data-level="1.13.2.2">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -2969,11 +2969,11 @@ data-level="1.13.2.2">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -2992,49 +2992,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -3076,14 +3076,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-41a261a234c14db8892f19630c9c4c29"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -3106,7 +3106,7 @@ data-level="1.13.2.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -3132,9 +3132,9 @@ data-level="1.13.2.3">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -3144,11 +3144,11 @@ data-level="1.13.2.3">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -3167,49 +3167,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -3251,14 +3251,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-d020f37a33024d609bf60c96425d0886"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -3281,7 +3281,7 @@ data-level="1.13.2.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -3307,9 +3307,9 @@ data-level="1.13.2.4">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -3319,11 +3319,11 @@ data-level="1.13.2.4">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -3342,49 +3342,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -3426,14 +3426,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-74031348397643819294f0aac0d24561"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -3456,7 +3456,7 @@ data-level="1.13.2.5">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -3482,9 +3482,9 @@ data-level="1.13.2.5">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -3492,7 +3492,7 @@ data-level="1.13.2.5">
         <section class="content_section">
 
           <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
+          <div class="content_item" data-role="current"><turbo-frame id="article-8b8bdd0d7e024cedae9f2a2c4a85621a"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -3508,9 +3508,9 @@ data-level="1.13.3">
 
   </section>
 
-  
+  </article>
 
-</article></div>
+</turbo-frame></div>
           <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
@@ -3518,11 +3518,11 @@ data-level="1.13.3">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-db13cae8891a4752bcec24d97c28b097"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.3-AGW-S-002"></div>
     <h2
 class="section-title"
 data-level="1.3">
@@ -3541,25 +3541,25 @@ data-level="1.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
       <span class="requirement_child-uid">CGW-S-006</span>
       Prevents Bus Flood Attacks
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
       <span class="requirement_child-uid">CGW-S-008d</span>
       Prevents Bus-Off Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
       <span class="requirement_child-uid">CGW-S-008e</span>
       Prevents Freeze Doom Loop Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
       <span class="requirement_child-uid">J1939GW-S-029</span>
       Prevents Address Claim Attacks
     </a>
@@ -3597,14 +3597,14 @@ data-level="1.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-4ff67cd2a73045b2b80268f89556985c"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -3627,7 +3627,7 @@ data-level="1.13.3.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -3660,9 +3660,9 @@ data-level="1.13.3.1">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -3672,11 +3672,11 @@ data-level="1.13.3.1">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-5468cbcaa44040ef847d2fc847b70a4f"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.4-AGW-S-003"></div>
     <h2
 class="section-title"
 data-level="1.4">
@@ -3695,19 +3695,19 @@ data-level="1.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
       <span class="requirement_child-uid">CGW-S-007</span>
       Prevents (Simple) Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
       <span class="requirement_child-uid">CGW-S-008a</span>
       Prevents Adaptive Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
       <span class="requirement_child-uid">J1939GW-S-039</span>
       Prevents J1939 Address Spoofing
     </a>
@@ -3745,14 +3745,14 @@ data-level="1.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-01cdccd95634483494938c281266d4b1"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -3775,7 +3775,7 @@ data-level="1.13.3.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.4-AGW-S-003">
       <span class="requirement_parent-uid">AGW-S-003</span>
       Prevents Spoofing
     </a>
@@ -3808,9 +3808,9 @@ data-level="1.13.3.2">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -3818,7 +3818,7 @@ data-level="1.13.3.2">
         <section class="content_section">
 
           <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
+          <div class="content_item" data-role="current"><turbo-frame id="article-fd221f54a0254e3a86ccb3de25196f6a"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -3844,9 +3844,9 @@ data-level="1.13.3.3">
 <p>c.f. <a class="reference external" href="https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf">https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf</a> section 2.1 for further definition of CAN protocol attacks.</p>
 </div>
 
-    </div></section>
+    </div></section></article>
 
-</article></div>
+</turbo-frame></div>
           <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
@@ -3854,11 +3854,11 @@ data-level="1.13.3.3">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-5468cbcaa44040ef847d2fc847b70a4f"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.4-AGW-S-003"></div>
     <h2
 class="section-title"
 data-level="1.4">
@@ -3877,19 +3877,19 @@ data-level="1.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
       <span class="requirement_child-uid">CGW-S-007</span>
       Prevents (Simple) Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
       <span class="requirement_child-uid">CGW-S-008a</span>
       Prevents Adaptive Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
       <span class="requirement_child-uid">J1939GW-S-039</span>
       Prevents J1939 Address Spoofing
     </a>
@@ -3927,14 +3927,14 @@ data-level="1.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-9695bb8e840b4197b9f48b0bf5dc84a3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -3957,7 +3957,7 @@ data-level="1.13.3.3.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.4-AGW-S-003">
       <span class="requirement_parent-uid">AGW-S-003</span>
       Prevents Spoofing
     </a>
@@ -3990,9 +3990,9 @@ data-level="1.13.3.3.1">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -4002,11 +4002,11 @@ data-level="1.13.3.3.1">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -4025,49 +4025,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -4109,14 +4109,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-d89d41f9c94249768a41b49b36d0fe6d"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -4139,7 +4139,7 @@ data-level="1.13.3.3.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -4172,9 +4172,9 @@ data-level="1.13.3.3.2">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -4184,11 +4184,11 @@ data-level="1.13.3.3.2">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-aa934433234b44958afa62b04bf10dc3"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.8-AGW-S-007"></div>
     <h2
 class="section-title"
 data-level="1.8">
@@ -4207,49 +4207,49 @@ data-level="1.8">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.10-AGW-S-009">
+    <a data-turbo="false" class="requirement_link-child" href="#1.10-AGW-S-009">
       <span class="requirement_child-uid">AGW-S-009</span>
       Preserves Performance
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.1-CGW-S-005a">
       <span class="requirement_child-uid">CGW-S-005a</span>
       Won't Drop Frames
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.2-CGW-S-005b">
       <span class="requirement_child-uid">CGW-S-005b</span>
       No Priority Inversion
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.3-CGW-S-005c">
       <span class="requirement_child-uid">CGW-S-005c</span>
       Preserves Ordering
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.4-CGW-S-005d">
       <span class="requirement_child-uid">CGW-S-005d</span>
       FIFO but Also Priority
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.2.5-CGW-S-005e">
       <span class="requirement_child-uid">CGW-S-005e</span>
       Preserves Jitter
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.2-CGW-S-008b">
       <span class="requirement_child-uid">CGW-S-008b</span>
       Prevents Error Passive Attack Step
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.3-CGW-S-008c">
       <span class="requirement_child-uid">CGW-S-008c</span>
       Prevents Double Receive Attack
     </a>
@@ -4291,14 +4291,14 @@ data-level="1.8">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-f014d5da8cbb49c0a1080bb798d988e0"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -4321,7 +4321,7 @@ data-level="1.13.3.3.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.8-AGW-S-007">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.8-AGW-S-007">
       <span class="requirement_parent-uid">AGW-S-007</span>
       Preserves High Side Operation
     </a>
@@ -4354,9 +4354,9 @@ data-level="1.13.3.3.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -4366,11 +4366,11 @@ data-level="1.13.3.3.3">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-db13cae8891a4752bcec24d97c28b097"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.3-AGW-S-002"></div>
     <h2
 class="section-title"
 data-level="1.3">
@@ -4389,25 +4389,25 @@ data-level="1.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
       <span class="requirement_child-uid">CGW-S-006</span>
       Prevents Bus Flood Attacks
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
       <span class="requirement_child-uid">CGW-S-008d</span>
       Prevents Bus-Off Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
       <span class="requirement_child-uid">CGW-S-008e</span>
       Prevents Freeze Doom Loop Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
       <span class="requirement_child-uid">J1939GW-S-029</span>
       Prevents Address Claim Attacks
     </a>
@@ -4445,14 +4445,14 @@ data-level="1.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-81cb4ee600434bc2bae40bd2bb617226"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -4475,7 +4475,7 @@ data-level="1.13.3.3.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -4508,9 +4508,9 @@ data-level="1.13.3.3.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -4520,11 +4520,11 @@ data-level="1.13.3.3.4">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-db13cae8891a4752bcec24d97c28b097"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.3-AGW-S-002"></div>
     <h2
 class="section-title"
 data-level="1.3">
@@ -4543,25 +4543,25 @@ data-level="1.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
       <span class="requirement_child-uid">CGW-S-006</span>
       Prevents Bus Flood Attacks
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
       <span class="requirement_child-uid">CGW-S-008d</span>
       Prevents Bus-Off Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
       <span class="requirement_child-uid">CGW-S-008e</span>
       Prevents Freeze Doom Loop Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
       <span class="requirement_child-uid">J1939GW-S-029</span>
       Prevents Address Claim Attacks
     </a>
@@ -4599,14 +4599,14 @@ data-level="1.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-fd688d285f3248c3ae5fe672564e5f2d"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -4629,7 +4629,7 @@ data-level="1.13.3.3.5">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -4662,9 +4662,9 @@ data-level="1.13.3.3.5">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -4674,11 +4674,11 @@ data-level="1.13.3.3.5">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-30aee25594e041a092af52c92e536311"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.9-AGW-S-008"></div>
     <h2
 class="section-title"
 data-level="1.9">
@@ -4697,13 +4697,13 @@ data-level="1.9">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
       <span class="requirement_child-uid">CGW-S-013</span>
       Impervious to Janus Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
       <span class="requirement_child-uid">J1939GW-S-089</span>
       Impervious to Address Claim Attacks
     </a>
@@ -4745,14 +4745,14 @@ data-level="1.9">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-37178f0b4b8641b0b6bd774d737155c5"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -4775,7 +4775,7 @@ data-level="1.13.3.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.9-AGW-S-008">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.9-AGW-S-008">
       <span class="requirement_parent-uid">AGW-S-008</span>
       Security Assurance
     </a>
@@ -4814,9 +4814,9 @@ data-level="1.13.3.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -4824,7 +4824,7 @@ data-level="1.13.3.4">
         <section class="content_section">
 
           <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
+          <div class="content_item" data-role="current"><turbo-frame id="article-d5ebab61b3af4d0bb0c1490ff17bac6f"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -4845,9 +4845,9 @@ data-level="1.14">
 <p>J1939 Gateways are expected to meet all of the CGW-S-* CAN Gateway Security Requirements and to also satisfy the J1939GW-S-* Security requirements of this section</p>
 </div>
 
-    </div></section>
+    </div></section></article>
 
-</article></div>
+</turbo-frame></div>
           <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
@@ -4855,11 +4855,11 @@ data-level="1.14">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-5468cbcaa44040ef847d2fc847b70a4f"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.4-AGW-S-003"></div>
     <h2
 class="section-title"
 data-level="1.4">
@@ -4878,19 +4878,19 @@ data-level="1.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.2-CGW-S-007">
       <span class="requirement_child-uid">CGW-S-007</span>
       Prevents (Simple) Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.1-CGW-S-008a">
       <span class="requirement_child-uid">CGW-S-008a</span>
       Prevents Adaptive Frame Spoofing
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.1-J1939GW-S-039">
       <span class="requirement_child-uid">J1939GW-S-039</span>
       Prevents J1939 Address Spoofing
     </a>
@@ -4928,14 +4928,14 @@ data-level="1.4">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-98cc54f81aa1465387582be802be072e"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -4958,7 +4958,7 @@ data-level="1.14.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.4-AGW-S-003">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.4-AGW-S-003">
       <span class="requirement_parent-uid">AGW-S-003</span>
       Prevents Spoofing
     </a>
@@ -4984,9 +4984,9 @@ data-level="1.14.1">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -4996,11 +4996,11 @@ data-level="1.14.1">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-db13cae8891a4752bcec24d97c28b097"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.3-AGW-S-002"></div>
     <h2
 class="section-title"
 data-level="1.3">
@@ -5019,25 +5019,25 @@ data-level="1.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.1-CGW-S-006">
       <span class="requirement_child-uid">CGW-S-006</span>
       Prevents Bus Flood Attacks
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.4-CGW-S-008d">
       <span class="requirement_child-uid">CGW-S-008d</span>
       Prevents Bus-Off Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.3.5-CGW-S-008e">
       <span class="requirement_child-uid">CGW-S-008e</span>
       Prevents Freeze Doom Loop Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.2-J1939GW-S-029">
       <span class="requirement_child-uid">J1939GW-S-029</span>
       Prevents Address Claim Attacks
     </a>
@@ -5075,14 +5075,14 @@ data-level="1.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-5bf60a370499449f800f3424977eade1"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -5105,7 +5105,7 @@ data-level="1.14.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.3-AGW-S-002">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.3-AGW-S-002">
       <span class="requirement_parent-uid">AGW-S-002</span>
       Prevents DoS
     </a>
@@ -5144,9 +5144,9 @@ data-level="1.14.2">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -5156,11 +5156,11 @@ data-level="1.14.2">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-30aee25594e041a092af52c92e536311"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="1.9-AGW-S-008"></div>
     <h2
 class="section-title"
 data-level="1.9">
@@ -5179,13 +5179,13 @@ data-level="1.9">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
+    <a data-turbo="false" class="requirement_link-child" href="#1.13.3.4-CGW-S-013">
       <span class="requirement_child-uid">CGW-S-013</span>
       Impervious to Janus Attack
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
+    <a data-turbo="false" class="requirement_link-child" href="#1.14.3-J1939GW-S-089">
       <span class="requirement_child-uid">J1939GW-S-089</span>
       Impervious to Address Claim Attacks
     </a>
@@ -5227,14 +5227,14 @@ data-level="1.9">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-7c0ed6b288494cc4acd8a3244021359f"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -5257,7 +5257,7 @@ data-level="1.14.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#1.9-AGW-S-008">
+    <a data-turbo="false" class="requirement_link-parent" href="#1.9-AGW-S-008">
       <span class="requirement_parent-uid">AGW-S-008</span>
       Security Assurance
     </a>
@@ -5290,9 +5290,9 @@ data-level="1.14.3">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>
@@ -5300,7 +5300,7 @@ data-level="1.14.3">
         <section class="content_section">
 
           <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
+          <div class="content_item" data-role="current"><turbo-frame id="article-31e73f39dad1402ea36d5e7ac39f3d7c"><article class="docsection" data-controller="document">
 
   <section data-section="meta" class="docsection_section">
 
@@ -5321,16 +5321,16 @@ data-level="2">
 <p>Security requirements that must be satisfied by any device which <em>could be</em> a gateway (due to malicious code) but is not intended to be one.</p>
 </div>
 
-    </div></section>
+    </div></section></article>
 
-</article></div>
+</turbo-frame></div>
           <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
           <div class="content_item" data-role="parents">
 </div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-19b24db6f78e471386cb68a03045d37a"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -5353,25 +5353,25 @@ data-level="2.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#2.2.1-NGW-S-002">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.1-NGW-S-002">
       <span class="requirement_child-uid">NGW-S-002</span>
       Won't Transport
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#2.2.2-NGW-S-003">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.2-NGW-S-003">
       <span class="requirement_child-uid">NGW-S-003</span>
       Won't Translate
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#2.2.3-NGW-S-004">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.3-NGW-S-004">
       <span class="requirement_child-uid">NGW-S-004</span>
       Won't Filter, Drop or Rate Limit
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#2.2.4-NGW-S-005">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.4-NGW-S-005">
       <span class="requirement_child-uid">NGW-S-005</span>
       Won't Encapsulate
     </a>
@@ -5413,358 +5413,15 @@ data-level="2.1">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 
 <ul class="requirement-tree requirement-tree_right"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    
-    <h3
-class="section-title"
-data-level="2.2.1">
-  2.2.1.&nbsp;Won't Transport
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-002</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL NOT transport/'move' information between two separate network 'domains,' in either bidirection.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-    </div>
-
-  </li><li class="requirement-tree_branch">
-    <div class="requirement-tree_node">
-      <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    
-    <h3
-class="section-title"
-data-level="2.2.2">
-  2.2.2.&nbsp;Won't Translate
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-003</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL NOT translate/transform the information between the separate network domains.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-    </div>
-
-  </li><li class="requirement-tree_branch">
-    <div class="requirement-tree_node">
-      <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    
-    <h3
-class="section-title"
-data-level="2.2.3">
-  2.2.3.&nbsp;Won't Filter, Drop or Rate Limit
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-004</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL NOT select which information is transported and/or translated between the network domains.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-    </div>
-
-  </li><li class="requirement-tree_branch">
-    <div class="requirement-tree_node">
-      <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    
-    <h3
-class="section-title"
-data-level="2.2.4">
-  2.2.4.&nbsp;Won't Encapsulate
-</h3>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-005</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
-      <span class="requirement_parent-uid">NGW-S-001</span>
-      Security Assurance
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL NOT encapsulate information as it is transported and/or translated between the network domains.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-
-  </section>
-
-</article>
-    </div>
-
-  </li></ul></div>
-        </section>
-        <section class="content_section">
-
-          <div class="content_item" data-role="parents"></div>
-          <div class="content_item" data-role="current"><article class="docsection">
-
-  <section data-section="meta" class="docsection_section">
-
-    <div data-role='anchor' id="2.2-Prevents-Gateway-Functions"></div>
-
-    
-        <h2
-class="section-title"
-data-level="2.2">
-  2.2.&nbsp;Prevents Gateway Functions
-</h2>
-    
-
-  </section>
-
-  
-
-</article></div>
-          <div class="content_item" data-role="children"></div>
-        </section>
-        <section class="content_section">
-          <div class="content_item" data-role="parents">
-
-<ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
-    <div class="requirement-tree_node">
-      <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    
-    <h2
-class="section-title"
-data-level="2.1">
-  2.1.&nbsp;Security Assurance
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-001</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#2.2.1-NGW-S-002">
-      <span class="requirement_child-uid">NGW-S-002</span>
-      Won't Transport
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.2-NGW-S-003">
-      <span class="requirement_child-uid">NGW-S-003</span>
-      Won't Translate
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.3-NGW-S-004">
-      <span class="requirement_child-uid">NGW-S-004</span>
-      Won't Filter, Drop or Rate Limit
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.4-NGW-S-005">
-      <span class="requirement_child-uid">NGW-S-005</span>
-      Won't Encapsulate
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
-    <div class="requirement_meta_multiline"><div class="document">
-<blockquote>
-<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
-</blockquote>
-<blockquote>
-<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
-</blockquote>
-<blockquote>
-<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
-</blockquote>
-</div>
-</div>
-
-  </section>
-
-</article>
-    </div>
-
-  </li></ul></div>
-
-          <div class="content_item" data-role="current"><article class="requirement">
+      <turbo-frame id="article-947968facb9246458093bff688f7b1c9"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -5787,7 +5444,7 @@ data-level="2.2.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
       <span class="requirement_parent-uid">NGW-S-001</span>
       Security Assurance
     </a>
@@ -5813,109 +5470,14 @@ data-level="2.2.1">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
-
-          <div class="content_item" data-role="children">
-</div>
-        </section>
-        <section class="content_section">
-          <div class="content_item" data-role="parents">
-
-<ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
-    <div class="requirement-tree_node">
-      <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    
-    <h2
-class="section-title"
-data-level="2.1">
-  2.1.&nbsp;Security Assurance
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-001</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#2.2.1-NGW-S-002">
-      <span class="requirement_child-uid">NGW-S-002</span>
-      Won't Transport
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.2-NGW-S-003">
-      <span class="requirement_child-uid">NGW-S-003</span>
-      Won't Translate
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.3-NGW-S-004">
-      <span class="requirement_child-uid">NGW-S-004</span>
-      Won't Filter, Drop or Rate Limit
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.4-NGW-S-005">
-      <span class="requirement_child-uid">NGW-S-005</span>
-      Won't Encapsulate
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
-    <div class="requirement_meta_multiline"><div class="document">
-<blockquote>
-<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
-</blockquote>
-<blockquote>
-<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
-</blockquote>
-<blockquote>
-<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
-</blockquote>
-</div>
-</div>
-
-  </section>
-
-</article>
+</turbo-frame>
     </div>
 
-  </li></ul></div>
-
-          <div class="content_item" data-role="current"><article class="requirement">
+  </li><li class="requirement-tree_branch">
+    <div class="requirement-tree_node">
+      <turbo-frame id="article-a522bbc71f304c9cb441a5d0a38d4903"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -5938,7 +5500,7 @@ data-level="2.2.2">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
       <span class="requirement_parent-uid">NGW-S-001</span>
       Security Assurance
     </a>
@@ -5964,109 +5526,14 @@ data-level="2.2.2">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
-
-          <div class="content_item" data-role="children">
-</div>
-        </section>
-        <section class="content_section">
-          <div class="content_item" data-role="parents">
-
-<ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
-    <div class="requirement-tree_node">
-      <article class="requirement">
-
-  <section class="requirement_section" data-section='meta'>
-
-    
-    <h2
-class="section-title"
-data-level="2.1">
-  2.1.&nbsp;Security Assurance
-</h2>
-
-    <dl class="requirement_meta">
-    
-    <dt><i>UID</i></dt>
-    <dd>NGW-S-001</dd>
-    
-    <dt><i>CRITICALITY</i></dt>
-    <dd>High</dd>
-    
-  </dl>
-    
-<ul class="requirement_link">
-  <li>
-    <a class="requirement_link-child" href="#2.2.1-NGW-S-002">
-      <span class="requirement_child-uid">NGW-S-002</span>
-      Won't Transport
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.2-NGW-S-003">
-      <span class="requirement_child-uid">NGW-S-003</span>
-      Won't Translate
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.3-NGW-S-004">
-      <span class="requirement_child-uid">NGW-S-004</span>
-      Won't Filter, Drop or Rate Limit
-    </a>
-  </li>
-  <li>
-    <a class="requirement_link-child" href="#2.2.4-NGW-S-005">
-      <span class="requirement_child-uid">NGW-S-005</span>
-      Won't Encapsulate
-    </a>
-  </li>
-  </ul>
-    
-
-  </section>
-  <section class="requirement_section" data-section='statement'>
-
-    <div class="requirement_statement">
-    <div class="document">
-<p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
-</div>
-
-  </div>
-
-  </section>
-  <section class="requirement_section" data-section='comment'>
-
-    
-    
-    
-  
-    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
-    <div class="requirement_meta_multiline"><div class="document">
-<blockquote>
-<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
-</blockquote>
-<blockquote>
-<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
-</blockquote>
-<blockquote>
-<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
-<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
-</blockquote>
-</div>
-</div>
-
-  </section>
-
-</article>
+</turbo-frame>
     </div>
 
-  </li></ul></div>
-
-          <div class="content_item" data-role="current"><article class="requirement">
+  </li><li class="requirement-tree_branch">
+    <div class="requirement-tree_node">
+      <turbo-frame id="article-62c804b292a24ae389a060a58f3bdad1"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -6089,7 +5556,7 @@ data-level="2.2.3">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
       <span class="requirement_parent-uid">NGW-S-001</span>
       Security Assurance
     </a>
@@ -6115,23 +5582,103 @@ data-level="2.2.3">
     
   
 
+  </section></article>
+
+</turbo-frame>
+    </div>
+
+  </li><li class="requirement-tree_branch">
+    <div class="requirement-tree_node">
+      <turbo-frame id="article-cf85c2ccd6b74ac18b6759cc74114dbb"><article class="requirement">
+
+  <section class="requirement_section" data-section='meta'>
+
+    <div data-role='anchor' id="2.2.4-NGW-S-005"></div>
+    <h3
+class="section-title"
+data-level="2.2.4">
+  2.2.4.&nbsp;Won't Encapsulate
+</h3>
+
+    <dl class="requirement_meta">
+    
+    <dt><i>UID</i></dt>
+    <dd>NGW-S-005</dd>
+    
+    <dt><i>CRITICALITY</i></dt>
+    <dd>High</dd>
+    
+  </dl>
+    
+<ul class="requirement_link">
+  <li>
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
+      <span class="requirement_parent-uid">NGW-S-001</span>
+      Security Assurance
+    </a>
+  </li>
+  </ul>
+    
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+    <div class="requirement_statement">
+    <div class="document">
+<p>These devices SHALL NOT encapsulate information as it is transported and/or translated between the network domains.</p>
+</div>
+
+  </div>
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+    
+    
+    
+  
+
+  </section></article>
+
+</turbo-frame>
+    </div>
+
+  </li></ul></div>
+        </section>
+        <section class="content_section">
+
+          <div class="content_item" data-role="parents"></div>
+          <div class="content_item" data-role="current"><turbo-frame id="article-a4cc400b019c4da4a13d117e7eb3c44d"><article class="docsection" data-controller="document">
+
+  <section data-section="meta" class="docsection_section">
+
+    <div data-role='anchor' id="2.2-Prevents-Gateway-Functions"></div>
+
+    
+        <h2
+class="section-title"
+data-level="2.2">
+  2.2.&nbsp;Prevents Gateway Functions
+</h2>
+    
+
   </section>
 
-</article></div>
+  </article>
 
-          <div class="content_item" data-role="children">
-</div>
+</turbo-frame></div>
+          <div class="content_item" data-role="children"></div>
         </section>
         <section class="content_section">
           <div class="content_item" data-role="parents">
 
 <ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
     <div class="requirement-tree_node">
-      <article class="requirement">
+      <turbo-frame id="article-19b24db6f78e471386cb68a03045d37a"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
-    
+    <div data-role='anchor' id="2.1-NGW-S-001"></div>
     <h2
 class="section-title"
 data-level="2.1">
@@ -6150,25 +5697,25 @@ data-level="2.1">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-child" href="#2.2.1-NGW-S-002">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.1-NGW-S-002">
       <span class="requirement_child-uid">NGW-S-002</span>
       Won't Transport
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#2.2.2-NGW-S-003">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.2-NGW-S-003">
       <span class="requirement_child-uid">NGW-S-003</span>
       Won't Translate
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#2.2.3-NGW-S-004">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.3-NGW-S-004">
       <span class="requirement_child-uid">NGW-S-004</span>
       Won't Filter, Drop or Rate Limit
     </a>
   </li>
   <li>
-    <a class="requirement_link-child" href="#2.2.4-NGW-S-005">
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.4-NGW-S-005">
       <span class="requirement_child-uid">NGW-S-005</span>
       Won't Encapsulate
     </a>
@@ -6210,14 +5757,467 @@ data-level="2.1">
 </div>
 </div>
 
-  </section>
+  </section></article>
 
-</article>
+</turbo-frame>
     </div>
 
   </li></ul></div>
 
-          <div class="content_item" data-role="current"><article class="requirement">
+          <div class="content_item" data-role="current"><turbo-frame id="article-947968facb9246458093bff688f7b1c9"><article class="requirement">
+
+  <section class="requirement_section" data-section='meta'>
+
+    <div data-role='anchor' id="2.2.1-NGW-S-002"></div>
+    <h3
+class="section-title"
+data-level="2.2.1">
+  2.2.1.&nbsp;Won't Transport
+</h3>
+
+    <dl class="requirement_meta">
+    
+    <dt><i>UID</i></dt>
+    <dd>NGW-S-002</dd>
+    
+    <dt><i>CRITICALITY</i></dt>
+    <dd>High</dd>
+    
+  </dl>
+    
+<ul class="requirement_link">
+  <li>
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
+      <span class="requirement_parent-uid">NGW-S-001</span>
+      Security Assurance
+    </a>
+  </li>
+  </ul>
+    
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+    <div class="requirement_statement">
+    <div class="document">
+<p>These devices SHALL NOT transport/'move' information between two separate network 'domains,' in either bidirection.</p>
+</div>
+
+  </div>
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+    
+    
+    
+  
+
+  </section></article>
+
+</turbo-frame></div>
+
+          <div class="content_item" data-role="children">
+</div>
+        </section>
+        <section class="content_section">
+          <div class="content_item" data-role="parents">
+
+<ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
+    <div class="requirement-tree_node">
+      <turbo-frame id="article-19b24db6f78e471386cb68a03045d37a"><article class="requirement">
+
+  <section class="requirement_section" data-section='meta'>
+
+    <div data-role='anchor' id="2.1-NGW-S-001"></div>
+    <h2
+class="section-title"
+data-level="2.1">
+  2.1.&nbsp;Security Assurance
+</h2>
+
+    <dl class="requirement_meta">
+    
+    <dt><i>UID</i></dt>
+    <dd>NGW-S-001</dd>
+    
+    <dt><i>CRITICALITY</i></dt>
+    <dd>High</dd>
+    
+  </dl>
+    
+<ul class="requirement_link">
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.1-NGW-S-002">
+      <span class="requirement_child-uid">NGW-S-002</span>
+      Won't Transport
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.2-NGW-S-003">
+      <span class="requirement_child-uid">NGW-S-003</span>
+      Won't Translate
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.3-NGW-S-004">
+      <span class="requirement_child-uid">NGW-S-004</span>
+      Won't Filter, Drop or Rate Limit
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.4-NGW-S-005">
+      <span class="requirement_child-uid">NGW-S-005</span>
+      Won't Encapsulate
+    </a>
+  </li>
+  </ul>
+    
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+    <div class="requirement_statement">
+    <div class="document">
+<p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
+</div>
+
+  </div>
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+    
+    
+    
+  
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</div>
+</div>
+
+  </section></article>
+
+</turbo-frame>
+    </div>
+
+  </li></ul></div>
+
+          <div class="content_item" data-role="current"><turbo-frame id="article-a522bbc71f304c9cb441a5d0a38d4903"><article class="requirement">
+
+  <section class="requirement_section" data-section='meta'>
+
+    <div data-role='anchor' id="2.2.2-NGW-S-003"></div>
+    <h3
+class="section-title"
+data-level="2.2.2">
+  2.2.2.&nbsp;Won't Translate
+</h3>
+
+    <dl class="requirement_meta">
+    
+    <dt><i>UID</i></dt>
+    <dd>NGW-S-003</dd>
+    
+    <dt><i>CRITICALITY</i></dt>
+    <dd>High</dd>
+    
+  </dl>
+    
+<ul class="requirement_link">
+  <li>
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
+      <span class="requirement_parent-uid">NGW-S-001</span>
+      Security Assurance
+    </a>
+  </li>
+  </ul>
+    
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+    <div class="requirement_statement">
+    <div class="document">
+<p>These devices SHALL NOT translate/transform the information between the separate network domains.</p>
+</div>
+
+  </div>
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+    
+    
+    
+  
+
+  </section></article>
+
+</turbo-frame></div>
+
+          <div class="content_item" data-role="children">
+</div>
+        </section>
+        <section class="content_section">
+          <div class="content_item" data-role="parents">
+
+<ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
+    <div class="requirement-tree_node">
+      <turbo-frame id="article-19b24db6f78e471386cb68a03045d37a"><article class="requirement">
+
+  <section class="requirement_section" data-section='meta'>
+
+    <div data-role='anchor' id="2.1-NGW-S-001"></div>
+    <h2
+class="section-title"
+data-level="2.1">
+  2.1.&nbsp;Security Assurance
+</h2>
+
+    <dl class="requirement_meta">
+    
+    <dt><i>UID</i></dt>
+    <dd>NGW-S-001</dd>
+    
+    <dt><i>CRITICALITY</i></dt>
+    <dd>High</dd>
+    
+  </dl>
+    
+<ul class="requirement_link">
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.1-NGW-S-002">
+      <span class="requirement_child-uid">NGW-S-002</span>
+      Won't Transport
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.2-NGW-S-003">
+      <span class="requirement_child-uid">NGW-S-003</span>
+      Won't Translate
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.3-NGW-S-004">
+      <span class="requirement_child-uid">NGW-S-004</span>
+      Won't Filter, Drop or Rate Limit
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.4-NGW-S-005">
+      <span class="requirement_child-uid">NGW-S-005</span>
+      Won't Encapsulate
+    </a>
+  </li>
+  </ul>
+    
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+    <div class="requirement_statement">
+    <div class="document">
+<p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
+</div>
+
+  </div>
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+    
+    
+    
+  
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</div>
+</div>
+
+  </section></article>
+
+</turbo-frame>
+    </div>
+
+  </li></ul></div>
+
+          <div class="content_item" data-role="current"><turbo-frame id="article-62c804b292a24ae389a060a58f3bdad1"><article class="requirement">
+
+  <section class="requirement_section" data-section='meta'>
+
+    <div data-role='anchor' id="2.2.3-NGW-S-004"></div>
+    <h3
+class="section-title"
+data-level="2.2.3">
+  2.2.3.&nbsp;Won't Filter, Drop or Rate Limit
+</h3>
+
+    <dl class="requirement_meta">
+    
+    <dt><i>UID</i></dt>
+    <dd>NGW-S-004</dd>
+    
+    <dt><i>CRITICALITY</i></dt>
+    <dd>High</dd>
+    
+  </dl>
+    
+<ul class="requirement_link">
+  <li>
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
+      <span class="requirement_parent-uid">NGW-S-001</span>
+      Security Assurance
+    </a>
+  </li>
+  </ul>
+    
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+    <div class="requirement_statement">
+    <div class="document">
+<p>These devices SHALL NOT select which information is transported and/or translated between the network domains.</p>
+</div>
+
+  </div>
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+    
+    
+    
+  
+
+  </section></article>
+
+</turbo-frame></div>
+
+          <div class="content_item" data-role="children">
+</div>
+        </section>
+        <section class="content_section">
+          <div class="content_item" data-role="parents">
+
+<ul class="requirement-tree requirement-tree_left"><li class="requirement-tree_branch">
+    <div class="requirement-tree_node">
+      <turbo-frame id="article-19b24db6f78e471386cb68a03045d37a"><article class="requirement">
+
+  <section class="requirement_section" data-section='meta'>
+
+    <div data-role='anchor' id="2.1-NGW-S-001"></div>
+    <h2
+class="section-title"
+data-level="2.1">
+  2.1.&nbsp;Security Assurance
+</h2>
+
+    <dl class="requirement_meta">
+    
+    <dt><i>UID</i></dt>
+    <dd>NGW-S-001</dd>
+    
+    <dt><i>CRITICALITY</i></dt>
+    <dd>High</dd>
+    
+  </dl>
+    
+<ul class="requirement_link">
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.1-NGW-S-002">
+      <span class="requirement_child-uid">NGW-S-002</span>
+      Won't Transport
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.2-NGW-S-003">
+      <span class="requirement_child-uid">NGW-S-003</span>
+      Won't Translate
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.3-NGW-S-004">
+      <span class="requirement_child-uid">NGW-S-004</span>
+      Won't Filter, Drop or Rate Limit
+    </a>
+  </li>
+  <li>
+    <a data-turbo="false" class="requirement_link-child" href="#2.2.4-NGW-S-005">
+      <span class="requirement_child-uid">NGW-S-005</span>
+      Won't Encapsulate
+    </a>
+  </li>
+  </ul>
+    
+
+  </section>
+  <section class="requirement_section" data-section='statement'>
+
+    <div class="requirement_statement">
+    <div class="document">
+<p>These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.</p>
+</div>
+
+  </div>
+
+  </section>
+  <section class="requirement_section" data-section='comment'>
+
+    
+    
+    
+  
+    <div class="requirement_meta_multiline_label">PUB_REFS:</div>
+    <div class="requirement_meta_multiline"><div class="document">
+<blockquote>
+<p>Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.</p>
+</blockquote>
+<blockquote>
+<p>Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, c.</p>
+</blockquote>
+<blockquote>
+<p>Mechanisms that effectively secure maintenance operations, including both diagnostic procedures and update procedures.</p>
+<p class="attribution">&mdash;SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.</p>
+</blockquote>
+</div>
+</div>
+
+  </section></article>
+
+</turbo-frame>
+    </div>
+
+  </li></ul></div>
+
+          <div class="content_item" data-role="current"><turbo-frame id="article-cf85c2ccd6b74ac18b6759cc74114dbb"><article class="requirement">
 
   <section class="requirement_section" data-section='meta'>
 
@@ -6240,7 +6240,7 @@ data-level="2.2.4">
     
 <ul class="requirement_link">
   <li>
-    <a class="requirement_link-parent" href="#2.1-NGW-S-001">
+    <a data-turbo="false" class="requirement_link-parent" href="#2.1-NGW-S-001">
       <span class="requirement_parent-uid">NGW-S-001</span>
       Security Assurance
     </a>
@@ -6266,9 +6266,9 @@ data-level="2.2.4">
     
   
 
-  </section>
+  </section></article>
 
-</article></div>
+</turbo-frame></div>
 
           <div class="content_item" data-role="children">
 </div>

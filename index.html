@@ -17,14 +17,19 @@
   <link rel="stylesheet" href="_static/_content.css"/>
   <link rel="stylesheet" href="_static/_requirement.css"/>
   <link rel="stylesheet" href="_static/_element.css"/>
+  <link rel="stylesheet" href="_static/_form.css"/>
   
   <link rel="stylesheet" href="_static/_tree.css"/>
 
 
   
-  
-  
-  
+  <script type="module">
+      import hotwiredTurbo from "/_static/turbo.js";
+      import { Application } from "/_static/stimulus.js";
+      window.Stimulus = Application.start();
+  </script>
+  <script type="module" src="/_static/std-forms.js"></script>
+
 
   <title>
   Heavy Duty Vehicle Cybersecurity Requirements (HD VCR) - Project index
@@ -33,10 +38,8 @@
   
 </head>
 
-<body class="document-tree-view ">
-<script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script>
-
-  <div class="layout" id="layout">
+<body class="document-tree-view " data-turbo="false">
+<script>document.body.dataset.state = sessionStorage.getItem('tocState') || 'open';</script><div class="layout" id="layout">
 
     <aside class="layout_aside-header">
       
@@ -61,10 +64,9 @@
 
     </header>
 
-    <main class="layout_main">
+    <main class="layout_main" id="pan-with-space">
       
-
-    <div class="std-tree">
+  <turbo-frame id="frame_document_tree"><div class="std-tree">
 
       <ul class="std-tree_ul_0"><li class="std-tree_level_0">
 
@@ -86,19 +88,19 @@
               <div class="std-tree_aside">
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/00_tsrm.html">DOC</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/00_tsrm.html">DOC</a>
                 </span>
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/00_tsrm-TABLE.html">TABLE</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/00_tsrm-TABLE.html">TABLE</a>
                 </span>
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/00_tsrm-TRACE.html">TRACE</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/00_tsrm-TRACE.html">TRACE</a>
                 </span>
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/00_tsrm-DEEP-TRACE.html">DEEP-TRACE</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/00_tsrm-DEEP-TRACE.html">DEEP-TRACE</a>
                 </span>
               </div>
             
@@ -122,25 +124,24 @@
               <div class="std-tree_aside">
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/01_gateways.html">DOC</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/01_gateways.html">DOC</a>
                 </span>
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/01_gateways-TABLE.html">TABLE</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/01_gateways-TABLE.html">TABLE</a>
                 </span>
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/01_gateways-TRACE.html">TRACE</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/01_gateways-TRACE.html">TRACE</a>
                 </span>
 
                 <span class="std-tree_file-link">
-                  <a class="button_small" href="vcr-experiment/01_gateways-DEEP-TRACE.html">DEEP-TRACE</a>
+                  <a data-turbo="false" class="button_small" href="vcr-experiment/01_gateways-DEEP-TRACE.html">DEEP-TRACE</a>
                 </span>
               </div>
             
             </div></li></ul>
-    </div>
-
+    </div></turbo-frame>
 
     </main>
 
