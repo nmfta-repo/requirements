@@ -1,2 +1,3 @@
 #!/bin/bash
+
 strictdoc export --project-title "Heavy Duty Vehicle Cybersecurity Requirements (HD VCR)" --output-dir docs/ *.sdoc
