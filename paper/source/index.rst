@@ -5,6 +5,8 @@
 
 This work is copyright |copyright|.
 
+Abstract: The NMFTA's Vehicle Cybersecurity Requirements Woking Group (VCRWG), comprised of fleets, OEMs and cybersecurity experts, has worked the past few years to produce security requirements for Vehicle Network Gateways. Vehicle Network Gateways play an important role in vehicle cybersecurity -- they are the component responsible for assuring vehicle network operations in the presence of untrustworthy devices on the aftermarket or diagnostics connectors. This paper offers security requirements for these gateways in design, implementation and operation. The requirements are specified at levels of abstraction applicable to all vehicle networks down to CAN networks specifically. These requirements were captured using the https://github.com/strictdoc-project/strictdoc requirements management tool and will be made available also as a ReqIF format along with the paper at https://github.com/nmfta-repo/vcr-experiment.
+
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
