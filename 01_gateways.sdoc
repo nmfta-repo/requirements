@@ -222,7 +222,6 @@ PUB_REFS: >>>
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, a.
 <<<
 VERIFICATION: >>>
-
 Test to confirm that for each permitted UND->TND transport, translation or encapsulation by the gateway: that sending traffic from UND to TND with it (one of the transport, translation or encapsulation) does not cause any traffic that will be interpreted by any nodes in TND as being traffic that originated from a node in a TND.
 
 AND
@@ -932,9 +931,6 @@ PUB_REFS: >>>
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.
 <<<
-VERIFICATION: >>>
-
-<<<
 CRITICALITY: High
 
 [SECTION]
@@ -947,9 +943,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Transport
 STATEMENT: These devices SHALL NOT transport/'move' information between two separate network 'domains,' in either bidirection.
-VERIFICATION: >>>
-
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -959,9 +952,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Translate
 STATEMENT: These devices SHALL NOT translate/transform the information between the separate network domains.
-VERIFICATION: >>>
-
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -971,9 +961,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Filter, Drop or Rate Limit
 STATEMENT: These devices SHALL NOT select which information is transported and/or translated between the network domains.
-VERIFICATION: >>>
-
-<<<
 CRITICALITY: High
 
 [REQUIREMENT]
@@ -983,9 +970,6 @@ REFS:
   VALUE: NGW-S-001
 TITLE: Won't Encapsulate
 STATEMENT: These devices SHALL NOT encapsulate information as it is transported and/or translated between the network domains.
-VERIFICATION: >>>
-
-<<<
 CRITICALITY: High
 
 [/SECTION]
