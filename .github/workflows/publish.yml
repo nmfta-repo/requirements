@@ -35,17 +35,19 @@ jobs:
           git clone https://github.com/strictdoc-project/strictdoc/
           python -m pip install strictdoc/[development]
 
-      - name: Run Strict Doc
+      - name: run strictdoc build scripts
         run: |
           bash -x runme
-                bash -x toreqif.sh
+          bash -x toreqif.sh
                 
-      - uses: actions/upload-artifact@v3
+      - name: upload html
+        uses: actions/upload-artifact@v3
         with:
           name: html-pages
           path: docs/html/
           
-      - uses: actions/upload-artifact@v3
+      - name: upload reqif
+        uses: actions/upload-artifact@v3
         with:
           name: reqif-export
           path: reqif/vcr-experiment.reqif
