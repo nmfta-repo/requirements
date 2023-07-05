@@ -35,24 +35,24 @@ jobs:
           git clone https://github.com/strictdoc-project/strictdoc/
           python -m pip install strictdoc/[development]
 
-      - name: run strictdoc build scripts
+      - name: Run strictdoc Build Scripts
         run: |
           bash -x runme
           bash -x toreqif.sh
                 
-      - name: upload html
+      - name: Upload html
         uses: actions/upload-artifact@v3
         with:
           name: html-pages
           path: docs/html/
           
-      - name: upload reqif
+      - name: Upload reqif
         uses: actions/upload-artifact@v3
         with:
           name: reqif-export
-          path: reqif/vcr-experiment.reqif
+          path: docs/html/vcr-experiment.reqif
           
-      - name: Deploy to GitHub Pages
+      - name: (optional) Deploy to GitHub Pages (not on PRs or nightlies)
         uses: Cecilapp/GitHub-Pages-deploy@v3
         if: ${{ github.event_name != 'pull_request' && github.event_name != 'schedule' }}
         env:
