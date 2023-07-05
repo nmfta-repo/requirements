@@ -34,6 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           git clone https://github.com/strictdoc-project/strictdoc/
           python -m pip install strictdoc/[development]
+          python -m pip install sphinx
 
       - name: Run strictdoc Build Scripts
         run: |
