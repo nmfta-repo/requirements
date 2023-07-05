@@ -1,4 +1,4 @@
-name: Requirements Publish
+name: automated builds of html, reqif, and pdf
 
 # Controls when the action will run.
 on:
@@ -38,8 +38,18 @@ jobs:
       - name: Run Strict Doc
         run: |
           bash -x runme
-          bash -x toreqif.sh
-
+                bash -x toreqif.sh
+                
+      - uses: actions/upload-artifact@v3
+        with:
+          name: html-pages
+          path: docs/html/
+          
+      - uses: actions/upload-artifact@v3
+        with:
+          name: reqif-export
+          path: reqif/vcr-experiment.reqif
+          
       - name: Deploy to GitHub Pages
         uses: Cecilapp/GitHub-Pages-deploy@v3
         if: ${{ github.event_name != 'pull_request' && github.event_name != 'schedule' }}
