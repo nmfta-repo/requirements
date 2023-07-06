@@ -58,12 +58,12 @@ Untrustworthy Network Domain (*UND*):
     d) a multi-network device (e.g. intended or unintended gateway) that does not satisfy the HD VCR requirements
 
 Trustworthy Network Domain (*TND*):
-    A *TND* is a network domain (or segment) that **does not contain any** of the following:
+    A *TND* is a network domain (or segment) that **does not contain any** of (those above):
 
-    a) wireless communication or reachable wirelessly (e.g J2497)
-    b) an interface for aftermarket devices or operator access (e.g. an OBD port)
+    a) wireless communication or reachable wirelessly
+    b) an interface for aftermarket devices or operator access
     c) a telematics device that does not satisfy the HD VCR requirements
-    d) a multi-network device (e.g. intended or unintended gateway) that does not satisfy the HD VCR requirements
+    d) a multi-network device that does not satisfy the HD VCR requirements
 
 Some Examples of TND and UND:
 
