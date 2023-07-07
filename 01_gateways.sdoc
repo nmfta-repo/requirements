@@ -45,9 +45,11 @@ ELEMENTS:
 [FREETEXT]
 This document captures security requirements for vehicle network gateway devices: both devices intended to be gateways and those devices which *could be a gateway* (due to malicious code). There will be devices which are connected to multiple vehicle networks but not all of them are intended to perform gatewaying functions. The design intent of the device dictactes what security requirements it must satisfy.
 
+These recommended security requirements are intended to be informative, not directional in nature. While all reasonable steps have been taken to ensure that the recommendations are well-supported by our research and third-party verification, NMFTA and the parties contributing to these recommendations do not accept liability or responsibility for any damage or harm incurred as a result of actions taken based upon these recommendations.
+
 First let us define the two types of network domains (or segments) to which the Gateway devices will connect:
 
-Untrusted Network Domain (*UND*):
+Untrustworthy Network Domain (*UND*):
     A *UND* is a network domain (or segment) that contains **any** of the following:
 
     a) wireless communication or reachable wirelessly (e.g J2497, ISO 15118, BlueTooth, WiFi)
@@ -55,13 +57,13 @@ Untrusted Network Domain (*UND*):
     c) a telematics device that does not satisfy the HD VCR requirements
     d) a multi-network device (e.g. intended or unintended gateway) that does not satisfy the HD VCR requirements
 
-Trusted Network Domain (*TND*):
-    A *TND* is a network domain (or segment) that **does not contain any** of the following:
+Trustworthy Network Domain (*TND*):
+    A *TND* is a network domain (or segment) that **does not contain any** of (those above):
 
-    a) wireless communication or reachable wirelessly (e.g J2497)
-    b) an interface for aftermarket devices or operator access (e.g. an OBD port)
+    a) wireless communication or reachable wirelessly
+    b) an interface for aftermarket devices or operator access
     c) a telematics device that does not satisfy the HD VCR requirements
-    d) a multi-network device (e.g. intended or unintended gateway) that does not satisfy the HD VCR requirements
+    d) a multi-network device that does not satisfy the HD VCR requirements
 
 Some Examples of TND and UND:
 
@@ -100,13 +102,13 @@ The TPMS gateways on RP1226 databus connect to a wireless medium and are on the 
 Then we can define (Intended) Gateways
 
 (Intended) Gateway:
-    A device which has connections to multiple vehicle network domains (or segments) and performs one or more gateway functions between a Untrusted Network Domain (*UND*) and Trusted Network Domains (*TND*). (Intended) Gateways must satisfy the requirements in section *Security Requirements for Abstract (Intended) Gateways*.
+    A device which has connections to multiple vehicle network domains (or segments) and performs one or more gateway functions between a Untrustworthy Network Domain (*UND*) and Trustworthy Network Domains (*TND*). (Intended) Gateways must satisfy the requirements in section *Security Requirements for Abstract (Intended) Gateways*.
 
 Unintended Gateway:
-    A device which has connections to two or more vehicle network domains (or segments), one or more of which are connections to Untrusted Network Domains (*UND*s), and performs none of the gateway functions. These devices could perform gateway functions (due to malicious code) but are not intended to. Unintended Gateways must satisfy the requirements in section *Security Requirements for Abstract Unintended Gateways*.
+    A device which has connections to two or more vehicle network domains (or segments), one or more of which are connections to Untrustworthy Network Domains (*UNDs*), and performs none of the gateway functions. These devices could perform gateway functions (due to malicious code) but are not intended to. Unintended Gateways must satisfy the requirements in section *Security Requirements for Abstract Unintended Gateways*.
 
 Interior Device:
-    A device which has connections to one or more vehicle network domains (or segments), and none of those connections are to Untrusted Network Domains (*UND*s). These devices may or may not perform gateway functions. None of the requirements of either *Security Requirements for Abstract (Intended) Gateways* or *Security Requirements for Abstract Unintended Gateways* are applicable to these devices; however, there will be generic security requirements that should be found to be applicable during procurement and/or development (as per e.g. ISO 21434 / UNECE WP.29).
+    A device which has connections to one or more vehicle network domains (or segments), and none of those connections are to Untrustworthy Network Domains (*UNDs*). These devices may or may not perform gateway functions. None of the requirements of either *Security Requirements for Abstract (Intended) Gateways* or *Security Requirements for Abstract Unintended Gateways* are applicable to these devices; however, there will be generic security requirements that should be found to be applicable during procurement and/or development (as per e.g. ISO 21434 / UNECE WP.29).
 
 The gateway functions that duck type the gateway devices are as follows:
 
@@ -147,6 +149,7 @@ COMMENT: >>>
 This can be achieved by use of a Hardware Security Module (HSM) containing keys for verifying a configuration using a secure message authentication code (MAC) and where the HSM has a secure mechanism for remotely programming the MAC key.
 <<<
 PUB_REFS: >>>
+
 * https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 
     Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
@@ -388,6 +391,7 @@ A Virtual Mode Switch can be achieved by use of a Hardware Security Module (HSM)
 Replay attacks are prevented by using a challenge-response protocol between the gateway and the remote device to exchange a sequence number or timestamp, for example the SKID3 protocol (ISO 9798-4, Chapter 5.2.2).
 <<<
 PUB_REFS: >>>
+
 * https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 
     Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
@@ -505,12 +509,12 @@ Inspection of vendor report detailing the use of a test environment that simulat
 
 Figure 1
 
-The hardware setup is shown in Figure 1. The device under test (Security gateway) is connected to an untrusted network and a trusted network. A tester is connected to both networks and on each there is a monitor. The monitor is set up to receive traffic and acknowledge CAN frames.
+The hardware setup is shown in Figure 1. The device under test (Security gateway) is connected to an untrustworthy network and a trustworthy network. A tester is connected to both networks and on each there is a monitor. The monitor is set up to receive traffic and acknowledge CAN frames.
 
-The tester operates a frame transmission process on the Trusted network. This performs the following steps:
+The tester operates a frame transmission process on the Trustworthy network. This performs the following steps:
 
-1. Wait until frame with ID 0x010 is seen on the Trusted network.
-2. Queue in FIFO order on the Trusted bus CAN frames with the following IDs (’S’ indicates a standard 11-bit CAN ID):
+1. Wait until frame with ID 0x010 is seen on the Trustworthy network.
+2. Queue in FIFO order on the Trustworthy bus CAN frames with the following IDs (’S’ indicates a standard 11-bit CAN ID):
 
    * 0x005 (S)
    * 0x006 (S)
@@ -523,7 +527,7 @@ The frames must be queued such that no idle time can appear between them. This i
 
 The main test process is carried out in the following steps:
 
-1. The tester queues in FIFO order on the Untrusted network CAN frames with the following IDs:
+1. The tester queues in FIFO order on the Untrustworthy network CAN frames with the following IDs:
 
    * 0x010 (S)
    * 0x011 (S)
@@ -537,13 +541,13 @@ The main test process is carried out in the following steps:
 
    ,where ’S’ indicates a standard 11-bit CAN ID, ‘E’ indicates an extended 29-bit CAN ID.
 
-   The security gateway is programmed to allow these frames through from the Untrusted to the Trusted bus.
+   The security gateway is programmed to allow these frames through from the Untrustworthy to the Trustworthy bus.
 
    The frames are queued such that there is no idle time between them (using the technique described above).
 
-2. When the frame with ID 0x00100000 is seen on the Trusted bus then Trusted network process above is halted. If the frame is never seen then the Security gateway has failed the test.
+2. When the frame with ID 0x00100000 is seen on the Trustworthy bus then Trustworthy network process above is halted. If the frame is never seen then the Security gateway has failed the test.
 
-   The sequence of frames seen by the Monitor on the Untrusted bus should be:
+   The sequence of frames seen by the Monitor on the Untrustworthy bus should be:
 
    * 0x010 (S)
    * 0x011 (S)
@@ -557,7 +561,7 @@ The main test process is carried out in the following steps:
 
    If this sequence is not seen then there is a fault in the tester.
 
-   The sequence of frames seen by the Monitor on the Trusted bus should be:
+   The sequence of frames seen by the Monitor on the Trustworthy bus should be:
 
    * 0x010 (S)
    * 0x005 (S)
@@ -569,7 +573,7 @@ The main test process is carried out in the following steps:
    * 0x00100000 (E)
    * 0x005 (S)
    * 0x006 (S)
-     … (0x005 and 0x006 may appear again, depending on how long it takes for the tester to halt the Trusted network process)
+     … (0x005 and 0x006 may appear again, depending on how long it takes for the tester to halt the Trustworthy network process)
    * 0x001c0000 (E)
    * 0x008 (S)
    * 0x00240000 (E)
@@ -641,15 +645,15 @@ Inspection of vendor report detailing the use of a test environment that simulat
 
 Figure 1
 
-The security gateway is configured to allow a test frame through the security gateway. Both the Untrusted and Trusted networks are free of any other traffic. Monitor units are set up to listen to and acknowledge CAN frames.
+The security gateway is configured to allow a test frame through the security gateway. Both the Untrustworthy and Trustworthy networks are free of any other traffic. Monitor units are set up to listen to and acknowledge CAN frames.
 
-The tester checks for jitter removal by injecting a sequence of periodic frames on to the Untrusted network and measuring the timing of frames on the Trusted network.
+The tester checks for jitter removal by injecting a sequence of periodic frames on to the Untrustworthy network and measuring the timing of frames on the Trustworthy network.
 
 In the tester, a send process is defined to run from a periodic timer event set to 100ms:
 
 1. Wait for timing event
 2. Delay for a time t
-3. Queue a frame in the CAN controller connected to the Untrusted network
+3. Queue a frame in the CAN controller connected to the Untrustworthy network
 
 The tester must complete the queueing of the CAN frame within 5 microseconds of the timer delay.
 
@@ -671,9 +675,9 @@ Repeat steps 1 to 3 for a sequence of values of t. The values of t should be as 
 * 90.0ms
 * 90.0ms
 
-The tester should take accurate (1 microsecond) start-of-frame (SOF) timestamps for each CAN frame on the Trusted network.
+The tester should take accurate (1 microsecond) start-of-frame (SOF) timestamps for each CAN frame on the Trustworthy network.
 
-The test fails if a total of 15 frames were not received from the Trusted network.
+The test fails if a total of 15 frames were not received from the Trustworthy network.
 
 The test fails if time between the SOF timestamp of the first frame received and the SOF timestamp of the last frame received exceeds 1490.055ms or is less than 1489.945ms.
 
@@ -694,6 +698,7 @@ REFS:
 TITLE: Prevents Bus Flood Attacks
 STATEMENT: The device SHALL prevent generating bus flood attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.1 for a description of the bus flood attack.
 <<<
 VERIFICATION: >>>
@@ -709,6 +714,7 @@ REFS:
 TITLE: Prevents (Simple) Frame Spoofing
 STATEMENT: The device SHALL prevent generating simple frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.2 for a description of simple frame spoofing attack.
 <<<
 VERIFICATION: >>>
@@ -740,6 +746,7 @@ REFS:
 TITLE: Prevents Adaptive Frame Spoofing
 STATEMENT: The device SHALL prevent generating adaptive frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.3 for a description of adaptive frame spoofing attack.
 <<<
 VERIFICATION: >>>
@@ -755,6 +762,7 @@ REFS:
 TITLE: Prevents Error Passive Attack Step
 STATEMENT: The device SHALL prevent generating attacks that drive a ECU on *TND* into error passive state from messages originating on *UND*. This will in turn prevent error passive spoofing attacks.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.4 for a description of error passive spoofing attack.
 <<<
 VERIFICATION: >>>
@@ -774,6 +782,7 @@ REFS:
 TITLE: Prevents Double Receive Attack
 STATEMENT: The device SHALL prevent generating double receive attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.5 for a description of the double receive attack.
 <<<
 VERIFICATION: >>>
@@ -793,6 +802,7 @@ REFS:
 TITLE: Prevents Bus-Off Attack
 STATEMENT: The device SHALL prevent generating bus-off attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.6 for a description of the bus-off attack.
 <<<
 VERIFICATION: >>>
@@ -812,6 +822,7 @@ REFS:
 TITLE: Prevents Freeze Doom Loop Attack
 STATEMENT: The device SHALL prevent generating freeze doom loop attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
+
 * https://canislabs.com/downloads/2020-02-14-White-Paper-CAN-Security.pdf section 2.7 for a description of the freeze doom loop attack.
 <<<
 VERIFICATION: >>>
@@ -838,6 +849,7 @@ TITLE: Impervious to Janus Attack
 STATEMENT: The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interfaces.
 COMMENT: Susceptibility to Janus Attacks is a property of a network of devices, not only of a single device. The entire *TND* is expected to be impervious to Janus Attacks since it should all be OEM supplied components there. In *UND* it is not possible to require that this device nor all the devices are impervious to Janus Attacks since *UND* is explicitly permitted to contain non-OEM supplied components. What is required of this device on *UND* is that if there are other OEM supplied devices on *UND* then this device cannot enable Janus Attacks on that collection of all those OEM supplied devices on *UND*.
 PUB_REFS: >>>
+
 * https://kentindell.github.io/2021/07/15/janus-attack/ for a description of the Janus Attack
 <<<
 VERIFICATION: >>>
@@ -881,6 +893,7 @@ TITLE: Prevents Address Claim Attacks
 STATEMENT: The device SHALL prevent generating address claim attacks on *TND* from messages originating on *UND*.
 COMMENT: **Note to implementors**: Performing no gatewaying (any of transport, translate, filter, or encapsulate) of address claims onto *TND* would satisfy this requirement.
 PUB_REFS: >>>
+
 * https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
 <<<
 VERIFICATION: >>>
@@ -896,6 +909,7 @@ REFS:
 TITLE: Impervious to Address Claim Attacks
 STATEMENT: The device SHALL not be susceptible to address claim attacks on any of its interfaces (e.g. *TND* and *UND*)
 PUB_REFS: >>>
+
 * https://www.aut.upt.ro/~bgroza/Papers/j1939.pdf and https://doi.org/10.4271/02-14-03-0026 for a description of the address claim attack.
 <<<
 VERIFICATION: >>>
