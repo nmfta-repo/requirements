@@ -17,13 +17,16 @@ ELEMENTS:
   - TITLE: REFS
     TYPE: String
     REQUIRED: False
+  - TITLE: TAGS
+    TYPE: String
+    REQUIRED: False
+  - TITLE: CRITICALITY
+    TYPE: String
+    REQUIRED: False
   - TITLE: TITLE
     TYPE: String
     REQUIRED: False
   - TITLE: STATEMENT
-    TYPE: String
-    REQUIRED: False
-  - TITLE: TAGS
     TYPE: String
     REQUIRED: False
   - TITLE: RATIONALE
@@ -36,9 +39,6 @@ ELEMENTS:
     TYPE: String
     REQUIRED: False
   - TITLE: VERIFICATION
-    TYPE: String
-    REQUIRED: False
-  - TITLE: CRITICALITY
     TYPE: String
     REQUIRED: False
 
@@ -143,6 +143,7 @@ The following requirements must be satisfied by any device intended to be a gate
 
 [REQUIREMENT]
 UID: AGW-S-000
+CRITICALITY: High
 TITLE: Gateway Configuration Protected
 STATEMENT: The device SHALL accept and react only to configuration changes which are correctly authorized and authenticated, regardless of origin of network domain.
 COMMENT: >>>
@@ -163,10 +164,10 @@ PUB_REFS: >>>
 VERIFICATION: >>>
 Test to confirm that replay of traffic for a valid configuration change, on any interface, does not result in any configuration changes to the device.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-001
+CRITICALITY: High
 TITLE: Conditionally Prevents OTA
 STATEMENT: The device SHALL prevent Over The Air updates (OTA) (including parameter flash) from *UND* to *TND*, unless with explicitly authorized and authenticated configuration changes via the mode switch.
 PUB_REFS: >>>
@@ -183,10 +184,10 @@ Test to confirm that both:
     1. OTA and parameter reflash are permitted from UND to TND when the mode switch is set to allow
     2. OTA and parameter reflash are _prevented_ from UND to TND when the mode switch is not set to allow
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-002
+CRITICALITY: High
 TITLE: Prevents DoS
 STATEMENT: The device SHALL prevent generating Denial of Service (DoS) on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
@@ -209,10 +210,10 @@ AND
 
 All the verification steps of all the applicable derivative requirements.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-003
+CRITICALITY: High
 TITLE: Prevents Spoofing
 STATEMENT: The device SHALL prevent spoofing/masquerading/injection onto *TND*
 PUB_REFS: >>>
@@ -235,10 +236,11 @@ AND
 
 All the verification steps of all the applicable derivative requirements.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-004
+TAGS: CONTAINS_OPTIONS
+CRITICALITY: High
 TITLE: Prevents Exfiltration
 STATEMENT: >>>
 The device SHALL prevent exfiltration of data from *TND* to *UND*, or vice-versa, by satisfying one or more of these methods:
@@ -247,7 +249,6 @@ The device SHALL prevent exfiltration of data from *TND* to *UND*, or vice-versa
 * Re-Write / Masking: The device SHALL provide a means of masking or otherwise re-writing data to prevent exfiltration of sensitive information from *TND* to *UND*.
 
 <<<
-TAGS: CONTAINS_OPTIONS
 PUB_REFS: >>>
     Access control mechanisms that tend to restrict access to information about the operational state of the vehicle, privacy sensitive information, financially sensitive information, detailed design information, etc.
 
@@ -260,10 +261,10 @@ AND
 
 For non-masking: Inspection of a 3rd party implementation review report or a demonstration by the vendor that asserts the use of cryptographic protections for the confidentiality and integrity of all external communications channels. The cryptographic protections must be industry standard.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-005
+CRITICALITY: High
 TITLE: Conditionally Prevents Elevation
 STATEMENT: >>>
 
@@ -293,19 +294,19 @@ PUB_REFS: >>>
 VERIFICATION: >>>
 Inspection of vendor documentation to confirm that TND functionality prevented when the mode switch is set to disabled includes all the known critical and dangerous features of the vehicle TND in question. E.g. that diagnostics and influence of vehicle uptime are prevented when the mode switch is set to disabled.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-006
+CRITICALITY: High
 TITLE: Prevents Data Loss
 STATEMENT: The device SHALL prevent all data loss and/or corruption of information in the bidirectional *UND* <-> *TND* operation, unless with explicit configuration for rate limiting (AGW-F-006) or translation (AGW-F-002).
 VERIFICATION: >>>
 Inspection of vendor reliability testing reports to confirm that the device will not cause data loss or corruption at sustained loads of expected maximum traffic on TND and UND.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-007
+CRITICALITY: High
 TITLE: Preserves High Side Operation
 STATEMENT: The device SHALL prevent degradation of any *TND* operation due to *UND* activity.
 PUB_REFS: >>>
@@ -324,10 +325,10 @@ PUB_REFS: >>>
 VERIFICATION: >>>
 All the verification steps of all the applicable derivative requirements.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-008
+CRITICALITY: High
 TITLE: Security Assurance
 STATEMENT: These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.
 PUB_REFS: >>>
@@ -350,13 +351,13 @@ AND
 
 All the verification steps of all the applicable derivative requirements.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-009
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: Medium
 TITLE: Preserves Performance
 STATEMENT: The device SHALL be scoped to sufficient detail to preserve network domain performance guarantees in *TND*.
 VERIFICATION: >>>
@@ -366,10 +367,11 @@ AND
 
 All the verification steps of all the applicable derivative requirements.
 <<<
-CRITICALITY: Medium
 
 [REQUIREMENT]
 UID: AGW-S-010
+TAGS: CONTAINS_OPTIONS
+CRITICALITY: High
 TITLE: Mode Switch Interlock
 STATEMENT: >>>
 The device SHALL have a means to temporarily disable the preventions listed previously and as noted with "unless with explicity authorized and authenticated configuration changes via the mode switch" The means must be impossible to use without explicit authorization by the vehicle owner. The device SHALL satisfy one or more of these methods to enable a switch into modes which allow OTA, spoofing, etc. from *UND* to *TND*. If more than one is satisfied then the effects of either switch could be in effect concurrently (i.e. a logical OR operation).
@@ -384,7 +386,6 @@ The device SHALL have a means to temporarily disable the preventions listed prev
 
   * Example: Consent from third party device / application that is signed with infrastructure OEM has access to verify
 <<<
-TAGS: CONTAINS_OPTIONS
 COMMENT: >>>
 A Virtual Mode Switch can be achieved by use of a Hardware Security Module (HSM) that can verify a Message Authentication Code (MAC) of a mode change message, and where the key used for verifying the MAC can be programmed securely via remote commands.
 
@@ -415,10 +416,10 @@ For Physical Mode Switch Interlock option:
 
 Test to confirm that device disables preventions only when physical input is grounded
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: AGW-S-011
+CRITICALITY: Medium
 TITLE: Mode Switch Indicated
 STATEMENT: The device SHALL indicate to all domains that it is not performing normal operations.
 VERIFICATION: >>>
@@ -432,7 +433,6 @@ AND
 
 Test to confirm that for each TND and UND, replaying the status indicated traffic by the tester does not cause the (gateway) device to then permit the preventions. Performed by repeating the tests of AGW-S-001 and AGW-S-005 while replaying.
 <<<
-CRITICALITY: Medium
 
 [SECTION]
 TITLE: Security Requirements for CAN Gateways
@@ -446,12 +446,12 @@ UID: CGW-S-001
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-009
+CRITICALITY: Medium
 TITLE: Performant
 STATEMENT: The device SHALL process and move CAN frames quickly enough to preserve performance on all network domains.
 VERIFICATION: >>>
 Inspection of vendor reports to confirm that performance is sufficient for all vehicle TNDs.
 <<<
-CRITICALITY: Medium
 
 [SECTION]
 TITLE: Preserves Atomic Multicast: CGW-S-005* Series
@@ -465,18 +465,19 @@ UID: CGW-S-005a
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: High
 TITLE: Won't Drop Frames
 STATEMENT: The device SHALL NOT drop CAN frames in its bidirectional *UND* <-> *TND* operation, unless with explicit configuration for rate limiting or translating.
 VERIFICATION: >>>
 Inspection of vendor reports to confirm that CAN frames are, by design, not dropped.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-005b
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: High
 TITLE: No Priority Inversion
 STATEMENT: The device SHALL schedule egress frames according to the CAN arbitration ID priority in its bidirectional *UND* <-> *TND* operation, to prevent priority inversion.
 VERIFICATION: >>>
@@ -582,13 +583,13 @@ The main test process is carried out in the following steps:
    If the sequence seen by the Monitor deviates from the above then the Security gateway has failed the test.
 
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-005c
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: High
 TITLE: Preserves Ordering
 STATEMENT: The device SHALL preserve ordering egress frames with respect to their ingress order within an equivalence class of CAN arbitration ID priorities, to prevent out-of-order delivery.
 VERIFICATION: >>>
@@ -598,25 +599,25 @@ AND
 
 Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-005d
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: High
 TITLE: FIFO but Also Priority
 STATEMENT: The device SHALL schedule egress for in-order send but not across CAN arbitration ID priorities.
 VERIFICATION: >>>
 Inspection of vendor report detailing the use of a test environment that simulates a bidirectional UND <-> TND operation, with multiple nodes transmitting frames with different arbitration ID priorities. Where, with the test environment set up, a CAN analyzer or other monitoring tool was used to observe the device's scheduling of egress frames and verify that it followed the correct ordering within the same arbitration IDs: that frames are sent in the order received within the same arbitration ID but that also priority of arbitration IDs are respected.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-005e
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: Medium
 TITLE: Preserves Jitter
 STATEMENT: The device SHALL have ingress-to-egress latency variability (jitter) low enough to not affect the *TND* network domain performance requirements in the worst case.
 VERIFICATION: >>>
@@ -683,7 +684,6 @@ The test fails if time between the SOF timestamp of the first frame received and
 
 The test fails if the difference between the SOF timestamp of a frame and its subsequent frame exceeds 100.055ms or is less than 99.945ms.
 <<<
-CRITICALITY: Medium
 
 [/SECTION]
 
@@ -695,6 +695,7 @@ UID: CGW-S-006
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
+CRITICALITY: High
 TITLE: Prevents Bus Flood Attacks
 STATEMENT: The device SHALL prevent generating bus flood attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
@@ -704,13 +705,13 @@ PUB_REFS: >>>
 VERIFICATION: >>>
 Test to confirm that, for both permitted and prevented UND->TND transport, translation or encapsulation by the gateway: that sending the highest rate of traffic on UND does not result in transmit at the highest rate on TND.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-007
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-003
+CRITICALITY: High
 TITLE: Prevents (Simple) Frame Spoofing
 STATEMENT: The device SHALL prevent generating simple frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
@@ -724,7 +725,6 @@ AND
 
 Inspection of design artifacts or a third party analysis to confirm that there is no possible CAN frames on UND that will result in CAN frames on TND that would be interpreted by any nodes in TND as being traffic that originated from a node in a TND.
 <<<
-CRITICALITY: High
 
 [SECTION]
 TITLE: Prevents CAN Protocol Attacks: CGW-S-008* Series
@@ -743,6 +743,7 @@ UID: CGW-S-008a
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-003
+CRITICALITY: High
 TITLE: Prevents Adaptive Frame Spoofing
 STATEMENT: The device SHALL prevent generating adaptive frame spoofing attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
@@ -752,13 +753,13 @@ PUB_REFS: >>>
 VERIFICATION: >>>
 Inspection of vendor documentation to confirm that the (gateway) device is not implemented using direct-wired transceivers from TND to UND. In all other cases the delays introduced by the gateway will implicitly prevent Adaptive Frame Spoofing Attacks.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-008b
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: High
 TITLE: Prevents Error Passive Attack Step
 STATEMENT: The device SHALL prevent generating attacks that drive a ECU on *TND* into error passive state from messages originating on *UND*. This will in turn prevent error passive spoofing attacks.
 PUB_REFS: >>>
@@ -772,13 +773,13 @@ AND
 
 Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-008c
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-007
+CRITICALITY: High
 TITLE: Prevents Double Receive Attack
 STATEMENT: The device SHALL prevent generating double receive attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
@@ -792,13 +793,13 @@ AND
 
 Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-008d
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
+CRITICALITY: High
 TITLE: Prevents Bus-Off Attack
 STATEMENT: The device SHALL prevent generating bus-off attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
@@ -812,13 +813,13 @@ AND
 
 Inspection of vendor documentation to confirm that the (gateway) device is not implemented with SoC-integrated CAN controllers whose pins can be multiplexed with GPIOs. OR To confirm that the device software has very high security assurance to guarantee that malicious software could never control the GPIOs or the pinmuxing.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: CGW-S-008e
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
+CRITICALITY: High
 TITLE: Prevents Freeze Doom Loop Attack
 STATEMENT: The device SHALL prevent generating freeze doom loop attacks on *TND* from messages originating on *UND*.
 PUB_REFS: >>>
@@ -836,7 +837,6 @@ AND
 
 Inspection of design artifacts or a third party analysis to confirm that there is no possible CAN frames on UND that will result in CAN frames on TND that would match any arbitration IDs sent by nodes on TND. Otherwise there is a non-zero probability that the gateway's TND CAN controller could enter a freeze doom loop with a node on TND.
 <<<
-CRITICALITY: High
 
 [/SECTION]
 
@@ -845,6 +845,7 @@ UID: CGW-S-013
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-008
+CRITICALITY: Medium
 TITLE: Impervious to Janus Attack
 STATEMENT: The device SHALL not enable Janus Attacks in any group of OEM supplied components on any of its interfaces.
 COMMENT: Susceptibility to Janus Attacks is a property of a network of devices, not only of a single device. The entire *TND* is expected to be impervious to Janus Attacks since it should all be OEM supplied components there. In *UND* it is not possible to require that this device nor all the devices are impervious to Janus Attacks since *UND* is explicitly permitted to contain non-OEM supplied components. What is required of this device on *UND* is that if there are other OEM supplied devices on *UND* then this device cannot enable Janus Attacks on that collection of all those OEM supplied devices on *UND*.
@@ -859,7 +860,6 @@ AND
 
 Inspection of vendor report to confirm that all original devices on UND have been tested to demonstrate the same configured CAN sampling point.
 <<<
-CRITICALITY: Medium
 
 [/SECTION]
 
@@ -877,18 +877,19 @@ UID: J1939GW-S-039
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-003
+CRITICALITY: Medium
 TITLE: Prevents J1939 Address Spoofing
 STATEMENT: The device shall prevent the gatewaying (any of transport, translate, filter, or encapsulate) of any traffic onto *TND* with a J1939 address which is claimed by any of the devices in *TND*.
 VERIFICATION: >>>
 Test to confirm that for all source addresses claimed on TND, sending J1939 frames with any such source address is prevented from being transported, translated or encapsulated by the gateway to the TND; regardless of  permitted UND->TND transport, translation or encapsulation mechanisms that maybe configured on the gateway.
 <<<
-CRITICALITY: Medium
 
 [REQUIREMENT]
 UID: J1939GW-S-029
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-002
+CRITICALITY: High
 TITLE: Prevents Address Claim Attacks
 STATEMENT: The device SHALL prevent generating address claim attacks on *TND* from messages originating on *UND*.
 COMMENT: **Note to implementors**: Performing no gatewaying (any of transport, translate, filter, or encapsulate) of address claims onto *TND* would satisfy this requirement.
@@ -899,13 +900,13 @@ PUB_REFS: >>>
 VERIFICATION: >>>
 Test to confirm that for all source addresses claimed on TND, no address claims can be sent from UND for that address regardless of permitted transports, translations or encapsulations configured.
 <<<
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: J1939GW-S-089
 REFS:
 - TYPE: Parent
   VALUE: AGW-S-008
+CRITICALITY: High
 TITLE: Impervious to Address Claim Attacks
 STATEMENT: The device SHALL not be susceptible to address claim attacks on any of its interfaces (e.g. *TND* and *UND*)
 PUB_REFS: >>>
@@ -915,7 +916,6 @@ PUB_REFS: >>>
 VERIFICATION: >>>
 Inspection of vendor documentation to confirm that mitigations against address claim attacks are implemented on all of the interfaces of the device.
 <<<
-CRITICALITY: High
 
 [/SECTION]
 
@@ -930,6 +930,7 @@ Security requirements that must be satisfied by any device which *could be* a ga
 
 [REQUIREMENT]
 UID: NGW-S-001
+CRITICALITY: High
 TITLE: Security Assurance
 STATEMENT: These devices SHALL satisfy a comprehensive set of product security requirements to yield high assurance of correct operation in the face of adversarial inputs to the device.
 PUB_REFS: >>>
@@ -945,7 +946,6 @@ PUB_REFS: >>>
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, g.
 <<<
-CRITICALITY: High
 
 [SECTION]
 TITLE: Prevents Gateway Functions
@@ -955,36 +955,36 @@ UID: NGW-S-002
 REFS:
 - TYPE: Parent
   VALUE: NGW-S-001
+CRITICALITY: High
 TITLE: Won't Transport
 STATEMENT: These devices SHALL NOT transport/'move' information between two separate network 'domains,' in either bidirection.
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: NGW-S-003
 REFS:
 - TYPE: Parent
   VALUE: NGW-S-001
+CRITICALITY: High
 TITLE: Won't Translate
 STATEMENT: These devices SHALL NOT translate/transform the information between the separate network domains.
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: NGW-S-004
 REFS:
 - TYPE: Parent
   VALUE: NGW-S-001
+CRITICALITY: High
 TITLE: Won't Filter, Drop or Rate Limit
 STATEMENT: These devices SHALL NOT select which information is transported and/or translated between the network domains.
-CRITICALITY: High
 
 [REQUIREMENT]
 UID: NGW-S-005
 REFS:
 - TYPE: Parent
   VALUE: NGW-S-001
+CRITICALITY: High
 TITLE: Won't Encapsulate
 STATEMENT: These devices SHALL NOT encapsulate information as it is transported and/or translated between the network domains.
-CRITICALITY: High
 
 [/SECTION]
 
