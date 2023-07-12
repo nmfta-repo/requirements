@@ -38,6 +38,7 @@ jobs:
       - name: Install PDF (sphinx, latex et al) dependencies
         run: |
           python -m pip install sphinx
+          sudo apt update -y
           sudo apt install -y texlive latexmk texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra texlive-luatex texlive-xetex
 
       - name: Run strictdoc Build Scripts
