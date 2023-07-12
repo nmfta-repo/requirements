@@ -113,7 +113,7 @@ Interior Device:
 The gateway functions that duck type the gateway devices are as follows:
 
 Transports:
-    These devices transport/'move' information between two separate network 'domains,' **bi-bidirectionally.**
+    These devices transport/'move' information between two separate network 'domains,' **bi-directionally.**
 
 Translates:
     These devices translate/transform the information between the separate network domains but intentions of the data are preserved.
