@@ -14,9 +14,6 @@ ELEMENTS:
   - TITLE: STATUS
     TYPE: String
     REQUIRED: False
-  - TITLE: REFS
-    TYPE: String
-    REQUIRED: False
   - TITLE: TAGS
     TYPE: String
     REQUIRED: False
@@ -41,6 +38,8 @@ ELEMENTS:
   - TITLE: VERIFICATION
     TYPE: String
     REQUIRED: False
+  RELATIONS:
+  - TYPE: Parent
 
 [FREETEXT]
 This document captures security requirements for vehicle network gateway devices: both devices intended to be gateways and those devices which *could be a gateway* (due to malicious code). There will be devices which are connected to multiple vehicle networks but not all of them are intended to perform gatewaying functions. The design intent of the device dictactes what security requirements it must satisfy.
