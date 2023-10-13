@@ -51,7 +51,7 @@ First let us define the two types of network domains (or segments) to which the 
 Untrustworthy Network Domain (*UND*):
     A *UND* is a network domain (or segment) that contains **any** of the following:
 
-    a) wireless communication or reachable wirelessly (e.g J2497, ISO 15118, BlueTooth, WiFi)
+    a) wireless communication or reachable wirelessly (e.g J2497, ISO 15118, Bluetooth, Wi-Fi)
     b) an interface for aftermarket devices or operator access (e.g. an OBD port, RP1226 connector)
     c) a telematics device that does not satisfy the HD VCR requirements
     d) a multi-network device (e.g. intended or unintended gateway) that does not satisfy the HD VCR requirements
