@@ -11,7 +11,7 @@ Abstract: The NMFTA's Vehicle Cybersecurity Requirements Woking Group (VCRWG), c
    :maxdepth: 4
    :caption: Contents:
 
-The following is reproduced from documentation generated entirely from the `01_gateways.sdoc` hosted in https://github.com/nmfta-repo/vcr-experiment at commit |commit_id|. The `01_gateways.sdoc` file is also the source of a machine-readable Requirements Interchange (ReqIF) file hosted too in https://nmfta-repo.github.io/vcr-experiment/vcr-experiment.reqif. It is the strictdoc tool (https://github.com/strictdoc-project/strictdoc) that is used to generate both the following human-readable documentation and the ReqIF machine-readable format.
+The requirements presented in this paper are machine-readable requirements that are designed for subsequent processing by other tools (e.g. requirements tracing); in fact, this paper in PDF form is an example of processing the requirements. What follows is reproduced from documentation generated entirely from the `01_gateways.sdoc` file hosted in https://github.com/nmfta-repo/vcr-experiment at commit |commit_id|. The same `01_gateways.sdoc` file is used to generate the Requirements Interchange (ReqIF) file hosted at https://nmfta-repo.github.io/vcr-experiment/vcr-experiment.reqif. The tool used to generate both this paper and the ReqIF file is the strictdoc tool (https://github.com/strictdoc-project/strictdoc) by the (core team of) @stanislaw and @mettta.
 
 .. include:: 01_gateways.rst
 
