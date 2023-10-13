@@ -280,7 +280,7 @@ CRITICALITY: >>>
 Medium
 <<<
 STATEMENT: >>>
-The vendor shall not use any deprecated encryption+authentication on any WiFi interface of the device. At the time of drafting this includes WEP, WPS or open/none.
+The vendor shall not use any deprecated encryption+authentication on any Wi-Fi interface of the device. At the time of drafting this includes WEP, WPS or open/none.
 <<<
 PUB_REFS: >>>
 FMCSA GDL 39 Only use WPA2 authentication / encryption. Never use WEP, WPS, or “open” Wi-Fi.
@@ -300,7 +300,7 @@ CRITICALITY: >>>
 Medium
 <<<
 STATEMENT: >>>
-The vendor shall implement, for all bluetooth interfaces,  pairing that must be specifically allowed by physical controls on the device and be time-limited. Furthermore, pairing will not use legacy pairing or passkey entry.
+The vendor shall implement, for all Bluetooth interfaces,  pairing that must be specifically allowed by physical controls on the device and be time-limited. Furthermore, pairing will not use legacy pairing or passkey entry.
 <<<
 PUB_REFS: >>>
 FMCSA GDL 44 Make sure Bluetooth devices support and use Secure Simple Pairing (SSP) rather than legacy pairing.
