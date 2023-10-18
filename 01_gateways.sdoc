@@ -151,7 +151,7 @@ This can be achieved by use of a Hardware Security Module (HSM) containing keys 
 PUB_REFS: >>>
 * https://www.autosar.org/fileadmin/user_upload/standards/foundation/19-11/AUTOSAR_TR_SecureHardwareExtensions.pdf for an example of a suitable HSM (the SHE+ HSM).
 
-    Access control mechanisms to restrict access to critical ECUs, critical modes of every ECU (diagnostic mode), and their data.
+    Access control mechanisms to restrict access to critical Electronic Control Units (ECUs), critical modes of every ECU (diagnostic mode), and their data.
 
     -- SAE J3061: Appendix F - VEHICLE LEVEL CONSIDERATIONS, Security Mechanisms, b.
 
@@ -381,7 +381,7 @@ The device SHALL have a means to temporarily disable the preventions listed prev
 
   * Example: Consent on Instrument cluster or infotainment device (and thus internal networks - possibly but not necessarily *TND*)
 
-  * Example: Consent from third party device / application that is signed with infrastructure OEM has access to verify
+  * Example: Consent from third party device / application that is signed with infrastructure Original Equiment Manufacturer (OEM) has access to verify
 <<<
 COMMENT: >>>
 A Virtual Mode Switch can be achieved by use of a Hardware Security Module (HSM) that can verify a Message Authentication Code (MAC) of a mode change message, and where the key used for verifying the MAC can be programmed securely via remote commands.
@@ -856,7 +856,7 @@ Inspection of vendor report to confirm that all original devices on UND have bee
 TITLE: Security Requirements for J1939 Gateways
 
 [FREETEXT]
-J1939 Gateways are expected to meet all of the CGW-S-* CAN Gateway Security Requirements and to also satisfy the J1939GW-S-* Security requirements of this section
+J1939 Gateways are expected to meet all of the CGW-S-* CAN Gateway Security Requirements and to also satisfy the J1939GW-S-* security requirements of this section.
 [/FREETEXT]
 
 [REQUIREMENT]
