@@ -2299,34 +2299,14 @@ VERIFICATION: >>>
 Inspection of vendor process documentation confirming participation in information sharing group.
 <<<
 
-[SECTION]
-TITLE: NMFTA Telematics (Cloud Component) Security Requirements
+[DOCUMENT_FROM_FILE]
+FILE: _cloud_tsrm.sdoc
 
-[FRAGMENT_FROM_FILE]
-FILE: cloud_tsrm.sinc
+[DOCUMENT_FROM_FILE]
+FILE: _connectivity_tsrm.sdoc
 
-[/SECTION]
+[DOCUMENT_FROM_FILE]
+FILE: _vehicle_connection_tsrm.sdoc
 
-[SECTION]
-TITLE: NMFTA Telematics (Connectivity or Communications Component) Security Requirements
-
-[FRAGMENT_FROM_FILE]
-FILE: connectivity_tsrm.sinc
-
-[/SECTION]
-
-[SECTION]
-TITLE: NMFTA Telematics (Vehicle Connection Component) Security Requirements
-
-[FRAGMENT_FROM_FILE]
-FILE: vehicle_connection_tsrm.sinc
-
-[/SECTION]
-
-[SECTION]
-TITLE: NMFTA Telematics (Mobile App Component) Security Requirements
-
-[FRAGMENT_FROM_FILE]
-FILE: mobile_app_tsrm.sinc
-
-[/SECTION]
+[DOCUMENT_FROM_FILE]
+FILE: _mobile_app_tsrm.sdoc
