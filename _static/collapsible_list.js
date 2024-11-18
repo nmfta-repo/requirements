@@ -46,11 +46,11 @@ const STYLE = `
   content: '${SYMBOL_MINUS}';
 }
 
-[data-${BRANCH_SELECTOR}='closed'] + ul {
+[data-${BRANCH_SELECTOR}='closed'] ~ ul { /* Subsequent-sibling */
   display: none;
 }
 
-[data-${BRANCH_SELECTOR}='open'] + ul {
+[data-${BRANCH_SELECTOR}='open'] ~ ul { /* Subsequent-sibling */
   display: unset;
 }
 
@@ -119,37 +119,11 @@ const STYLE = `
 }
 `;
 
-Stimulus.register("collapsible_list", class extends Controller {
-  static targets = ["name"];
-
-  initialize() {
-    this.render(this.element)
-  }
-
-  render(listElement) {
-    // Processes the list and makes it collapse, if that makes sense
-    // (if the expanded list was long and would cause scrolling).
-    // Returns the processed list.
-    const branchList = prepareList(listElement);
-
-    // Do it if that makes sense (if there are branches
-    // in the list that could in principle be collapsible):
-    if (branchList.length > 0) {
-      processList(branchList);
-      addStyleElement(this.element, STYLE);
-
-      // Uncomment to add buttons for bulk operations:
-      // addBulkHandler(listElement, createBulkHandler(branchList));
-    }
-  }
-
-});
-
 function addStyleElement(target, styleTextContent, attr = 'style') {
   const style = document.createElement('style');
   style.setAttribute(`${ROOT_SELECTOR}-${attr}`, '');
   style.textContent = styleTextContent;
-  target.prepend(style);
+  target.before(style);
 }
 
 function prepareList(target) {
@@ -159,7 +133,9 @@ function prepareList(target) {
       const parent = ul.parentNode;
       const ulHandler = document.createElement('div');
 
-      parent.insertBefore(ulHandler, ul);
+      // parent.insertBefore(ulHandler, ul);
+      // * I need the button to come before the link as well
+      parent.prepend(ulHandler);
       // Required:
       parent.style = "position:relative";
       return ulHandler;
@@ -228,3 +204,60 @@ function bulkToggle(list, oldState) {
   // Update list:
   list.forEach(el => el.dataset[BRANCH_SELECTOR] = nextState);
 }
+
+// ******
+
+function run() {
+  const toc = document.querySelector(`[${ROOT_SELECTOR}]`);
+
+  // Processes the list and makes it collapse, if that makes sense
+  // (if the expanded list was long and would cause scrolling).
+  // Returns the processed list.
+  const branchList = prepareList(toc);
+
+  // Do it if that makes sense (if there are branches
+  // in the list that could in principle be collapsible):
+  if (branchList.length > 0) {
+    processList(branchList);
+    addStyleElement(toc, STYLE);
+
+    // Uncomment to add buttons for bulk operations:
+    // addBulkHandler(listElement, createBulkHandler(branchList));
+  }
+}
+
+function isCollapsibleList(node) {
+  return node.nodeType === 1 && node.hasAttribute(ROOT_SELECTOR)
+}
+
+window.addEventListener("load",function(){
+
+  let mutatingFrame = document.querySelector('#frame-toc');
+  if (!mutatingFrame) {
+    console.error("#frame-toc not found");
+    return;
+  }
+
+  new MutationObserver(function (mutationsList, observer) {
+
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        let addedToc = Array.from(mutation.addedNodes).find(node => isCollapsibleList(node));
+        if (addedToc) {
+          run()
+        }
+      }
+    }
+
+  }).observe(
+    mutatingFrame,
+    {
+      childList: true,
+      // subtree: true
+    }
+  );
+
+  // * Call for the first time.
+  run()
+
+},false);

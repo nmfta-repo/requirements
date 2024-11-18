@@ -15,8 +15,8 @@ sdoc-backdrop {
 
 sdoc-modal {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-columns: minmax(0, 1fr); /* issue#1370 https://css-tricks.com/preventing-a-grid-blowout/ */
+  grid-template-rows: min-content minmax(0, 1fr) min-content;
   grid-template-areas:
     "modal-header"
     "modal-content"
@@ -26,12 +26,26 @@ sdoc-modal {
 
   background-color: var(--color-bg-contrast);
   border-radius: 8px;
-  max-width: 90vw;
-  max-height: 90vh;
-  box-shadow: var(--base-elevation-modal);
 
+  width: 600px;
+  max-width: 90vw;
   min-width: 375px;
+  max-height: 90vh;
+
+  box-shadow: var(--base-elevation-modal);
   overflow: hidden;
+  overflow-y: auto;
+}
+
+sdoc-modal[context="confirm"] {
+  width: 600px;
+}
+
+sdoc-modal[context="form"] {
+  width: 90vw;
+  height: 90vh;
+  max-width: 600px;
+  max-height: 90vh;
 }
 
 sdoc-modal-container {
@@ -48,12 +62,23 @@ sdoc-modal-header {
   font-weight: 600;
 }
 
+.sdoc-modal-header-back-button {
+  position: relative;
+  left: calc(var(--base-rhythm) * (-1));
+  display: inline-flex;
+  padding-right: var(--base-rhythm);
+}
+
+.sdoc-modal-header-back-button:hover {
+  color: var(--color-action);
+}
+
 sdoc-modal-content {
   grid-area: modal-content;
   border-top: var(--base-border);
   border-bottom: var(--base-border);
-  padding-top: calc(var(--base-rhythm)*2);
-  padding-bottom: calc(var(--base-rhythm)*2);
+  /* padding-top: calc(var(--base-rhythm)*2); */
+  /* padding-bottom: calc(var(--base-rhythm)*2); */
   overflow: auto;
   scroll-behavior: smooth;
 }
@@ -62,6 +87,8 @@ sdoc-modal-message {
   display: block;
   padding-left: calc(var(--base-rhythm)*4);
   padding-right: calc(var(--base-rhythm)*4);
+  margin-top: calc(var(--base-rhythm)*2);
+  margin-bottom: calc(var(--base-rhythm)*2);
 }
 
 sdoc-modal-footer {
@@ -80,7 +107,6 @@ sdoc-modal-footer {
 sdoc-form {
   display: block;
   position: relative;
-  padding-bottom: calc(var(--base-rhythm)*2);
   background-color: var(--color-bg-contrast);
   border-radius: 4px;
   z-index: 11;
@@ -102,8 +128,8 @@ sdoc-form-descr {
   padding-bottom: 0;
   padding-left: calc(var(--base-rhythm)*4);
   padding-right: calc(var(--base-rhythm)*4);
-  margin-top: 0;
-  margin-bottom: calc(var(--base-rhythm)*4);
+  margin-top: calc(var(--base-rhythm)*2);
+  margin-bottom: calc(var(--base-rhythm)*2);
 }
 
 sdoc-form-footer {
@@ -113,10 +139,17 @@ sdoc-form-footer {
   padding-bottom: 0;
   padding-left: calc(var(--base-rhythm)*3); /* buttons to left */
   padding-right: calc(var(--base-rhythm)*4);
+  margin-top: calc(var(--base-rhythm)*2);
+  margin-bottom: calc(var(--base-rhythm)*2);
   column-gap: var(--base-rhythm);
 }
 
 sdoc-form-field {
+  /*
+    Flex can not be used, it is necessary exactly "display: block" because of
+    the effect on the display of the contenteditable element contained inside.
+    Extra spaces are formed there and it breaks the Selenium end2end tests.
+  */
   display: block;
   position: relative;
   padding-top: 0;
@@ -148,6 +181,11 @@ sdoc-form-row-aside [data-action-type="delete"] {
   color: var(--color-danger);
 }
 
+sdoc-form-row-aside [data-action-type="action"]:hover,
+sdoc-form-row-aside [data-action-type="action"] {
+  color: var(--color-action);
+}
+
 sdoc-form-row-aside [data-action-type="move_up"]:hover,
 sdoc-form-row-aside [data-action-type="move_up"] {
   color: var(--color-green);
@@ -156,21 +194,6 @@ sdoc-form-row-aside [data-action-type="move_up"] {
 sdoc-form-row-aside [data-action-type="move_down"]:hover,
 sdoc-form-row-aside [data-action-type="move_down"] {
   color: var(--color-blue);
-}
-
-sdoc-form-error {
-  display: block;
-  color: var(--color-danger);
-  font-size: 12px;
-  /*
-    set 'order' to be displayed after any other items,
-    in the context of <sdoc-form-row-main> using flex:
-  */
-  order: 11;
-}
-
-sdoc-form-error + sdoc-form-error {
-  margin-top: var(--base-rhythm);
 }
 
 sdoc-form-row [data-action-type="add_field"]:only-child {
@@ -195,7 +218,7 @@ sdoc-form-grid {
   place-items: stretch stretch;
   place-content: stretch stretch;
   grid-template-columns:  minmax(0, min-content)
-                          1fr
+                          minmax(0, 1fr) /* issue#1370 https://css-tricks.com/preventing-a-grid-blowout/ */
                           minmax(0, min-content);
   gap:
           calc(var(--base-rhythm)*4)
@@ -205,6 +228,10 @@ sdoc-form-grid {
           calc(var(--base-rhythm)*4)
           calc(var(--base-rhythm)*3); /* (4-1) related to column gap */
   overflow-x: hidden; /* related to field_action::before */
+
+  /* content container has no padding-block */
+  margin-top: calc(var(--base-rhythm)*2);
+  margin-bottom: calc(var(--base-rhythm)*2);
 }
 
 sdoc-form-grid
@@ -244,6 +271,10 @@ sdoc-form-field-group {
   flex-direction: row;
   flex-wrap: wrap;
 
+  padding: var(--base-rhythm);
+  border: var(--base-border);
+  border-radius: var(--base-rhythm);
+
   gap: calc(var(--base-rhythm)*3); /* label (2) + 1 */
   padding-top: calc(var(--base-rhythm)*3); /* related to column gap */
   padding-bottom: calc(var(--base-rhythm)*1);
@@ -260,8 +291,10 @@ sdoc-form-field-group::before {
   font-weight: 500;
   color: var(--color-placeholder);
   text-transform: uppercase;
-  top: calc(var(--base-rhythm)*(-2.25));
-  left: 0;
+  top: calc(var(--base-rhythm)*(-1.25));
+  right: var(--base-rhythm);
+  padding: 0 var(--base-rhythm);
+  background: var(--color-bg-contrast);
   transition: color .2s ease;
 }
 
@@ -317,11 +350,6 @@ sdoc-contenteditable:focus::before {
   color: var(--color-fg-accent);
 }
 
-sdoc-form-error + sdoc-form-field label,
-sdoc-form-error + sdoc-form-field sdoc-contenteditable::before {
-  color: var(--color-danger);
-}
-
 /* sdoc-form-field select */
 sdoc-form-field select {
   /* A reset of styles, including removing the default dropdown arrow */
@@ -369,6 +397,14 @@ sdoc-form-field select::-ms-expand {
   color: rgba(242, 100, 42,.2);
 }
 
+sdoc-contenteditable[data-field-suffix]:not(:empty)::after {
+  content: attr(data-field-suffix);
+  color: var(--color-fg-accent);
+  margin-left: 4px;
+}
+
+/* data-field-suffix */
+
 [contenteditable=true] {
   white-space: pre-wrap;
   word-break: break-word;
@@ -392,67 +428,6 @@ sdoc-form-field select::-ms-expand {
 
 [contenteditable=true][data-field-type="multiline"] {
   font-family: var(--code-font-family);
-}
-
-/* field_action */
-/* TODO: optimize code with .action_icon & .action_button */
-
-.field_action {  /* button */
-  position: static;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-  backface-visibility: hidden;
-  user-select: none;
-  cursor: pointer;
-  appearance: none;
-  border: none;
-  border-color: transparent;
-  background-color: rgba(0,0,0,0);
-  background: rgba(0,0,0,0);
-  box-shadow: none;
-  background-clip: padding-box;
-
-  color: var(--color-action);
-  transition: 0.2s;
-  padding: calc(var(--base-rhythm)*.5);
-  z-index: 2;
-}
-
-.field_action:hover,
-a.field_action:hover {
-  color: var(--color-hover);
-  z-index: 6;
-}
-
-.field_action::before {
-  content: '';
-  position: absolute;
-  /* The element is expected to be placed in a context
-     that defines the top and bottom boundaries.
-
-     The width of the element must be enough
-     to cover the entire available context,
-     and will be cut off by the parent element via overflow.
-  */
-  top: 0;
-  bottom: 0;
-  left: -100vw;
-  right: -100vw;
-  z-index: 0;
-  pointer-events: none;
-  /* Determines the shade of the color through the opacity of the element.
-     The color is passed from the parent.
-  */
-  transition: background-color 0.3s;
-  background-color: transparent;
-  opacity: .1; /* Defines the color shade. */
-}
-
-.field_action:hover::before {
-  background: currentcolor;
 }
 
 /* tabs */
@@ -544,4 +519,131 @@ sdoc-tab[data-errors]::after {
   /* parent column-gap == 0 */
   position: relative;
   right: calc(var(--base-rhythm)*(-1));
+}
+
+form[data-controller~="scroll_into_view"] {
+  /* fix on 1px border and smth unruly */
+    scroll-snap-margin-top: calc(var(--base-padding) + 1px);
+    scroll-margin-top:      calc(var(--base-padding) + 1px);
+}
+
+/* input */
+
+sdoc-form input[type="text"] {
+  padding: var(--base-rhythm);
+  font-size: var(--font-size);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  outline: transparent;
+  width: 100%;
+  transition: border-color calc(var(--transition, 0.2) * 1s) ease;
+}
+
+sdoc-form input[type="text"]:focus {
+  border-color: var(--color-action);
+  color: var(--color-action);
+}
+
+/* diff */
+
+sdoc-form[diff] {
+  grid-column: 1 / -1;
+
+  margin: 0;
+  background-color: transparent;
+  border: none;
+}
+
+sdoc-form[diff] form {
+  display: flex;
+  gap: var(--base-rhythm);
+  position: relative;
+  padding: var(--base-rhythm);
+  background-color: var(--color-bg-contrast);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+/* search */
+
+sdoc-form[search] {
+  display: block;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+sdoc-form[search] form {
+  display: flex;
+  gap: var(--base-rhythm);
+  position: relative;
+  padding: var(--base-rhythm);
+  background-color: var(--color-bg-contrast);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+sdoc-form[search][success] {
+  border-bottom: 1px solid var(--color-border);
+}
+
+sdoc-form-error {
+  display: block;
+  color: var(--color-danger);
+  font-size: 12px;
+  /*
+    set 'order' to be displayed after any other items,
+    in the context of <sdoc-form-row-main> using flex:
+  */
+  order: 11;
+  /*
+    FOR:
+    components/grammar_form_element/index.jinja
+    "Relations_Row"
+    id="document__editable_grammar_relations"
+  */
+  grid-column: 2 / -1;
+}
+
+sdoc-form-error + sdoc-form-error {
+  margin-top: var(--base-rhythm);
+}
+
+sdoc-form-error + sdoc-form-field-group {
+  border-color: var(--color-danger);
+}
+
+
+sdoc-form-field-group[errors]::before, /* Grammar -> label for group of fields */
+sdoc-contenteditable[errors]::before, /* inside contenteditable errors block does not affected */
+sdoc-form-error + sdoc-form-field > label, /* Grammar -> relation field ; File filed */
+sdoc-form-error + sdoc-form-field > sdoc-contenteditable::before {
+  color: var(--color-danger);
+}
+
+.sdoc-form-error,
+.sdoc-form-success,
+.sdoc-form-reset {
+  display: block;
+  padding: var(--base-rhythm) calc(var(--base-rhythm)*2);
+  position: relative;
+}
+
+.sdoc-form-error {
+  color: var(--color-danger);
+}
+
+.sdoc-form-success {
+  color: var(--color-action);
+}
+
+.sdoc-form-reset {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.sdoc-form-error,
+.sdoc-form-success {
+  padding-right: 120px; /* == sdoc-form-reset width */
 }

@@ -281,7 +281,7 @@ function dragLeave() {}
 function dragDrop(event) {
   event.preventDefault();
   event.stopImmediatePropagation();
-  fetchDroppedItemData(dragState.item, dragState.reference, dragState.option);
+  dragState.option && fetchDroppedItemData(dragState.item, dragState.reference, dragState.option);
 }
 
 function mouseOver(event) {
@@ -300,6 +300,7 @@ function mouseLeave(event) {
 }
 
 function fetchDroppedItemData(dragItem, dropReference, whereto) {
+  console.assert(['before', 'after', 'child'].includes(whereto), 'whereto is', whereto)
   if (dragItem !== dropReference) {
     // Build formData object.
     let formData = new FormData();
