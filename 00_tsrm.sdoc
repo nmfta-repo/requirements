@@ -43,6 +43,7 @@ ELEMENTS:
     REQUIRED: False
   RELATIONS:
   - TYPE: Parent
+    ROLE: Refines
 
 [FREETEXT]
 These recommended security requirements are intended to be informative, not directional in nature. While all reasonable steps have been taken to ensure that the recommendations are well-supported by our research and third-party verification, NMFTA and the parties contributing to these recommendations do not accept liability or responsibility for any damage or harm incurred as a result of actions taken based upon these recommendations.
@@ -93,21 +94,21 @@ COMMENT: >>>
 e.g. a Linux system with MAC configured to deny access to the processes dealing with protected data and also denying debugger access to the memory space of those processes.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-16 - MEMORY PROTECTION 
+NIST 800-53 r5 SI-16 - MEMORY PROTECTION
 Implement the following controls to protect the system memory from unauthorized
 code execution: [Assignment: organization-defined controls].
 
-NIST 800-53 r5 AC-6 (4) - LEAST PRIVILEGE | SEPARATE PROCESSING DOMAINS 
+NIST 800-53 r5 AC-6 (4) - LEAST PRIVILEGE | SEPARATE PROCESSING DOMAINS
 Provide separate processing domains to enable finer-grained allocation of user privileges.
 
 NIST 800-53 r5 SC-2 – SEPARATION OF SYSTEM AND USER FUNCTIONALITY
 Separate user functionality, including user interface services, from system management
 functionality.
 
-NIST 800-53 r5 SC-2 (1) - SEPARATION OF SYSTEM AND USER FUNCTIONALITY | INTERFACES FOR NON-PRIVILEGED USERS 
+NIST 800-53 r5 SC-2 (1) - SEPARATION OF SYSTEM AND USER FUNCTIONALITY | INTERFACES FOR NON-PRIVILEGED USERS
 Prevent the presentation of system management functionality at interfaces to nonprivileged users.
 
-NIST 800-53 r5 AC-25 – REFERENCE MONITOR 
+NIST 800-53 r5 AC-25 – REFERENCE MONITOR
 Implement a reference monitor for [Assignment: organization-defined access control policies] that is tamperproof, always invoked, and small enough to be subject to analysis and testing, the completeness of which can be assured.
 
 UL 1376 3.9 Least privilege: Systems must implement 'least privilege', or utilize hardware based features to protect sensitive code and data
@@ -131,10 +132,10 @@ COMMENT: >>>
 This principle underpins system security
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 AC-6 – LEAST PRIVILEGE 
+NIST 800-53 r5 AC-6 – LEAST PRIVILEGE
 Employ the principle of least privilege, allowing only authorized accesses for users (or processes acting on behalf of users) that are necessary to accomplish assigned organizational tasks.
 
-NIST 800-53 r5 AC-6 (1) - LEAST PRIVILEGE | AUTHORIZE ACCESS TO SECURITY FUNCTIONS 
+NIST 800-53 r5 AC-6 (1) - LEAST PRIVILEGE | AUTHORIZE ACCESS TO SECURITY FUNCTIONS
 Authorize access for [Assignment: organization-defined individuals or roles] to:
 (a) [Assignment: organization-defined security functions (deployed in hardware, software, and firmware)]; and
 (b) [Assignment: organization-defined security-relevant information].
@@ -167,7 +168,7 @@ PUB_REFS: >>>
 NIST 800-53 r5 AC-6 – LEAST PRIVILEGE
 Employ the principle of least privilege, allowing only authorized accesses for users (or processes acting on behalf of users) that are necessary to accomplish assigned organizational tasks.
 
-NIST 800-53 r5 AC-3 – ACCESS ENFORCEMENT 
+NIST 800-53 r5 AC-3 – ACCESS ENFORCEMENT
 Enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.
 
 FMCSA GDL 32 Make sure local wireless interfaces like Bluetooth or Wi-Fi don't provide admin access without authentication.
@@ -194,11 +195,11 @@ STATEMENT: >>>
 The vendor shall identify all instances where the telematics system includes actions that cannot support access authentication and/or execute with elevated privileges
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 AC-14 – PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION 
+NIST 800-53 r5 AC-14 – PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION
 a. Identify [Assignment: organization-defined user actions] that can be performed on the system without identification or authentication consistent with organizational mission and business functions; and
 b. Document and provide supporting rationale in the security plan for the system, user actions not requiring identification or authentication.
 
-NIST 800-53 r5 AC-6 – LEAST PRIVILEGE 
+NIST 800-53 r5 AC-6 – LEAST PRIVILEGE
 Employ the principle of least privilege, allowing only authorized accesses for users (or processes acting on behalf of users) that are necessary to accomplish assigned organizational tasks.
 <<<
 VERIFICATION: >>>
@@ -220,7 +221,7 @@ COMMENT: >>>
 e.g. it should not be possible to identify the device type nor firmware version by port scanning a connected device. Also, it should not be able to determine that a vehicle is operational or not via non-authorized connections.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 AC-14 – PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION 
+NIST 800-53 r5 AC-14 – PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION
 a. Identify [Assignment: organization-defined user actions] that can be performed on the system without identification or authentication consistent with organizational mission and business functions; and
 b. Document and provide supporting rationale in the security plan for the system, user actions not requiring identification or authentication.
 <<<
@@ -240,7 +241,7 @@ STATEMENT: >>>
 All remote access methods and possible remote actions to/on telematics system shall be documented.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 AC-17 – REMOTE ACCESS 
+NIST 800-53 r5 AC-17 – REMOTE ACCESS
 a. Establish and document usage restrictions, configuration/connection requirements, and implementation guidance for each type of remote access allowed; and
 b. Authorize each type of remote access to the system prior to allowing such connections
 <<<
@@ -263,7 +264,7 @@ COMMENT: >>>
 e.g. Bluetooth, cellular, satellite, Wi-Fi hotspot, Wi-Fi client, infrared, NFC, RFID
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 AC-18 – WIRELESS ACCESS 
+NIST 800-53 r5 AC-18 – WIRELESS ACCESS
 a. Establish configuration requirements, connection requirements, and implementation guidance for each type of wireless access; and
 b. Authorize each type of wireless access to the system prior to allowing such connections.
 <<<
@@ -338,9 +339,9 @@ STATEMENT: >>>
 Authentication attempts to the vendor’s devices and backends shall be rate-limited to an industry accepted rate.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 AC-7 - UNSUCCESSFUL LOGON ATTEMPTS 
+NIST 800-53 r5 AC-7 - UNSUCCESSFUL LOGON ATTEMPTS
 a. Enforce a limit of [Assignment: organization-defined number] consecutive invalid logon attempts by a user during a [Assignment: organization-defined time period]; and
-b. Automatically [Selection (one or more): lock the account or node for an [Assignment: organization-defined time period]; lock the account or node until released by an administrator; delay next logon prompt per [Assignment: organization-defined delay algorithm]; notify system administrator; take other [Assignment: organization-defined action]] when the maximum 
+b. Automatically [Selection (one or more): lock the account or node for an [Assignment: organization-defined time period]; lock the account or node until released by an administrator; delay next logon prompt per [Assignment: organization-defined delay algorithm]; notify system administrator; take other [Assignment: organization-defined action]] when the maximum
 number of unsuccessful attempts is exceeded.
 
 CTIA CCTPID 5.2 Password Management Test
@@ -393,7 +394,7 @@ COMMENT: >>>
 E.g. this is particularly true of unauthenticated or unencrypted transport services (which would not satisfy protected communication requirements above) such as File Transfer Protocol, telnet, Short Messaging Service, etc.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 CM-7 – LEAST FUNCTIONALITY 
+NIST 800-53 r5 CM-7 – LEAST FUNCTIONALITY
 a. Configure the system to provide only [Assignment: organization-defined mission essential capabilities]; and
 b. Prohibit or restrict the use of the following functions, ports, protocols, software, and/or services: [Assignment: organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services].
 
@@ -428,7 +429,7 @@ COMMENT: >>>
 Deploying with test or debug facilities enabled is egregious
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 CM-7 – LEAST FUNCTIONALITY 
+NIST 800-53 r5 CM-7 – LEAST FUNCTIONALITY
 a. Configure the system to provide only [Assignment: organization-defined mission essential capabilities]; and
 b. Prohibit or restrict the use of the following functions, ports, protocols, software, and/or services: [Assignment: organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services].
 
@@ -519,7 +520,7 @@ COMMENT: >>>
 e.g. that a remote system authenticate the other remote parties by referring to the unique identifiers using mutually authenticated TLS
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 IA-3 – DEVICE IDENTIFICATION AND AUTHENTICATION 
+NIST 800-53 r5 IA-3 – DEVICE IDENTIFICATION AND AUTHENTICATION
 Uniquely identify and authenticate [Assignment: organization-defined devices and/or types of devices] before establishing a [Selection (one or more): local; remote; network] connection.
 <<<
 VERIFICATION: >>>
@@ -542,7 +543,7 @@ Any authenticators (unique identification) for devices used in vendor’s system
 Where public information is any information that is visible (externally or internally) on the device or discoverable by searches based on that visible information.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 IA-3 – DEVICE IDENTIFICATION AND AUTHENTICATION 
+NIST 800-53 r5 IA-3 – DEVICE IDENTIFICATION AND AUTHENTICATION
 Uniquely identify and authenticate [Assignment: organization-defined devices and/or types of devices] before establishing a [Selection (one or more): local; remote; network] connection.
 <<<
 VERIFICATION: >>>
@@ -576,7 +577,7 @@ UL 1376 2.4 Industry-standard cryptography: Industry standard cryptographic algo
 UL 1376 2.5 RNG with sufficient entropy: Random number generation must ensure sufficient entropy
 <<<
 VERIFICATION: >>>
-Inspection of vendor-supplied documentation detailing their procurement requirements for cryptographic modules. 
+Inspection of vendor-supplied documentation detailing their procurement requirements for cryptographic modules.
 
 Ensure that their procurement processes require that all cryptographic modules are FIPS 140-2 compliant.
 <<<
@@ -596,7 +597,7 @@ COMMENT: >>>
 TSPs must demonstrate this level of maturity to be trusted with business critical functions
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 IR-8 - INCIDENT RESPONSE PLAN 
+NIST 800-53 r5 IR-8 - INCIDENT RESPONSE PLAN
 a. Develop an incident response plan that:
 
   1. Provides the organization with a roadmap for implementing its incident response capability;
@@ -635,7 +636,7 @@ STATEMENT: >>>
 The vendor shall have procedures in place to ensure that components outside of the carrier’s direct control are not updated or modified without prior coordination and approval by an organization-defined individual or role
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 MA-2 – CONTROLLED MAINTENANCE 
+NIST 800-53 r5 MA-2 – CONTROLLED MAINTENANCE
 a. Schedule, document, and review records of maintenance, repair, and replacement on system components in accordance with manufacturer or vendor specifications and/or organizational requirements;
 b. Approve and monitor all maintenance activities, whether performed on site or remotely and whether the system or system components are serviced on site or removed to another location;
 c. Require that [Assignment: organization-defined personnel or roles] explicitly approve the removal of the system or system components from organizational facilities for off-site maintenance, repair, or replacement;
@@ -664,12 +665,12 @@ COMMENT: >>>
 TSPs must demonstrate this level of maturity to be trusted with business critical functions
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 CP-4 - CONTINGENCY PLAN TESTING 
+NIST 800-53 r5 CP-4 - CONTINGENCY PLAN TESTING
 a. Test the contingency plan for the system [Assignment: organization-defined frequency] using the following tests to determine the effectiveness of the plan and the readiness to execute the plan: [Assignment: organization-defined tests].
 b. Review the contingency plan test results; and
 c. Initiate corrective actions, if needed.
 
-NIST 800-53 r5 CP-9 (1) - SYSTEM BACKUP | TESTING FOR RELIABILITY AND INTEGRITY 
+NIST 800-53 r5 CP-9 (1) - SYSTEM BACKUP | TESTING FOR RELIABILITY AND INTEGRITY
 Test backup information [Assignment: organization-defined frequency] to verify media reliability and information integrity.
 
 CAIQ BCR-11.7 Do you test your backup or redundancy mechanisms at least annually?
@@ -766,7 +767,7 @@ STATEMENT: >>>
 The vendor shall have a System Security Plan (SSP) which details a clear and concise understanding of authorization boundaries of the telematics system.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 PL-2 - SECURITY AND PRIVACY PLANS 
+NIST 800-53 r5 PL-2 - SECURITY AND PRIVACY PLANS
 a. Develop security and privacy plans for the system that:
 
   1. Are consistent with the organization’s enterprise architecture;
@@ -808,7 +809,7 @@ STATEMENT: >>>
 The vendor shall have a documented Information Security Architecture (ISA) for the telematics system.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 PL-8 - SECURITY AND PRIVACY ARCHITECTURES 
+NIST 800-53 r5 PL-8 - SECURITY AND PRIVACY ARCHITECTURES
 a. Develop security and privacy architectures for the system that:
 
   1. Describe the requirements and approach to be taken for protecting the confidentiality, integrity, and availability of organizational information;
@@ -886,7 +887,7 @@ c. Review and update the current personnel security:
   1. Policy [Assignment: organization-defined frequency] and following [Assignment: organization-defined events]; and
   2. Procedures [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].
 
-NIST 800-53 r5 PS-7 - EXTERNAL PERSONNEL SECURITY 
+NIST 800-53 r5 PS-7 - EXTERNAL PERSONNEL SECURITY
 a. Establish personnel security requirements, including security roles and responsibilities for external providers;
 b. Require external providers to comply with personnel security policies and procedures established by the organization;
 c. Document personnel security requirements;
@@ -909,7 +910,7 @@ STATEMENT: >>>
 Vendor shall have risk assessments conducted at an industry accepted rate. Resulting risk assessment documentation should include all components and the overall system that is within the vendor's control. The rate suggested is twice per product release; both at product design and at integration phases
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 RA-3 – RISK ASSESSMENT 
+NIST 800-53 r5 RA-3 – RISK ASSESSMENT
 a. Conduct a risk assessment, including:
 
   1. Identifying threats to and vulnerabilities in the system;
@@ -940,7 +941,7 @@ STATEMENT: >>>
 The vendor shall use the results of risk assessments to influence systems development and processes.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 RA-3 – RISK ASSESSMENT 
+NIST 800-53 r5 RA-3 – RISK ASSESSMENT
 a. Conduct a risk assessment, including:
 
   1. Identifying threats to and vulnerabilities in the system;
@@ -976,11 +977,11 @@ COMMENT: >>>
 Sometimes referred to as ISMS as in ISO/IEC 2700.
 
 May include any of the following:
-System interconnections, System monitoring plan, 
+System interconnections, System monitoring plan,
 Vulnerability management plan, Incident response plan (see IR-010 for authoritative requirement), System Security Plan (SSP) or System Security , Authorization Agreement (SSAA), Contingency Plan, Contingency Plan Test Results, Federal Information Processing Standards (FIPS) 199 Categorization, Privacy Threshold Analysis (PTA), E-Authentication, Security Test and Evaluation (ST&E) Plan, Plan of Action and Milestones (POAM), Annual Self-Assessments
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 CA-2 - CONTROL ASSESSMENTS 
+NIST 800-53 r5 CA-2 - CONTROL ASSESSMENTS
 a. Select the appropriate assessor or assessment team for the type of assessment to be conducted;
 b. Develop a control assessment plan that describes the scope of the assessment including:
 
@@ -993,11 +994,11 @@ d. Assess the controls in the system and its environment of operation [Assignmen
 e. Produce a control assessment report that document the results of the assessment; and
 f. Provide the results of the control assessment to [Assignment: organization-defined individuals or roles].
 
-NIST 800-53 r5 CA-5 - PLAN OF ACTION AND MILESTONES 
+NIST 800-53 r5 CA-5 - PLAN OF ACTION AND MILESTONES
 a. Develop a plan of action and milestones for the system to document the planned remediation actions of the organization to correct weaknesses or deficiencies noted during the assessment of the controls and to reduce or eliminate known vulnerabilities in the system; and
 b. Update existing plan of action and milestones [Assignment: organization-defined frequency] based on the findings from control assessments, independent audits or reviews, and continuous monitoring activities.
 
-NIST 800-53 r5 CA-6 - AUTHORIZATION 
+NIST 800-53 r5 CA-6 - AUTHORIZATION
 a. Assign a senior official as the authorizing official for the system;
 b. Assign a senior official as the authorizing official for common controls available for inheritance by organizational systems;
 c. Ensure that the authorizing official for the system, before commencing operations:
@@ -1045,7 +1046,7 @@ CRITICALITY: >>>
 High
 <<<
 STATEMENT: >>>
-The vendor shall have penetration testing performed, to an industry accepted best practice, at an industry accepted pace. 
+The vendor shall have penetration testing performed, to an industry accepted best practice, at an industry accepted pace.
 
 Penetration testing can be performed by teams internal to the TSP; industry best practice is to have external pentesting performed periodically also.
 <<<
@@ -1055,7 +1056,7 @@ Periodic pentesting keeps everyone honest
 PUB_REFS: >>>
 NIST 800-115 Technical Guide to Information Security Testing and Assessment – All sections
 
-NIST 800-53 r5 CA-8 – PENETRATION TESTING 
+NIST 800-53 r5 CA-8 – PENETRATION TESTING
 Conduct penetration testing [Assignment: organization-defined frequency] on [Assignment: organization-defined systems or system components].
 
 CAIQ AIS-01.5 Do you review your applications for security vulnerabilities and address any issues prior to deployment to production?
@@ -1159,7 +1160,7 @@ Naive implementations of TLS clients could still be susceptible to replay and Mi
 The default configuration must be secure in order to prevent downgrade attacks.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SC-8 (1) - TRANSMISSION CONFIDENTIALITY AND INTEGRITY | CRYPTOGRAPHIC PROTECTION 
+NIST 800-53 r5 SC-8 (1) - TRANSMISSION CONFIDENTIALITY AND INTEGRITY | CRYPTOGRAPHIC PROTECTION
 Implement cryptographic mechanisms to [Selection (one or more): prevent unauthorized disclosure of information; detect changes to information] during transmission.
 
 FMCSA GDL 46 Use encryption on all wireless communication interfaces
@@ -1226,10 +1227,10 @@ PUB_REFS: >>>
 NIST 800-53 r5 SC-28 - PROTECTION OF INFORMATION AT REST
 Protect the [Selection (one or more): confidentiality; integrity] of the following information at rest: [Assignment: organization-defined information at rest].
 
-NIST 800-53 r5 SC-28 (1) - PROTECTION OF INFORMATION AT REST | CRYPTOGRAPHIC PROTECTION 
+NIST 800-53 r5 SC-28 (1) - PROTECTION OF INFORMATION AT REST | CRYPTOGRAPHIC PROTECTION
 Implement cryptographic mechanisms to prevent unauthorized disclosure and modification of the following information at rest on [Assignment: organization-defined system components or media]: [Assignment: organization-defined information].
 
-NIST 800-53 r5 SC-28 (2) - PROTECTION OF INFORMATION AT REST | OFFLINE STORAGE 
+NIST 800-53 r5 SC-28 (2) - PROTECTION OF INFORMATION AT REST | OFFLINE STORAGE
 Remove the following information from online storage and store offline in a secure location: [Assignment: organization-defined information].
 
 OWASP E4 – Securing Sensitive Information
@@ -1271,16 +1272,16 @@ Data of the categories above will be protected using cryptographic keys which ar
 Public information is any information that is visible (externally or internally) on the device or discoverable by searches based on that visible information.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SC-12 - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT 
+NIST 800-53 r5 SC-12 - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT
 Establish and manage cryptographic keys when cryptography is employed within the system in accordance with the following key management requirements: [Assignment: organization-defined requirements for key generation, distribution, storage, access, and destruction].
 
-NIST 800-53 r5 SC-12 (1) - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | AVAILABILITY 
+NIST 800-53 r5 SC-12 (1) - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | AVAILABILITY
 Maintain availability of information in the event of the loss of cryptographic keys by users.
 
-NIST 800-53 r5 SC-12 (2) - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | SYMMETRIC KEYS 
+NIST 800-53 r5 SC-12 (2) - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | SYMMETRIC KEYS
 Produce, control, and distribute symmetric cryptographic keys using [Selection: NIST FIPSvalidated; NSA-approved] key management technology and processes.
 
-NIST 800-53 r5 SC-12 (3) - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | ASYMMETRIC KEYS 
+NIST 800-53 r5 SC-12 (3) - CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | ASYMMETRIC KEYS
 Produce, control, and distribute asymmetric cryptographic keys using [Selection: NSAapproved key management technology and processes; prepositioned keying material; DoD-approved or DoD-issued Medium Assurance PKI certificates; DoD approved or DoDissued Medium Hardware Assurance PKI certificates and hardware security tokens that protect the user’s private key; certificates issued in accordance with organization-defined requirements].
 
 NIST Special Publication 800-133 - Recommendation for Cryptographic Key Generation
@@ -1307,7 +1308,7 @@ PUB_REFS: >>>
 NIST 800-53 r5 SC-4 - INFORMATION IN SHARED SYSTEM RESOURCES
 Prevent unauthorized and unintended information transfer via shared system resources.
 
-NIST 800-53 r5 SC-4 (2) - INFORMATION IN SHARED SYSTEM RESOURCES | MULTILEVEL OR PERIODS PROCESSING 
+NIST 800-53 r5 SC-4 (2) - INFORMATION IN SHARED SYSTEM RESOURCES | MULTILEVEL OR PERIODS PROCESSING
 Prevent unauthorized information transfer via shared resources in accordance with [Assignment: organization-defined procedures] when system processing explicitly switches between different information classification levels or security categories.
 
 CAIQ IVS-09.4 Do you have the ability to logically segment or encrypt customer data such that data may be produced for a single tenant only, without inadvertently accessing another tenant's data?
@@ -1334,7 +1335,7 @@ PUB_REFS: >>>
 NIST 800-53 r5 SI-10 – INFORMATION INPUT VALIDATION
 Check the validity of the following information inputs: [Assignment: organization defined information inputs to the system].
 
-NIST 800-53 r5 SC-7 (21) - BOUNDARY PROTECTION | ISOLATION OF SYSTEM COMPONENTS 
+NIST 800-53 r5 SC-7 (21) - BOUNDARY PROTECTION | ISOLATION OF SYSTEM COMPONENTS
 Employ boundary protection mechanisms to isolate [Assignment: organization-defined system components] supporting [Assignment: organization-defined missions and/or business functions].
 
 FMCSA GDL 27 Limit telematics units' access to the CAN bus, and whitelist the CAN messages they can send
@@ -1370,16 +1371,16 @@ Confidentiality and integrity of communication underpins the security of the sys
 Certificate pinning in clients -- when combined with the other requirement for e.g. fail-over – could result in extra complications and so functional testing of fail over should be performed.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SC-23 – SESSION AUTHENTICITY 
+NIST 800-53 r5 SC-23 – SESSION AUTHENTICITY
 Protect the authenticity of communications sessions.
 
-NIST 800-53 r5 SC-23 (1) - SESSION AUTHENTICITY | INVALIDATE SESSION IDENTIFIERS AT LOGOUT 
+NIST 800-53 r5 SC-23 (1) - SESSION AUTHENTICITY | INVALIDATE SESSION IDENTIFIERS AT LOGOUT
 Invalidate session identifiers upon user logout or other session termination.
 
-NIST 800-53 r5 SC-23 (3) - SESSION AUTHENTICITY | UNIQUE SYSTEM-GENERATED SESSION IDENTIFIERS 
+NIST 800-53 r5 SC-23 (3) - SESSION AUTHENTICITY | UNIQUE SYSTEM-GENERATED SESSION IDENTIFIERS
 Generate a unique session identifier for each session with [Assignment: organization defined randomness requirements] and recognize only session identifiers that are system generated.
 
-NIST 800-53 r5 SC-23 (5) - SESSION AUTHENTICITY | ALLOWED CERTIFICATE AUTHORITIES 
+NIST 800-53 r5 SC-23 (5) - SESSION AUTHENTICITY | ALLOWED CERTIFICATE AUTHORITIES
 Only allow the use of [Assignment: organization-defined certificate authorities] for verification of the establishment of protected sessions.
 
 CAIQ DSI-03.2 Do you utilize open encryption methodologies any time your infrastructure components need to communicate with each other via public networks (e.g., Internet-based replication of data from one environment to another)?
@@ -1444,7 +1445,7 @@ STATEMENT: >>>
 The vendor's system shall separate execution domains and/or processes (i.e. process isolation within both the telematics device and back-end system and between the serial communications in the telematics device and the interface to the vehicle network)
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SC-39 - PROCESS ISOLATION 
+NIST 800-53 r5 SC-39 - PROCESS ISOLATION
 Maintain a separate execution domain for each executing system process.
 
 NIST 800-53 r5 SC-39 (2) - PROCESS ISOLATION | SEPARATE EXECUTION DOMAIN PER THREAD
@@ -1569,7 +1570,7 @@ b. Test software and firmware updates related to flaw remediation for effectiven
 c. Install security-relevant software and firmware updates within [Assignment: organization defined time period] of the release of the updates; and
 d. Incorporate flaw remediation into the organizational configuration management process.
 
-NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES 
+NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES
 Install [Assignment: organization-defined security-relevant software and firmware updates] automatically to [Assignment: organization-defined system components].
 <<<
 VERIFICATION: >>>
@@ -1630,12 +1631,12 @@ b. Test software and firmware updates related to flaw remediation for effectiven
 c. Install security-relevant software and firmware updates within [Assignment: organization defined time period] of the release of the updates; and
 d. Incorporate flaw remediation into the organizational configuration management process.
 
-NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES 
+NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES
 Install [Assignment: organization-defined security-relevant software and firmware updates] automatically to [Assignment: organization-defined system components].
 
 CAIQ TVM-02.5 Do you have a capability to patch vulnerabilities across all of your computing devices, applications, and systems?
 
-CTIA CCTPID 3.5 Patch Management 
+CTIA CCTPID 3.5 Patch Management
 
 CTIA CCTPID 5.5 Patch Management
 
@@ -1663,7 +1664,7 @@ NIST 800-53 r5 SI-2 - FLAW REMEDIATION
 a. Identify, report, and correct system flaws;
 b. [...]
 
-NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES 
+NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES
 Install [Assignment: organization-defined security-relevant software and firmware updates] automatically to [Assignment: organization-defined system components].
 
 CAIQ TVM-02.5 Do you have a capability to patch vulnerabilities across all of your computing devices, applications, and systems?
@@ -1732,19 +1733,19 @@ COMMENT: >>>
 Secure boot underpins the access control which protects the vehicle networks
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-7 (5) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | AUTOMATED RESPONSE TO INTEGRITY VIOLATIONS 
+NIST 800-53 r5 SI-7 (5) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | AUTOMATED RESPONSE TO INTEGRITY VIOLATIONS
 Automatically [Selection (one or more): shut the system down; restart the system; implement [Assignment: organization-defined controls]] when integrity violations are discovered.
 
-NIST 800-53 r5 SI-7 (6) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | CRYPTOGRAPHIC PROTECTION 
+NIST 800-53 r5 SI-7 (6) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | CRYPTOGRAPHIC PROTECTION
 Implement cryptographic mechanisms to detect unauthorized changes to software, firmware, and information.
 
-NIST 800-53 r5 SI-7 (9) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | VERIFY BOOT PROCESS 
+NIST 800-53 r5 SI-7 (9) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | VERIFY BOOT PROCESS
 Verify the integrity of the boot process of the following system components: [Assignment: organization-defined system components].
 
-NIST 800-53 r5 SI-7 (10) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | PROTECTION OF BOOT FIRMWARE 
+NIST 800-53 r5 SI-7 (10) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | PROTECTION OF BOOT FIRMWARE
 Implement the following mechanisms to protect the integrity of boot firmware in [Assignment: organization-defined system components]: [Assignment: organization defined mechanisms].
 
-NIST 800-53 r5 SI-7 (15) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | CODE AUTHENTICATION 
+NIST 800-53 r5 SI-7 (15) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | CODE AUTHENTICATION
 Implement cryptographic mechanisms to authenticate the following software or firmware components prior to installation: [Assignment: organization-defined software or firmware components].
 <<<
 VERIFICATION: >>>
@@ -1786,10 +1787,10 @@ COMMENT: >>>
 Is a rare feature to find deployed and is nice-to-have over and above secure boot
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-7 (12) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | INTEGRITY VERIFICATION 
+NIST 800-53 r5 SI-7 (12) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | INTEGRITY VERIFICATION
 Require that the integrity of the following user-installed software be verified prior to execution: [Assignment: organization-defined user-installed software].
 
-NIST 800-53 r5 SI-7 (15) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | CODE AUTHENTICATION 
+NIST 800-53 r5 SI-7 (15) - SOFTWARE, FIRMWARE, AND INFORMATION INTEGRITY | CODE AUTHENTICATION
 Implement cryptographic mechanisms to authenticate the following software or firmware components prior to installation: [Assignment: organization-defined software or firmware components].
 
 NIST 800-53 r5 SC-3 - SECURITY FUNCTION ISOLATION
@@ -1814,7 +1815,7 @@ COMMENT: >>>
 Without any of these, exploitation is trivial
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-16 – MEMORY PROTECTION 
+NIST 800-53 r5 SI-16 – MEMORY PROTECTION
 Implement the following controls to protect the system memory from unauthorized code execution: [Assignment: organization-defined controls].
 
 Cyber ITL Methodology – Safety Features
@@ -1824,7 +1825,7 @@ FMCSA GDL 22 Leverage security controls built in to the operating system
 OWASP E1 – Buffer and Stack Overflow Protection
 <<<
 VERIFICATION: >>>
-Inspection of a 3rd party implementation review report or a demonstration by the vendor that asserts the presence of an array of code safety features (such as those listed in the requirement SII-070 or at the CITL safety features list). 
+Inspection of a 3rd party implementation review report or a demonstration by the vendor that asserts the presence of an array of code safety features (such as those listed in the requirement SII-070 or at the CITL safety features list).
 
 (rationale: measuring the presence of these mitigations requires binary analysis by experts in the subject)
 <<<
@@ -1863,7 +1864,7 @@ STATEMENT: >>>
 The vendor shall design security components that fail-secure to protect integrity of systems and data.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-17 - FAIL-SAFE PROCEDURES 
+NIST 800-53 r5 SI-17 - FAIL-SAFE PROCEDURES
 Implement the indicated fail-safe procedures when the indicated failures occur: [Assignment: organization-defined list of failure conditions and associated fail-safe procedures].
 
 NIST 800-53 r5 SC-24 – FAIL IN KNOWN STATE
@@ -1915,18 +1916,18 @@ CRITICALITY: >>>
 Medium
 <<<
 STATEMENT: >>>
-The vendor shall maintain a responsible disclosure program that allows for vulnerabilities discovered in the system (device, mobile app or backend) by researchers, and other external entities to be reported, tracked and mitigated. 
+The vendor shall maintain a responsible disclosure program that allows for vulnerabilities discovered in the system (device, mobile app or backend) by researchers, and other external entities to be reported, tracked and mitigated.
 
 Vulnerability programs should include sufficient legal provisions to provide for a “Legal Safe Harbor” for researchers.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-5 - SECURITY ALERTS, ADVISORIES, AND DIRECTIVES 
+NIST 800-53 r5 SI-5 - SECURITY ALERTS, ADVISORIES, AND DIRECTIVES
 a. Receive system security alerts, advisories, and directives from [Assignment: organization defined external organizations] on an ongoing basis;
 [...]
 
-ISA/IEC  29147:2014 (Information technology -- Security techniques -- Vulnerability Disclosure) 
+ISA/IEC  29147:2014 (Information technology -- Security techniques -- Vulnerability Disclosure)
 
-ISO/IEC 30111:2013 (Information technology -- Security techniques -- Vulnerability Handling Processes) 
+ISO/IEC 30111:2013 (Information technology -- Security techniques -- Vulnerability Handling Processes)
 
 Amit Elazari, Legal Bug Bounty Programs
 
@@ -1963,7 +1964,7 @@ Regardless of how secure a system might be it will eventually be breached; there
 e.g. SIEM, IDS, WAF, Application monitoring
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-4 – SYSTEM MONITORING 
+NIST 800-53 r5 SI-4 – SYSTEM MONITORING
 a. Monitor the system to detect: […]
 
 FMCSA GDL 28 Enable security monitoring of the telematics system(s) using native tools.
@@ -2018,13 +2019,13 @@ COMMENT: >>>
 This requirement, if satisfied, shows process maturity but is nice-to-have over and above the previous requirements in this category
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-2 - FLAW REMEDIATION 
+NIST 800-53 r5 SI-2 - FLAW REMEDIATION
 a. Identify, report, and correct system flaws;
 b. Test software and firmware updates related to flaw remediation for effectiveness and potential side effects before installation;
 c. Install security-relevant software and firmware updates within [Assignment: organization defined time period] of the release of the updates; and
 d. Incorporate flaw remediation into the organizational configuration management process.
 
-NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES 
+NIST 800-53 r5 SI-2 (5) - FLAW REMEDIATION | AUTOMATIC SOFTWARE AND FIRMWARE UPDATES
 Install [Assignment: organization-defined security-relevant software and firmware updates] automatically to [Assignment: organization-defined system components].
 
 CAIQ CCC-03.3 Are there policies and procedures in place to triage and remedy reported bugs and security vulnerabilities for product and service offerings?
@@ -2051,10 +2052,10 @@ Static Code Analysis / Static Application Security Testing (SCA/SAST)
 Dependency Scanning for known vulnerabilities in third party components
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SA-11 (1) - DEVELOPER TESTING AND EVALUATION | STATIC CODE ANALYSIS 
+NIST 800-53 r5 SA-11 (1) - DEVELOPER TESTING AND EVALUATION | STATIC CODE ANALYSIS
 Require the developer of the system, system component, or system service to employ static code analysis tools to identify common flaws and document the results of the analysis.
 
-NIST 800-53 r5 SA-11 (7) - DEVELOPER TESTING AND EVALUATION | VERIFY SCOPE OF TESTING AND EVALUATION 
+NIST 800-53 r5 SA-11 (7) - DEVELOPER TESTING AND EVALUATION | VERIFY SCOPE OF TESTING AND EVALUATION
 Require the developer of the system, system component, or system service to verify that the scope of testing and evaluation provides complete coverage of the required controls at the following level of rigor: [Assignment: organization-defined breadth and depth of testing and evaluation].
 
 FMCSA GDL 2 Follow secure coding best practices.
@@ -2082,7 +2083,7 @@ COMMENT: >>>
 e.g. whitelisting, anti-malware scanning, cryptographic protections
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-3 – MALICIOUS CODE PROTECTION 
+NIST 800-53 r5 SI-3 – MALICIOUS CODE PROTECTION
 a. Implement [Selection (one or more): signature based; non-signature based] malicious code protection mechanisms at system entry and exit points to detect and eradicate malicious code;
 b. Automatically update malicious code protection mechanisms as new releases are available in accordance with organizational configuration management policy and procedures;
 c. Configure malicious code protection mechanisms to:
@@ -2135,7 +2136,7 @@ STATEMENT: >>>
 The vendor shall actively monitor resources such as NIST Common Vulnerabilities and Exposures (CVE), Bugtraq, for security alerts and advisories related to the telematics system’s components
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-5 - SECURITY ALERTS, ADVISORIES, AND DIRECTIVES 
+NIST 800-53 r5 SI-5 - SECURITY ALERTS, ADVISORIES, AND DIRECTIVES
 a. Receive system security alerts, advisories, and directives from [Assignment: organization defined external organizations] on an ongoing basis;
 b. Generate internal security alerts, advisories, and directives as deemed necessary;
 c. Disseminate security alerts, advisories, and directives to: [Selection (one or more): [Assignment: organization-defined personnel or roles]; [Assignment: organization-defined elements within the organization]; [Assignment: organization-defined external organizations]]; and
@@ -2159,7 +2160,7 @@ STATEMENT: >>>
 The vendor shall notify their customers of any vulnerabilities discovered in the telematics systems components via monitoring or vulnerability disclosure programs. The notification to customers will happen in a timely manner.
 <<<
 PUB_REFS: >>>
-NIST 800-53 r5 SI-5 - SECURITY ALERTS, ADVISORIES, AND DIRECTIVES 
+NIST 800-53 r5 SI-5 - SECURITY ALERTS, ADVISORIES, AND DIRECTIVES
 a. Receive system security alerts, advisories, and directives from [Assignment: organization defined external organizations] on an ongoing basis;
 b. Generate internal security alerts, advisories, and directives as deemed necessary;
 c. Disseminate security alerts, advisories, and directives to: [Selection (one or more): [Assignment: organization-defined personnel or roles]; [Assignment: organization-defined elements within the organization]; [Assignment: organization-defined external organizations]]; and
@@ -2191,7 +2192,7 @@ NIST 800-53 r5 SI-2 (3) - FLAW REMEDIATION | TIME TO REMEDIATE FLAWS AND BENCHMA
 (a) Measure the time between flaw identification and flaw remediation; and
 (b) Establish the following benchmarks for taking corrective actions: [Assignment: organization-defined benchmarks].
 
-BSIMM [SM1.4: 101] IDENTIFY GATE LOCATIONS, GATHER NECESSARY ARTIFACTS 
+BSIMM [SM1.4: 101] IDENTIFY GATE LOCATIONS, GATHER NECESSARY ARTIFACTS
 a. Establish security-specific release gates necessary for go/no-go decisions prior to deployment.
 
 BSIMM [SM2.2: 42] ENFORCE GATES WITH MEASUREMENTS AND TRACK EXCEPTIONS
@@ -2238,43 +2239,43 @@ PUB_REFS: >>>
 BSIMM [SE3.2: 13] Use Code Protection
 a. To protect intellectual property and make exploit development harder, the organization erects barriers to reverse engineering its software (e.g., anti-tamper, debug protection, anti-piracy features, runtime integrity). This is particularly important for widely distributed mobile applications. For some software, obfuscation techniques could be applied as part of the production build and release process. In other cases, these protections could be applied at the software-defined network or software orchestration layer when applications are being dynamically regenerated post-deployment. On some platforms, employing Data Execution Prevention (DEP), Safe Structured Handling (SafeSEH), and Address Space Layout Randomization (ASLR) can be a good start at making exploit development more difficult.
 
-OWASP MASVS MSTG‑RESILIENCE‑1  
-a. The app detects, and responds to, the presence of a rooted or jailbroken device either by alerting the user or terminating the app. 
+OWASP MASVS MSTG‑RESILIENCE‑1
+a. The app detects, and responds to, the presence of a rooted or jailbroken device either by alerting the user or terminating the app.
 
-OWASP MASVS MSTG‑RESILIENCE‑2  
-a. The app prevents debugging and/or detects, and responds to, a debugger being attached. All available debugging protocols must be covered. 
+OWASP MASVS MSTG‑RESILIENCE‑2
+a. The app prevents debugging and/or detects, and responds to, a debugger being attached. All available debugging protocols must be covered.
 
-OWASP MASVS MSTG‑RESILIENCE‑3  
-a. The app detects, and responds to, tampering with executable files and critical data within its own sandbox. 
+OWASP MASVS MSTG‑RESILIENCE‑3
+a. The app detects, and responds to, tampering with executable files and critical data within its own sandbox.
 
-OWASP MASVS MSTG‑RESILIENCE‑4  
+OWASP MASVS MSTG‑RESILIENCE‑4
 a. The app detects, and responds to, the presence of widely used reverse engineering tools and frameworks on the device.
 
-OWASP MASVS MSTG‑RESILIENCE‑5  
-a. The app detects, and responds to, being run in an emulator.  
+OWASP MASVS MSTG‑RESILIENCE‑5
+a. The app detects, and responds to, being run in an emulator.
 
-OWASP MASVS MSTG‑RESILIENCE‑6  
-a. The app detects, and responds to, tampering the code and data in its own memory space. 
+OWASP MASVS MSTG‑RESILIENCE‑6
+a. The app detects, and responds to, tampering the code and data in its own memory space.
 
-OWASP MASVS MSTG‑RESILIENCE‑7  
-a. The app implements multiple mechanisms in each defense category (8.1 to 8.6). Note that resiliency scales with the amount, diversity of the originality of the mechanisms used. 
+OWASP MASVS MSTG‑RESILIENCE‑7
+a. The app implements multiple mechanisms in each defense category (8.1 to 8.6). Note that resiliency scales with the amount, diversity of the originality of the mechanisms used.
 
-OWASP MASVS MSTG‑RESILIENCE‑8  
-a. The detection mechanisms trigger responses of different types, including delayed and stealthy responses. 
+OWASP MASVS MSTG‑RESILIENCE‑8
+a. The detection mechanisms trigger responses of different types, including delayed and stealthy responses.
 
-OWASP MASVS MSTG‑RESILIENCE‑9  
-a. Obfuscation is applied to programmatic defenses, which in turn impede de-obfuscation via dynamic analysis.  
+OWASP MASVS MSTG‑RESILIENCE‑9
+a. Obfuscation is applied to programmatic defenses, which in turn impede de-obfuscation via dynamic analysis.
 
-OWASP MASVS MSTG‑RESILIENCE‑10 
-a. The app implements a 'device binding' functionality using a device fingerprint derived from multiple properties unique to the device. 
+OWASP MASVS MSTG‑RESILIENCE‑10
+a. The app implements a 'device binding' functionality using a device fingerprint derived from multiple properties unique to the device.
 
-OWASP MASVS MSTG‑RESILIENCE‑11 
-a. All executable files and libraries belonging to the app are either encrypted on the file level and/or important code and data segments inside the executables are encrypted or packed. Trivial static analysis does not reveal important code or data. 
+OWASP MASVS MSTG‑RESILIENCE‑11
+a. All executable files and libraries belonging to the app are either encrypted on the file level and/or important code and data segments inside the executables are encrypted or packed. Trivial static analysis does not reveal important code or data.
 
-OWASP MASVS MSTG‑RESILIENCE‑12 
-a. If the goal of obfuscation is to protect sensitive computations, an obfuscation scheme is used that is both appropriate for the particular task and robust against manual and automated de-obfuscation methods, considering currently published research. The effectiveness of the obfuscation scheme must be verified through manual testing. Note that hardware-based isolation features are preferred over obfuscation whenever possible. 
+OWASP MASVS MSTG‑RESILIENCE‑12
+a. If the goal of obfuscation is to protect sensitive computations, an obfuscation scheme is used that is both appropriate for the particular task and robust against manual and automated de-obfuscation methods, considering currently published research. The effectiveness of the obfuscation scheme must be verified through manual testing. Note that hardware-based isolation features are preferred over obfuscation whenever possible.
 
-OWASP MASVS MSTG‑RESILIENCE‑13 
+OWASP MASVS MSTG‑RESILIENCE‑13
 a. As a defense in depth, next to having solid hardening of the communicating parties, application level payload encryption can be applied to further impede eavesdropping.
 <<<
 VERIFICATION: >>>
